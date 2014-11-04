@@ -19,10 +19,16 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/personal_misc.css">
 <link rel="stylesheet" href="css/personal_cliente.css">
+<!-- JavaScripts -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.singlePageNav.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/custom.js"></script>	
 </head>
+
 <body>
 
-	<!-- MenÃº para tablets, mÃ³viles y pantallas pequeÃ±as -->
+	<!--Menu Top -para tablets, moviles y pantallas pequeñas -->
 	<div class="responsive-navigation visible-sm visible-xs">
 		<div class="logo-small row">
 			<a href="index.jsp" class="col-xs-12">Talaverámica</a>
@@ -51,12 +57,12 @@
 			<li class="fuentes"><a href="catalogo?tipoCatalogo=fuente">Fuentes</a></li>
 		</ul>
 	</div>
-
-	<!-- MenÃº para pantallas grandes-->
+	<!-- *******fin pantallas pequeñas***** -->
+	
+	<!--Menu lateral, para pantallas grandes-->
 	<div id="main-sidebar" class="hidden-xs hidden-sm">
 		<div class="logo">
-			<a href="index.jsp"
-				rel="nofollow"><h1>Talaverámica</h1></a> <span>Al más puro
+			<h1><a href="index.jsp" rel="nofollow"> Talaverámica</a> </h1><span>Al más puro
 				estilo Romano</span>
 		</div>
 		<ul class="main-menu">
@@ -72,6 +78,10 @@
 			<h2>Bienvenido</h2>
 		</div>
 	</div>
+	<!-- ****fin pantallas grandes*** -->
+	
+	
+	
 	<div id="topbar" class="hidden-xs hidden-sm">
 		<div class="cesta-compra">
 			<a href="gestionCompra.jsp">Cesta de la compra <img
@@ -140,10 +150,6 @@
 	</div>
 
 
-	<!-- JavaScripts -->
-	<script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/jquery.singlePageNav.js"></script>
-	<script src="js/jquery.flexslider.js"></script>
-	<script src="js/custom.js"></script>
+	
 </body>
 </html>

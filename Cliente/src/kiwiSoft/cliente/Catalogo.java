@@ -25,7 +25,6 @@ public class Catalogo extends HttpServlet {
     public Catalogo() {
         super();
         simulacionbd = new SimulacionBD();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
