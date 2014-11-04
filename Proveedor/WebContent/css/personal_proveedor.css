@@ -1,0 +1,159 @@
+/* General CSS*/
+.main-menu, .responsive-menu ul, .social-member, .progess-bars, .first-footer .social-footer ul { padding: 0; margin: 0; list-style: none; }
+body { font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif; color: #777777; font-weight: 300; font-style: normal; -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */ -webkit-text-size-adjust: 100%; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-serif; }
+a, a:hover, a:focus { text-decoration: none; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
+#main-content {overflow: auto; padding: 2vw; z-index:15; position:fixed; top:17vh; right: 10vh; background-color: white; width: 65%; height: 70%; border: 7px solid #34393b; border-radius: 20px;}
+@media (max-width: 991px) { #main-content {margin: 0; margin-bottom: 15vh; position: static; width: 100%;} }
+
+
+/* Helpful CSS*/
+.margintop {margin-top: 10%}
+.uppercase {text-transform: uppercase; font-size: 15px;}
+.backgroundred {background-color: #5C2929; padding: 0;}
+
+
+/* Header CSS*/
+#cabecera {z-index: 10; width: 100%; height: 20%; position:fixed; top: 0;}
+#cabecera h1 { margin-top: 2vh; margin-bottom: 1vh;}
+.client-ref {background-color: #495054; color:white; text-align: right; padding: 10px; padding-right: 30px;border-top-right-radius: 5vh;}
+.contact-ref {background-color: #495054; color:white; text-align: left; padding: 10px; padding-left: 30px; border-top-left-radius: 5vh;}
+.client-ref:hover, .contact-ref:hover {background-color: #192024;-webkit-transition: all 350ms ease-in; -moz-transition: all 350ms ease-in; -o-transition: all 350ms ease-in; transition: all 350ms ease-in; }
+.client-ref a, .contact-ref a {color: white;}
+@media (max-height: 475px){ #cabecera span{display:none;}}
+@media (max-height: 500px){ .main-menu {top: 15vh !important;}}
+@media (max-height: 610px){ .site-footer{position: static !important;}}
+
+
+/* Menu superior SmallScreen*/
+.logo-small {padding: 0; margin: 0;}
+.logo-small a { border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; color: white; font-weight: 600; font-size: 30px; text-align: center; text-transform: uppercase; padding: 20px; width: 100%; background-color: #5C2929; }
+.user-menu-small, .user-menu-small ul{list-style: none; padding: 0; margin: 0; display: inline;width: 100%;}
+.user-menu-small li a{border-radius: 10px; background-color:#292f32; color: white;  display: block; float: left; list-style: none; padding:15px; text-align: center; text-transform: uppercase; -webkit-transition: all 350ms ease-in;  -moz-transition: all 300ms ease-in;   -o-transition: all 300ms ease-in;   transition: all 300ms ease-in; }
+.user-menu-small li a:hover {background-color:  #383e41; }
+.cesta-compra-small {margin: 0;}
+.cesta-compra-small a{width: 100%; border-radius: 10px; color: white; font-weight: 600; font-size: 16px; padding: 15px; background-color: #292f32; color: white; text-align: center; text-transform: uppercase;}
+.menu-small {border-top-left-radius: 10px; border-top-right-radius: 10px;}
+a.menu-toggle-btn { width: 100%; height: 60px; background-color: #843A3A; text-align: center; line-height: 60px; display: block; color: white; }
+a.menu-toggle-btn i { line-height: 60px; }
+.responsive-navigation { position: relative; width: 100%; display: block; z-index: 9999; }
+.responsive-menu { padding: 0;list-style: none; display: none; background-color: #495054; }
+.responsive-menu li a { color: white; text-transform: uppercase; display: block; padding: 20px; border-bottom: 1px solid #5a6267 !important;}
+.responsive-menu .add-product a { border-left: 4px solid #38a9e3;}
+.responsive-menu .add-product a:hover{color:#38a9e3;}
+.responsive-menu .my-products a {border-left: 4px solid #e9b144;}
+.responsive-menu .my-products a:hover{color:#e9b144;}
+.responsive-menu .add-publicity a {border-left: 4px solid #974dea;}
+.responsive-menu .add-publicity a:hover{color:#974dea;}
+.responsive-menu .my-account a {border-left: 4px solid #38e395;}
+.responsive-menu .my-account a:hover {color:#38e395;}
+.responsive-menu .logout a {border-left: 4px solid #e3387c;}
+.responsive-menu .logout a:hover {color:#e3387c;}
+
+/* Header Title CSS*/
+#page-title{text-align: center; color: white; background-color: #5C2929; border-bottom-right-radius: 3vh;border-bottom-left-radius: 3vh;}
+#page-title h1 { text-transform: uppercase; font-size: 35px; font-weight: 800; }
+#page-title a{ color:white;}
+#page-title span { color: #bee3f6; font-size: 13px; }
+
+
+/* Navbar */
+#navbar {}
+.main-menu {position: fixed;top: 25vh;left: 0;z-index: 15;width: 18%;background-color: #495054; padding: 2vh; padding-left: 0; border-top-right-radius: 4vh; border-bottom-right-radius: 4vh;}
+.main-menu { text-align: center; }
+.main-menu li { margin-bottom: 1px; }
+.main-menu li a { color: white; text-transform: uppercase; display: block; border-left: 4px solid; padding: 15px 30px; background-color: #383e41; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
+.main-menu li a:hover { background-color: #34393b; }
+li.add-product{border-top-right-radius: 3vh;}
+li.add-product a { border-color: #38a9e3; border-top-right-radius: 3vh;}
+li.add-product a:hover { color: #38a9e3; }
+li.my-products a { border-color: #e9b144; }
+li.my-products a:hover { color: #e9b144; }
+li.add-publicity a { border-color: #974dea; }
+li.add-publicity a:hover { color: #974dea; }
+li.my-account a { border-color: #38e395; }
+li.my-account a:hover { color: #38e395; }
+li.logout {margin-bottom:0;}
+li.logout a { border-color: #e3387c; border-bottom-right-radius: 3vh;}
+li.logout a:hover { color: #e3387c; }
+
+
+/* Login menu CSS*/
+.title {font-family: "Segoe UI";	font-style: italic;	text-align: center;	color: #38a9e3;	margin-bottom:6%;}
+#login-menu {color:white !important; z-index: 15; position: fixed; top: 20vh; float:center; width: 100%; }
+#login-form {border-radius: 2vh; background-color: #495054; padding: 30px; border-color: #192024; border-style: solid;border-width:0.5vw;}
+@media (max-width: 991px){ #login-menu #login-form {width: 100% !important;}}
+@media (max-width: 991px){ .disappear-small {display:none !important;}}
+@media (max-width: 991px){ #login-menu {position: static;}}
+@media (max-width: 991px){ #login-menu .row{ margin:0;}}
+@media (max-width: 991px){ body{ background-color: #192024}}
+@media (max-width: 991px){ .first-footer { border-right: 20px solid #192024 !important; border-left: 20px solid #192024 !important; }}
+
+/* Slider CSS*/
+.main-slider { width: 100%; height: 95vh; }
+.flexslider .slides { height: 100%; }
+.slider-caption { position: absolute; vertical-align: middle; width: 100%; text-align: center; height: 100; z-index: 8; color: white; top: 200px; }
+.slider-caption h2 { font-size: 48px; text-transform: uppercase; font-weight: 800; margin-bottom: 30px; }
+.slider-caption p { font-size: 16px; text-transform: uppercase; letter-spacing: 2px; width: 50%; margin: 0 auto 30px auto; line-height: 1.8em; }
+.flexslider { background-color: black; height: 100%; overflow: hidden; margin: 0; }
+.flexslider img { position: relative; opacity: 0.5; width: 100%; z-index: 7; }
+.flex-control-nav { bottom: 15px; z-index: -9; }
+
+
+
+/* Footer CSS*/
+.site-footer {  background-color: #313639; position:fixed;   left:0px;   bottom:0px;   height:auto;   width:100%;   z-index: 10;}
+.first-footer { border-left: 5px solid #313639; border-right: 5px solid #313639;background-color: #495054; padding: 1vh; text-align: center;}
+.first-footer .social-footer ul li { display: inline; }
+.first-footer .social-footer ul li a { width: 30px; height: 30px; -webkit-border-radius: 3px; border-radius: 3px; background-clip: padding-box; /* stops bg color from leaking outside the border: */ background-color: #313639; text-align: center; line-height: 40px; color: white; }
+.bottom-footer { background-color: #313639; color: #949da2; padding-top: 0.6vh; padding-bottom: 0;}
+.bottom-footer a { color: white; }
+.bottom-footer .credits { text-align: right; }
+.bottom-footer p {margin:0;}
+
+
+/* Registro Proveedores */
+#registroC{	font-family: "Segoe UI";	font-style: italic;	text-align: center;	color: CornflowerBlue;	margin-bottom:6%;}
+#formularioRegistroC label {	font-family: "Segoe UI";	color: black;}
+#formularioRegistroC, #columnas6, #columnas6o, .formPad{	padding: 5%; padding-top: 0;}
+#enviar:hover {color: green;}
+#cancelar:hover {color: red;}	
+#enviar,#cancelar {padding-left: 5%;	padding-right: 5%;}
+.red {color: red;}
+#botones {text-align: center;}
+
+
+/* Producto */
+#product .section-title { border-color: #e09d1a; }
+#product h2 { background-color: #e9b144; }
+.section-content { padding: 0 7%; }
+.section-title { border-top: 4px solid; margin-bottom: 60px; }
+.section-title h2 { display: inline-block; padding: 20px 35px; color: white; text-transform: uppercase; font-weight: 300; margin: 0; font-size: 20px; }
+#ofertas .section-title { border-color: #e09d1a; }
+#ofertas h2 { background-color: #e9b144; }
+.member-item { overflow: hidden; height: 26vw; }
+.member-item:hover .overlay { opacity: 1; visibility: visible; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
+.member-thumb { width: 100%; overflow: hidden; height: auto; position: relative; }
+.member-thumb img { width: 100%; height: 14vw; }
+.member-thumb .overlay { position: absolute; top: 0; right: 0; opacity: 0; visibility: hidden; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); }
+.member-content { margin-top: 10px; overflow: hidden; text-align: center; }
+.member-content h4 { text-transform: uppercase; font-size: 18px; color: #e9b144; }
+.member-content p { color: #aaaaaa; font-size: 12px; }
+.social-member li { display: inline; float: left; width: 40px; height: 40px; background-color: #e9b144; text-align: center; margin-right: 1px; }
+.social-member li a { display: block; line-height: 40px; color: white; }
+.social-member li:hover { background-color: #e5a424; }
+.load-more { width: 100%; text-align: center; margin-top: 15%; }
+.portfolioBgColor { background: #38e395; }
+.portfolioBgColor:hover { background-color: #169f60; }
+a.largeButton { color: white; text-transform: uppercase; font-weight: 700; font-size: 14px; display: inline-block; padding: 10px 20px; border-bottom: 3px solid; }
+a.largeButton.portfolioBgColor { border-color: #169f60; }
+.form-horizontal .form-group {margin-right: 0;margin-left: 0;}
+@media (max-width: 991px){ .member-item {height: auto !important;}}
+@media (max-width: 991px){ .member-thumb img { width: 100%; height: 63vw;}}
+
+
+/* MIS PRODUCTOS */
+.categoria form, .categoria select,.categoria span  {display: inline;}
+.categoria select {text-transform: uppercase; float: right; width: 120px; height: 50px; font-size: 16px;}
+.categoria span { float: right; color: #e09d1a; text-transform: uppercase;font-size: 20px; font-size: 16px; padding: 15px;  font-weight: 600;}
+@media (max-width: 991px){ .categoria form, .categoria select,.categoria span  {display: block;}}
