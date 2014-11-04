@@ -1,0 +1,148 @@
+/* General CSS*/
+.main-menu, ul.responsive-menu , .social-member, .progess-bars, .first-footer .social-footer ul { padding: 0; margin: 0; list-style: none; }
+body { font: 14px/1.85em "Open Sans", Arial, "Helvetice Neue", sans-serif; color: #777777; font-weight: 300; font-style: normal; -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */ -webkit-text-size-adjust: 100%; }
+a, a:hover, a:focus { text-decoration: none; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
+h1, h2, h3, h4, h5, h6 { font-family: "Open Sans", Arial, "Helvetice Neue", sans-serif; }
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#main-content, .full-width-slider { float: right; width: 82%; }
+
+
+/* Menu superior SmallScreen*/
+.logo-small {padding: 0; margin: 0;}
+.logo-small a { border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; color: white; font-weight: 600; font-size: 30px; text-align: center; text-transform: uppercase; padding: 20px; width: 100%; background-color: #5C2929; }
+.user-menu-small, .user-menu-small ul{list-style: none; padding: 0; margin: 0; display: inline;width: 100%;}
+.user-menu-small li a{border-radius: 10px; background-color: #495054; color: white;  display: block; float: left; list-style: none; padding:15px; text-align: center; text-transform: uppercase; -webkit-transition: all 350ms ease-in;  -moz-transition: all 300ms ease-in;   -o-transition: all 300ms ease-in;   transition: all 300ms ease-in; }
+.user-menu-small li a:hover {background-color: #292f32; }
+.cesta-compra-small {margin: 0;}
+.cesta-compra-small a{width: 100%; border-radius: 10px; color: white; font-weight: 600; font-size: 16px; padding: 15px; background-color: #292f32; color: white; text-align: center; text-transform: uppercase;}
+.menu-small {border-top-left-radius: 10px; border-top-right-radius: 10px;}
+a.menu-toggle-btn { width: 100%; height: 60px; background-color: #843A3A; text-align: center; line-height: 60px; display: block; color: white; }
+a.menu-toggle-btn i { line-height: 60px; }
+.responsive-navigation { position: relative; width: 100%; display: block; z-index: 9999; }
+.responsive-menu { list-style: none; display: none; background-color: #495054; }
+.responsive-menu li a { color: white; text-transform: uppercase; display: block; padding: 20px; border-bottom: 1px solid #5a6267;}
+
+
+/* Colores Menú */
+ul li.ofertas a{ border-left: 4px solid #38a9e3;}
+ul li.ofertas a:hover { color: #38a9e3; background-color: #383e41; }
+ul li.vasijas a { border-left: 4px solid #e9b144; }
+ul li.vasijas a:hover { color: #e9b144;  background-color: #383e41; }
+ul li.macetas a { border-left: 4px solid #B80000; }
+ul li.macetas a:hover { color: #B80000;  background-color: #383e41; }
+ul li.copas a { border-left: 4px solid #974dea; }
+ul li.copas a:hover { color: #974dea;  background-color: #383e41; }
+ul li.botijos a { border-left: 4px solid #38e395; }
+ul li.botijos a:hover { color: #38e395;  background-color: #383e41; }
+ul li.tinajas a { border-left: 4px solid #e3387c; }
+ul li.tinajas a:hover { color: #e3387c;  background-color: #383e41; }
+ul li.fuentes a { border-left: 4px solid #4747FF; }
+ul li.fuentes a:hover { color: #4747FF;  background-color: #383e41; }
+
+
+/* Menu superior BigScreen*/
+#topbar {color: white; position: fixed;top: 0; z-index: 15; right: 0; width: 82%; }
+#topbar div {padding: 0; margin: 0; display: inline;}
+.cesta-compra a {border-bottom-right-radius: 15vh; border-right: 0.7vh solid; border-bottom: 0.7vh solid; border-right-color: #495054; border-bottom-color: #495054; color: white; text-transform: uppercase; padding : 1.5vh; display: block; overflow: hidden; float:left; background-color:#383e41; text-align: center; width: 26%; -webkit-transition: all 350ms ease-in;  -moz-transition: all 300ms ease-in;   -o-transition: all 300ms ease-in;   transition: all 300ms ease-in; }
+.cesta-compra a:hover {background-color:  #292f32;}
+.user-menu {width: 50%; display: block; overflow: hidden; padding: 0; margin: 0; float: right;}
+.user-menu ul {list-style: none; padding: 0; margin: 0; float: left; width:100%;}
+.user-menu ul li a {float: right; color: white; text-align: center; text-transform: uppercase; border-bottom: 0.7vh solid;  border-color: #383e41; padding: 1.5vh 30px; background-color: #495054; -webkit-transition: all 350ms ease-in;  -moz-transition: all 300ms ease-in;   -o-transition: all 300ms ease-in;   transition: all 300ms ease-in; }
+.user-menu li a:hover {background-color: #292f32; }
+.user-login a{border-bottom-left-radius: 5vh; border-left: 0.7vh solid;width: 10vw;}
+.user-register a {width: 11.7vw}
+
+
+/* Navegación lateral*/
+#main-sidebar { float: left; width: 18%; height: 100%; position: fixed; background-color: #495054; color: white; }
+.logo { margin-bottom: 10vh; margin-top: 8vh; background-color: #5C2929; padding: 10%; padding-top: 2.5vh; padding-bottom: 2.5vh; }
+.logo a { color: white; }
+.logo a h1 { text-transform: uppercase; font-size: 1.8vw; margin: 0; font-weight: 800; }
+.logo span { color: #bee3f6; font-size: 100%; }
+.main-menu { text-align: left; padding: 0; margin:0;}
+.main-menu li { padding: 0; margin:0; margin-bottom: 1px; list-style: none;}
+.main-menu li a { color: white; text-transform: uppercase; display: block; border-left: 4px solid; padding: 2vh 30px; background-color: #383e41; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
+.main-menu li a:hover { background-color: #34393b; }
+.navbar-footer h2{ padding-bottom: 1.25vh; padding-top: 2.25vh; margin: 0; position: absolute;  bottom: 0px;  background-color: #292f32;  width: 100%;  font-size: 3vh;  text-align: center;}
+
+
+/*Galeria*/
+a.largeButton { color: white; text-transform: uppercase; font-weight: 700; font-size: 14px; display: inline-block; padding: 10px 20px; border-bottom: 3px solid; }
+.homeBgColor { background: #843A3A; }
+.homeBgColor:hover { background-color: #5C2929; }
+a.largeButton.homeBgColor { border-color: #5C2929; }
+.main-slider { width: 100%; height: 570px; }
+.slider-caption { position: absolute; vertical-align: middle; width: 100%; text-align: center; height: 100%; z-index: 8; color: white; top: 200px; }
+.slider-caption h2 { font-size: 48px; text-transform: uppercase; font-weight: 800; margin-bottom: 30px; }
+.slider-caption p { font-size: 16px; text-transform: uppercase; letter-spacing: 2px; width: 50%; margin: 0 auto 30px auto; line-height: 1.8em; }
+.flexslider { background-color: black; height: 570px; overflow: hidden; margin: 0; }
+.flexslider .slides { height: 570px; }
+.flexslider img { position: relative; opacity: 0.5; width: 100%; z-index: 7; }
+
+
+/* HTML de INICIO */
+.welcome-text { padding: 60px; text-align: center; }
+.welcome-text a { color: #38a9e3; }
+.welcome-text h2 { color: #38a9e3; font-weight: 300; text-transform: uppercase; font-size: 32px; }
+.welcome-text p { color: #aaaaaa; }
+
+
+/* FOOTER */
+.first-footer {  float: right; width: 82%; background-color: #495054; padding: 50px; text-align: center; border-left: 5px solid #313639; }
+.first-footer .social-footer ul li { display: inline; }
+.first-footer .social-footer ul li a { width: 40px; height: 40px; -webkit-border-radius: 3px; border-radius: 3px; background-clip: padding-box; /* stops bg color from leaking outside the border: */ background-color: #313639; text-align: center; line-height: 40px; color: white; }
+.bottom-footer {  float: right; width: 82%; background-color: #313639; color: #949da2; padding: 25px 7% 16px 7%; }
+.bottom-footer a { color: white; }
+.bottom-footer .credits { text-align: right; }
+
+
+/* ADAPTADOR A SmallScreen */
+@media (max-width: 991px) { #main-content { width: 100%; }
+  .first-footer { border-left: 0; width: 100%; }
+  .bottom-footer { width: 100%; }
+  .flexslider .slides, .flexslider, .main-slider { height: auto; }
+  .service-item { margin-bottom: 30px; }
+  .progess-bars { margin-top: 40px; } }
+@media (max-width: 767px) { .slider-caption a, .slider-caption p { display: none; top: 50px !important; } }
+@media (max-width: 581px) { .slider-caption { display: none; } }
+@media (max-height: 600px) { .navbar-footer h2{ display: none; } }
+@media (max-height: 525px) { .logo { margin-bottom: 6vh; margin-top: 0;  } }
+
+
+/* REGISTRO-CLIENTES */
+.blank-space {width: inherit; padding-top: 10vh;}
+#registroC{ font-family: "Segoe UI";  font-style: italic; text-align: center; color: CornflowerBlue;  margin-bottom:6%;}
+label { font-family: "Segoe UI"; color: black;}
+#formularioRegistroC, #columnas6, #columnas6o, .formPad{padding: 5%;}
+#enviar:hover { color: green;}
+#cancelar:hover {color: red;}
+#enviar,#cancelar { padding-left: 5%;padding-right: 5%;}
+.red {color: red;}
+#botones {text-align: center;}
+
+
+
+/* OFERTAS */
+.section-content { padding: 0 7%; margin-bottom: 100px; }
+.section-title { border-top: 4px solid; margin-bottom: 60px; }
+.section-title h2 { display: inline-block; padding: 20px 35px; color: white; text-transform: uppercase; font-weight: 300; margin: 0; font-size: 20px; }
+#ofertas .section-title { border-color: #e09d1a; }
+#ofertas h2 { background-color: #e9b144; }
+.member-item { overflow: hidden; height: auto; }
+.member-item:hover .overlay { opacity: 1; visibility: visible; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
+.member-thumb { width: 100%; overflow: hidden; height: auto; position: relative; }
+.member-thumb img { width: 100%; }
+.member-thumb .overlay { position: absolute; top: 0; right: 0; opacity: 0; visibility: hidden; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); }
+.member-content { margin-top: 10px; overflow: hidden; text-align: center; }
+.member-content h4 { text-transform: uppercase; font-size: 18px; color: #e9b144; }
+.member-content p { color: #aaaaaa; font-size: 12px; }
+.social-member li { display: inline; float: left; width: 40px; height: 40px; background-color: #e9b144; text-align: center; margin-right: 1px; }
+.social-member li a { display: block; line-height: 40px; color: white; }
+.social-member li:hover { background-color: #e5a424; }
+
+
+
+/* Login menu CSS*/
+.title {font-family: "Segoe UI";	font-style: italic;	text-align: center;	color: #38a9e3;	margin-bottom:6%;}
+#login-menu {color:white; z-index: 15; margin-top: 20vh; margin-bottom: 20vh; float:center; width: 100%; }
+#login-form {border-radius: 2vh; background-color: #495054; padding: 30px; border-color: #192024; border-style: solid;border-width:0.5vw;}

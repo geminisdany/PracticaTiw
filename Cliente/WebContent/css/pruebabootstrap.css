@@ -1,0 +1,39 @@
+#registroC{
+	font-family: "Segoe UI";
+	font-style: italic;
+	text-align: center;
+	color: CornflowerBlue;
+	margin-bottom:6%;}
+
+label {
+	font-family: "Segoe UI";
+	color: black;
+}
+
+#formularioRegistroC, #columnas6, #columnas6o, .formPad{
+	padding: 5%;
+}
+
+#enviar:hover { /*Definimos un color para resaltar el enlace sobre el que se sitúa el cursor*/
+	color: green;}
+#cancelar:hover {
+	color: red;}
+	
+#enviar,#cancelar { 
+	padding-left: 5%;
+	padding-right: 5%;}
+
+.red {
+	color: red;
+	}
+
+#botones {
+	text-align: center;}
+
+
+	
+	
+Telefono
+Dirección
+Ciudad
+Pais
