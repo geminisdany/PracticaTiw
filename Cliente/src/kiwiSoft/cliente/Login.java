@@ -29,6 +29,16 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+	
+	}
+	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String nombre = "";
 		if(request.getParameter("nombre") != null){
 			nombre = request.getParameter("Tom");
@@ -41,32 +51,7 @@ public class Login extends HttpServlet {
 		lista.add("elemento1");
 		lista.add("elemento2");
 		lista.add("elemento3");
-	
-	}
-	
-/*	listado.jsp
-	<%@ tagLib uri="http://java.sun.com/jsp/jstl/coreprefix"="c"%>
-	<body><c:if test=${listado !=null}>
-	<c:forEach var="elemento"	item="${listdo}">
-		${elemento}
-		<tR><tD><c:out var="${elemento}/>
-	</c:forEach>
-	</table>
-	</c:if>
-	
-		request.setAttribute("Sol", lista);
-		HttpSession sesion = request.getSession();
 		
-		sesion.setAttribute("nombreSesion", "valor de la sesion");
-		this.getServletConfig().getServletContext().getRequestDispatcher("/Sol.jsp").forward(request, response);
-	}
-	}*/
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
