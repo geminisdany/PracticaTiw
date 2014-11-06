@@ -1,19 +1,18 @@
 package kiwiSoft.cliente;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
+@WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,8 +28,10 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-	
+		HttpSession sesionAdmin = request.getSession();
+		sesionAdmin.setAttribute("clienteValidado",null);
+		response.setContentType("text/html");
+		this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	
 
@@ -39,19 +40,17 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String nombre = "";
-		if(request.getParameter("nombre") != null){
-			nombre = request.getParameter("Tom");
-		}
-		if(nombre.equalsIgnoreCase("Tom")){
-			this.getServletConfig().getServletContext().getRequestDispatcher("/indecCliente.jsp").forward(request, response);
-		}
-		// TODO Auto-generated method stub
-		List<String> lista = new ArrayList<String>();
-		lista.add("elemento1");
-		lista.add("elemento2");
-		lista.add("elemento3");
+		String nombre = request.getParameter("user");
+		String passwd = request.getParameter("password");
+		HttpSession sesionAdmin = request.getSession();
 		
+		if(nombre != null && passwd!=null){
+			if(nombre.equals("daniel")&&passwd.equals("daniel")){
+				sesionAdmin.setAttribute("clienteValidado",nombre);
+			}
+		}
+		response.setContentType("text/html");
+		this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 }

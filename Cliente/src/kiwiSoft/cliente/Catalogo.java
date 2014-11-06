@@ -39,8 +39,15 @@ public class Catalogo extends HttpServlet {
 					System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
 					request.setAttribute("tipoCatalogo",tipoCatalogo);
 					request.setAttribute("listaProducto", collection);
+				}else{
+					/**si no hay parametro de tipo de catalogo, por defecto se retorna la lista con ofertas**/
+					System.out.println("busco el tipo: ofertas");
+					Collection<Producto> collection=simulacionbd.ofertaCatalogo();
+					System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
+					request.setAttribute("tipoCatalogo","oferta");
+					request.setAttribute("listaProducto", collection);
 				}
-				request.setAttribute("catalogo", true);	
+				request.setAttribute("action","catalogo");
 				System.out.println("muestro catalogo");/////DEBUG
 				response.setContentType("text/html");
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

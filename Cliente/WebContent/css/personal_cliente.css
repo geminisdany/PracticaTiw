@@ -126,8 +126,29 @@ label { font-family: "Segoe UI"; color: black;}
 .section-content { padding: 0 7%; margin-bottom: 100px; }
 .section-title { border-top: 4px solid; margin-bottom: 60px; }
 .section-title h2 { display: inline-block; padding: 20px 35px; color: white; text-transform: uppercase; font-weight: 300; margin: 0; font-size: 20px; }
-#ofertas .section-title { border-color: #e09d1a; }
-#ofertas h2 { background-color: #e9b144; }
+
+#ofertas .section-title { border-color: #38a9e3; }
+#ofertas h2 { background-color: #38a9e4; }
+
+#vasijas .section-title { border-color: #e5ce41; }
+#vasijas h2 { background-color: #e5ce42; }
+
+#macetas .section-title { border-color: #b32815; }
+#macetas h2 { background-color: #b32816; }
+
+#copas .section-title { border-color: #951ae0; }
+#copas h2 { background-color: #951AE2; }
+
+#botijos .section-title { border-color: #90ee90; }
+#botijos h2 { background-color: #90ee92; }
+
+#tinajas .section-title { border-color: #e01aa3; }
+#tinajas h2 { background-color: #e01aa4; }
+
+#fuentes .section-title { border-color: #2e19e8; }
+#fuentes h2 { background-color: #2e19e9; }
+
+
 .member-item { overflow: hidden; height: auto; }
 .member-item:hover .overlay { opacity: 1; visibility: visible; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
 .member-thumb { width: 100%; overflow: hidden; height: auto; position: relative; }

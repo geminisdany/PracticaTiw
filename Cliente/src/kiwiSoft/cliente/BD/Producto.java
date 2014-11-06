@@ -10,11 +10,21 @@ public class Producto {
 	private int stock;
 	private String nombre;
 	private String urlImagen;
+	private boolean oferta;
 	
-	
+	public boolean isOferta() {
+		return oferta;
+	}
+
+
+	public void setOferta(boolean oferta) {
+		this.oferta = oferta;
+	}
+
+
 	public Producto(int idp, String cif, double pre_min, double pre_max,
 			String tipo, String descripcion, int stock, String nombre,
-			String urlImagen) {
+			String urlImagen,boolean oferta) {
 		this.idp = idp;
 		this.cif = cif;
 		this.pre_min = pre_min;
@@ -24,6 +34,7 @@ public class Producto {
 		this.stock = stock;
 		this.nombre = nombre;
 		this.urlImagen = urlImagen;
+		this.oferta = oferta;
 	}
 
 

@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<c:set var="cliVal" scope="session" value="${clienteValidado}"></c:set>
 <!--Menu Top -para tablets, moviles y pantallas pequeñas -->
 	<div class="responsive-navigation visible-sm visible-xs">
 		<div class="logo-small row">
@@ -9,7 +10,7 @@
 		</div>
 		<div class="user-menu-small row">
 			<ul>
-				<li class="user-register-small"><a href="cliente-registroUsuario.jsp" class="col-xs-6">Registrarse</a></li>
+				<li class="user-register-small"><a href="registro" class="col-xs-6">Registrarse</a></li>
 				<li class="user-login-small"><a data-toggle="modal" data-target="#modalLogin" href="#Iniciar-Sesion" class="col-xs-6">Entrar</a></li>
 			</ul>
 		</div>
@@ -38,7 +39,7 @@
 	<!--Menu lateral, para pantallas grandes-->
 	<div id="main-sidebar" class="hidden-xs hidden-sm">
 		<div class="logo">
-			<h1><a href="index.jsp" rel="nofollow"> Talaverámica</a> </h1><span>Al más puro
+			<h2><a href="index.jsp" rel="nofollow"> Talaverámica</a> </h2><span>Al más puro
 				estilo Romano</span>
 		</div>
 		<ul class="main-menu">
@@ -50,9 +51,12 @@
 			<li class="tinajas"><a href="catalogo?tipoCatalogo=tinaja">Tinajas</a></li>
 			<li class="fuentes"><a href="catalogo?tipoCatalogo=fuente">Fuentes</a></li>
 		</ul>
-		<div class="navbar-footer">
-			<h2>Bienvenido</h2>
-		</div>
+		<c:if test="${cliVal!=null}">
+			<div class="navbar-footer">
+			<h2>Bienvenido <c:out value="${cliVal}"></c:out></h2>
+			</div>
+		</c:if>
+		
 	</div>
 	<!-- ****fin pantallas grandes*** -->
 

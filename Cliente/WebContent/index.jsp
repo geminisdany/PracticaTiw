@@ -19,6 +19,11 @@
 <!-- JavaScripts -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/jquery.singlePageNav.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+
 
 </head>
 
@@ -34,12 +39,16 @@
 	
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". -->
 				<c:choose>
-					<c:when test="${catalogo}">
-						<jsp:include page="catalogo.jsp"></jsp:include>
+					<c:when test="${action!=null}">
+						<c:if test="${action=='registroCliente'}">
+						<jsp:include page="registroCliente.jsp"></jsp:include>	
+						</c:if>
+						<c:if test="${action=='catalogo'}">
+						<jsp:include page="catalogo.jsp"></jsp:include>	
+						</c:if>
 					</c:when>
 					<c:otherwise>
-						<jsp:include page="presentacion.jsp"></jsp:include>
-						
+						<jsp:include page="presentacion.jsp"></jsp:include>					
 					</c:otherwise>	
 				</c:choose>	
 	
