@@ -4,7 +4,7 @@
 	<div id="topbar" class="hidden-xs hidden-sm">
 		<!-- Cesta de la compra -->
 		<div class="cesta-compra">
-			<a href="gestionCompra.jsp">Cesta de la compra <img
+			<a href="cart?action=mostrarLista">Cesta de la compra <img
 				src="images/carritoCompra.png" alt="Carrito Compra" width="27"
 				height="27"></a>
 		</div>

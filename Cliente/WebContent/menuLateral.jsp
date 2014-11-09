@@ -15,7 +15,7 @@
 			</ul>
 		</div>
 		<div class="cesta-compra-small row">
-			<a href="gestionCompra.jsp" class="col-xs-12">Cesta de la compra <img
+			<a href="cart?action=mostrarLista" class="col-xs-12">Cesta de la compra <img
 				src="images/carritoCompra.png" alt="Carrito Compra" width="27"
 				height="27"></a>
 		</div>
@@ -23,13 +23,13 @@
 			class="fa fa-bars fa-2x"></i>
 		</a>
 		<ul class="responsive-menu">
-		<li class="ofertas"><a href="catalogo">Ofertas</a></li>
-			<li class="vasijas"><a href="catalogo?tipoCatalogo=vasija">Vasijas</a></li>
-			<li class="macetas"><a href="catalogo?tipoCatalogo=maceta">Macetas</a></li>
-			<li class="copas"><a href="catalogo?tipoCatalogo=copa">Copas</a></li>
-			<li class="botijos"><a href="catalogo?tipoCatalogo=botijo">Botijos</a></li>
-			<li class="tinajas"><a href="catalogo?tipoCatalogo=tinaja">Tinajas</a></li>
-			<li class="fuentes"><a href="catalogo?tipoCatalogo=fuente">Fuentes</a></li>
+		<li class="ofertas"><a href="catalogo?action=categoria">Ofertas</a></li>
+			<li class="vasijas"><a href="catalogo?action=categoria&tipoCatalogo=vasija">Vasijas</a></li>
+			<li class="macetas"><a href="catalogo?action=categoria&tipoCatalogo=maceta">Macetas</a></li>
+			<li class="copas"><a href="catalogo?action=categoria&tipoCatalogo=copa">Copas</a></li>
+			<li class="botijos"><a href="catalogo?action=categoria&tipoCatalogo=botijo">Botijos</a></li>
+			<li class="tinajas"><a href="catalogo?action=categoria&tipoCatalogo=tinaja">Tinajas</a></li>
+			<li class="fuentes"><a href="catalogo?action=categoria&tipoCatalogo=fuente">Fuentes</a></li>
 		</ul>
 	</div>
 	<!-- *******fin pantallas pequeñas***** -->
@@ -43,13 +43,13 @@
 				estilo Romano</span>
 		</div>
 		<ul class="main-menu">
-			<li class="ofertas"><a href="catalogo">Ofertas</a></li>
-			<li class="vasijas"><a href="catalogo?tipoCatalogo=vasija">Vasijas</a></li>
-			<li class="macetas"><a href="catalogo?tipoCatalogo=maceta">Macetas</a></li>
-			<li class="copas"><a href="catalogo?tipoCatalogo=copa">Copas</a></li>
-			<li class="botijos"><a href="catalogo?tipoCatalogo=botijo">Botijos</a></li>
-			<li class="tinajas"><a href="catalogo?tipoCatalogo=tinaja">Tinajas</a></li>
-			<li class="fuentes"><a href="catalogo?tipoCatalogo=fuente">Fuentes</a></li>
+			<li class="ofertas"><a href="catalogo?action=categoria">Ofertas</a></li>
+			<li class="vasijas"><a href="catalogo?action=categoria&tipoCatalogo=vasija">Vasijas</a></li>
+			<li class="macetas"><a href="catalogo?action=categoria&tipoCatalogo=maceta">Macetas</a></li>
+			<li class="copas"><a href="catalogo?action=categoria&tipoCatalogo=copa">Copas</a></li>
+			<li class="botijos"><a href="catalogo?action=categoria&tipoCatalogo=botijo">Botijos</a></li>
+			<li class="tinajas"><a href="catalogo?action=categoria&tipoCatalogo=tinaja">Tinajas</a></li>
+			<li class="fuentes"><a href="catalogo?action=categoria&tipoCatalogo=fuente">Fuentes</a></li>
 		</ul>
 		<c:if test="${cliVal!=null}">
 			<div class="navbar-footer">

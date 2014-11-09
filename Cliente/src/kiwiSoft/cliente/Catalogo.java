@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kiwiSoft.cliente.BD.Producto;
 import kiwiSoft.cliente.BD.SimulacionBD;
@@ -32,24 +33,62 @@ public class Catalogo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-				String tipoCatalogo= request.getParameter("tipoCatalogo");
-				if(tipoCatalogo!=null){			
-					System.out.println("busco el tipo:" + tipoCatalogo);
-					Collection<Producto> collection=simulacionbd.obtenerCatalogo(tipoCatalogo);
-					System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
-					request.setAttribute("tipoCatalogo",tipoCatalogo);
-					request.setAttribute("listaProducto", collection);
-				}else{
-					/**si no hay parametro de tipo de catalogo, por defecto se retorna la lista con ofertas**/
+				
+				String action = request.getParameter("action");
+				if(action==null)
+					action="default";
+					
+				switch (action) {
+				case "buscar":
+					
+					break;
+					
+				case "mostrarProducto":
+					/**mostrar una categoria**/
+					int idp = Integer.parseInt(request.getParameter("id"));
+					Producto producto = simulacionbd.obtenerProducto(idp);
+					
+					request.setAttribute("producto",producto);///para  producto.jsp		
+					request.setAttribute("action","mostrarProducto");///para el indice.jsp
+					System.out.println("muestro un producto");/////DEBUG
+					
+					break;
+					
+				case "categoria":
+					/**mostrar una categoria**/
+					String tipoCatalogo= request.getParameter("tipoCatalogo");	
+					if(tipoCatalogo!=null){			
+						System.out.println("busco el tipo:" + tipoCatalogo);
+						Collection<Producto> collection=simulacionbd.obtenerCatalogo(tipoCatalogo);
+						System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
+						request.setAttribute("tipoCatalogo",tipoCatalogo);
+						request.setAttribute("listaProducto", collection);
+					}else{
+						/**si no hay parametro de tipo de catalogo, por defecto se retorna la lista con ofertas**/
+						System.out.println("busco el tipo: ofertas");
+						Collection<Producto> collection=simulacionbd.ofertaCatalogo();
+						System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
+						request.setAttribute("tipoCatalogo","oferta");///para catalogo.jsp
+						request.setAttribute("listaProducto", collection);
+					}
+					request.setAttribute("action","catalogo");///para el indice.jsp
+					System.out.println("muestro catalogo");/////DEBUG
+					
+					break;
+					
+				default:
+					/**si no hay parametro, por defecto se retorna la lista con ofertas**/
 					System.out.println("busco el tipo: ofertas");
 					Collection<Producto> collection=simulacionbd.ofertaCatalogo();
 					System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
-					request.setAttribute("tipoCatalogo","oferta");
+					request.setAttribute("tipoCatalogo","oferta");///para catalogo.jsp
 					request.setAttribute("listaProducto", collection);
+					request.setAttribute("action","catalogo");///para el indice.jsp
+					System.out.println("muestro catalogo");/////DEBUG
+					break;
 				}
-				request.setAttribute("action","catalogo");
-				System.out.println("muestro catalogo");/////DEBUG
-				response.setContentType("text/html");
+				
+				response.setContentType("text/html");		
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 

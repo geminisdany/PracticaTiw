@@ -23,11 +23,13 @@
 							<div class="member-thumb">
 								<img src="${producto.urlImagen}" alt="${producto.nombre}">
 								<div class="overlay">
-									<a data-toggle="modal tooltip"
-											data-placement="left" title="Comprar Producto"
-											href="ServletCarrito?item=${producto.idp}"><button class="btn btn-default" id="3" name="3" data-target="#miCompra${Pedido.IdP}" >
-								Comprar
-							</button></a>
+									<a class="btn btn-success" data-toggle="modal tooltip"
+											data-placement="left" title="Agregar al carrito"
+											href="cart?action=agregar&id=${producto.idp}&cantidad=1">Comprar</a>
+									
+									<a class="btn btn-info" data-toggle="modal tooltip"
+											data-placement="left" title="Ver detalles del producto"
+											href="catalogo?action=mostrarProducto&id=${producto.idp}">Detalles</a>
 								</div>
 							</div>
 							<div class="member-content">

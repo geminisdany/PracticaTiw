@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 
-<div class="container-fluid" id="formularioRegistroC">
+<div  id="main-content">
+	<div class="blank-space"></div>
+	<div class="container-fluid">
 	<h3>
 		<a href="index.jsp">Home</a><span> ></span> <a
 			href="gestionCompra.jsp">1. Su Carrito</a><span> > 2.
@@ -28,39 +30,56 @@
 
 						<c:forEach items="${listaPedido}" var="pedido">
 							<tr>
-								<c:if test="${pedido.idp==3}">
 									<td><c:out value="${pedido.idp}"></c:out></td>
 									<td><c:out value="${pedido.nombre}"></c:out></td>
 									<td><c:out value="${pedido.cantidad}"></c:out></td>
 									<td><c:out value="${pedido.precio}"></c:out></td>
-									<td class="text-center"><a class="btn btn-danger btn-xs"
+									<td class="text-center">
+									<a class="btn btn-info btn-xs"
+										data-toggle="modal tooltip" data-placement="left"
+										title="Modificar Pedido"
+										href="catalogo?action=mostrarProducto&id=${pedido.idp}"><span
+											class="glyphicon glyphicon-pencil"></span></a>
+											
+									<a class="btn btn-danger btn-xs"
 										data-toggle="modal tooltip" data-placement="left"
 										title="Eliminar Pedido"
-										href="ServletCarrito?action=borrar&idp=${pedido.idp}"><span
-											class="glyphicon glyphicon-trash"></span></a></td>
-								</c:if>
+										href="cart?action=borrar&idp=${pedido.idp}"><span
+											class="glyphicon glyphicon-trash"></span></a>
+											
+									
+									
+									</td>
 							</tr>
 						</c:forEach>
 
 					</tbody>
 				</table>
 			</div>
+		
+		</div >
+			
+		<div class="col-md-12">
+			<div class="col-md-2 col-md-offset-9">
+				<div class="col-md-6 col-xs-6"><h3>Total:</h3></div>
+				<div class="col-md-6 col-xs-6"><h3>${total}€</h3></div>
+			</div>
 		</div>
-
-	</c:if>
+	
 	<div id="botones">
-		<a href="#"><button type="button" class="btn btn-default" id="vc">
+		<a href="cart?action=vaciar"><button type="button" class="btn btn-default" id="vc">
 				Vaciar carrito <span></span>
-			</button></a> <a href="index.jsp"><span><button type="button"
+			</button></a> <a href="catalogo"><span><button type="button"
 					class="btn btn-default" id="seguirC">
 					Seguir Comprando <span></span>
-				</button></span></a> <a href="gestionCompra2.jsp"><button type="button"
+				</button></span></a> <a href="cart?action=formPedido"><button type="button"
 				class="btn btn-default" id="CPF">
 				Realizar pedido <span></span>
 			</button></a>
 	</div>
+	</c:if>
+	</div>
+	<div class="blank-space"></div>
 </div>
 
-
-</body>
 </html>

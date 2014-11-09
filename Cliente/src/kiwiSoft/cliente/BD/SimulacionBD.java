@@ -10,7 +10,6 @@ public class SimulacionBD {
 	public ArrayList<Cliente> dbClientes;
 	public ArrayList<Pedido> dbPedido;
 	public ArrayList<Producto> dbProductos;
-	public Pedido pedido;
 	  
 	public SimulacionBD() {
 		// TODO Auto-generated constructor stub
@@ -25,10 +24,10 @@ public class SimulacionBD {
 		
 		/**pedido**/
 		this.dbPedido = new ArrayList<Pedido>();
-		dbPedido.add(new Pedido(0, 1,"Vasija azul", 2, 16.0));
-		dbPedido.add(new Pedido(0, 2,"Taza marron", 1, 20.0));
-		dbPedido.add(new Pedido(0, 3,"Tinaja verde", 3, 17.0));
-		dbPedido.add(new Pedido(0, 4,"Botella amarilla", 4, 18.0));
+		dbPedido.add(new Pedido(1,"Vasija azul", 2, 16.0));
+		dbPedido.add(new Pedido(2,"Taza marron", 1, 20.0));
+		dbPedido.add(new Pedido(3,"Tinaja verde", 3, 17.0));
+		dbPedido.add(new Pedido(4,"Botella amarilla", 4, 18.0));
 		
 		 this.dbProductos = new ArrayList<Producto>();
 	        dbProductos.add(new Producto(1, "A0001N", 25, 31, "fuente", "Fuente azul perfecta para diferentes snacks.", 55, "Fuente azul","http://media-cache-ec0.pinimg.com/736x/95/70/4e/95704ea6eb353dc3014d5f55a1f55250.jpg",true));
@@ -66,37 +65,20 @@ public class SimulacionBD {
 			}
 		}
 	}
-	public Pedido obtener (int idp) {
-		Pedido pedido= null;
-		Collection<Pedido> collection= this.dbPedido;
-		for (Iterator<Pedido> iterator = collection.iterator(); iterator.hasNext();) {
-			pedido = (Pedido) iterator.next();
-			if(pedido.getIdp()==idp){
-				pedido = new Pedido(pedido.getNfactura(), pedido.getIdp(), pedido.getNombre(), pedido.getCantidad(), pedido.getPrecio());			
-				return pedido;
+
+	
+	public Producto obtenerProducto(int idp){
+		Producto producto=null;
+		Collection<Producto> collection= this.dbProductos;
+		for (Iterator<Producto> iterator = collection.iterator(); iterator.hasNext();) {
+			producto = (Producto) iterator.next();
+			if(producto.getIdp()==idp){
+				return producto;
 			}
 		}
-		return pedido;
-	}
-	/**editar**/
-	public void editarPedido(int id, Pedido pedido) {
-		// TODO Auto-generated method stub
-		dbPedido.set(id, pedido);
-	}
+		return producto;
+	} 
 	
-	/**eliminar**/
-	public void eliminarPedido(int nFactura, int idp) {
-		// TODO Auto-generated method stub
-		Pedido pedido=null;
-		Collection<Pedido> collection= this.dbPedido;
-		for (Iterator<Pedido> iterator = collection.iterator(); iterator.hasNext();) {
-			pedido = (Pedido) iterator.next();
-			if(pedido.getNfactura()==nFactura&&pedido.getIdp()==idp){
-				dbPedido.remove(pedido);
-				return;
-			}
-		}			
-	}
 	
 	public ArrayList<Producto> obtenerCatalogo(String tipo) {
 		// TODO Auto-generated method stub

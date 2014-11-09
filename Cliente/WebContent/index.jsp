@@ -40,12 +40,34 @@
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". -->
 				<c:choose>
 					<c:when test="${action!=null}">
+						
 						<c:if test="${action=='registroCliente'}">
 						<jsp:include page="registroCliente.jsp"></jsp:include>	
 						</c:if>
+						
+						<c:if test="${action=='mostrarDatos'}">
+						<jsp:include page="datosCliente.jsp"></jsp:include>	
+						</c:if>
+						
 						<c:if test="${action=='catalogo'}">
 						<jsp:include page="catalogo.jsp"></jsp:include>	
 						</c:if>
+						
+						<c:if test="${action=='mostrarProducto'}">
+							<jsp:include page="producto.jsp"></jsp:include>	
+						</c:if>
+						
+						<c:if test="${action=='mostrarCarrito'}">
+							<jsp:include page="carrito.jsp"></jsp:include>	
+						</c:if>
+						<c:if test="${action=='formPedido'}">
+							<jsp:include page="registrarFactura.jsp"></jsp:include>	
+						</c:if>
+						
+						<c:if test="${action=='datosFactura'}">
+							<jsp:include page="datosFactura.jsp"></jsp:include>	
+						</c:if>
+						
 					</c:when>
 					<c:otherwise>
 						<jsp:include page="presentacion.jsp"></jsp:include>					
@@ -59,15 +81,7 @@
 	<!-- Pie de Pagina -->
 		<jsp:include page="piePagina.jsp"></jsp:include>
 	<!-- Fin de Pie de Pagina  -->
-<!------------------------ Ventana modal:Login -------------------------->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			
-			
-		</div>
 		
-											
-											
-	<!------------------------ Fin ventana modal:Editar Proveedor -------------------------->
 	
 </body>
 </html>

@@ -8,11 +8,11 @@
 						<div class="col-md-12">
 							<div class="social-footer">
 								<ul>
-									<li><a href="#" class="fa fa-facebook"></a></li>
-									<li><a href="https://twitter.com/AsientoVacio" class="fa fa-twitter"></a></li>
-									<li><a href="#" class="fa fa-dribbble"></a></li>
-									<li><a href="#" class="fa fa-linkedin"></a></li>
-									<li><a href="#" class="fa fa-rss"></a></li>
+									<li><a href="https://twitter.com" class="fa fa-facebook"></a></li>
+									<li><a href="https://twitter.com" class="fa fa-twitter"></a></li>
+									<li><a href="https://twitter.com" class="fa fa-dribbble"></a></li>
+									<li><a href="https://twitter.com" class="fa fa-linkedin"></a></li>
+									<li><a href="https://twitter.com" class="fa fa-rss"></a></li>
 								</ul>
 							</div> <!-- /.social-footer -->
 						</div> <!-- /.col-md-12 -->

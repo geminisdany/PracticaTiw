@@ -4,7 +4,6 @@ public class Pedido {
 	
 	/*Atributos*/
 
-	private int Nfactura;
 	private int idp;
 	private String nombre;
 	private int cantidad;
@@ -12,9 +11,7 @@ public class Pedido {
 	
 	/*Constructor*/
 	
-	public Pedido(int Nfactura, int idp,String nombre, int cantidad, double precio) {
-	
-		this.Nfactura=Nfactura;
+	public Pedido(int idp,String nombre, int cantidad, double precio) {
 		this.idp=idp;
 		this.nombre=nombre;
 		this.cantidad=cantidad;
@@ -24,15 +21,6 @@ public class Pedido {
 	}
 
 	/*Getters and Setters*/
-	
-	public int getNfactura() {
-		return Nfactura;
-	}
-
-	public void setNfactura(int nfactura) {
-		this.Nfactura = nfactura;
-	}
-
 	public int getIdp() {
 		return idp;
 	}
@@ -53,7 +41,7 @@ public class Pedido {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 

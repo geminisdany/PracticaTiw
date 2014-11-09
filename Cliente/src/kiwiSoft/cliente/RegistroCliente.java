@@ -29,7 +29,31 @@ public class RegistroCliente extends HttpServlet {
 		/**Peticion del formulario de registro, 
 		 * se envia al index un atributo que cambiara la vista 
 		 * para mostrar el formulario de registro**/
-		request.setAttribute("action", "registroCliente");
+		String action= request.getParameter("action");
+		
+		if (action!=null) {
+			switch (action) {
+			case "formulario":
+				request.setAttribute("action", "registroCliente");
+				break;
+			
+			case "resgitrar":
+				
+				break;
+			case "mostrarDatos":
+				request.setAttribute("action","mostrarDatos");
+				break;
+			
+			case "cambiarDatos":
+				
+				break;
+
+			default:
+				break;
+			}
+			
+		}
+		response.setContentType("text/html");
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		
 	}
