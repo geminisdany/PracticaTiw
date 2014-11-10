@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 
 public class Pedido implements Serializable {
-
 	   
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +22,13 @@ public class Pedido implements Serializable {
 	private int cantidad;
 	private double precio;
 	
+	public Pedido(Producto producto, int cantidad, double precio) {
+		super();
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.precio = precio;
+	}
+
 	public Producto getProducto() {
 		return producto;
 	}

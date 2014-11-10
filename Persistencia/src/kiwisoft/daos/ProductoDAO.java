@@ -55,7 +55,7 @@ public class ProductoDAO {
 	 }
 	 
 	public Producto buscarProducto(Long pk){
-		return em.createQuery("select u from Producto u where u.Id='"+pk+"'",Producto.class).getSingleResult();
+		return em.createQuery("select u from Producto u where u.id='"+pk+"'",Producto.class).getSingleResult();
 	}
 	
 	public Collection<Producto> buscarProductoMayor(Float precio){

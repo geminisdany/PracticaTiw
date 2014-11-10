@@ -5,6 +5,7 @@ import java.lang.Long;
 import java.sql.Blob;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * Entity implementation class for Entity: Producto
@@ -32,6 +33,9 @@ public class Producto implements Serializable {
 	private String urlImagen;
 	@Column(nullable = true)
 	private Blob imagen;
+	
+	@OneToOne
+	private Proveedor proveedor;
 	
 	public Producto(String nombre, double pre_min, double pre_max,
 			double precio, String tipo, String descripcion, int stock,

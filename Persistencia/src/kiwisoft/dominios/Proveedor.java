@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
+
 /**
  * Entity implementation class for Entity: Proveedor
  *
@@ -27,6 +28,8 @@ public class Proveedor implements Serializable {
 	private String email;
 	private String password;
 	private Direccion direccion;
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	private ArrayList<Producto> productos;
 	
 	
