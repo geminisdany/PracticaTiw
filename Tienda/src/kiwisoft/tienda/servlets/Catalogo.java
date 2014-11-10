@@ -83,12 +83,19 @@ public class Catalogo extends HttpServlet {
 					
 				case "mostrarProducto":
 					/**mostrar una categoria**/
-					int idp = Integer.parseInt(request.getParameter("id"));
-					/*Producto producto = simulacionbd.obtenerProducto(idp);
+					Long idp = Long.parseLong(request.getParameter("id"));
+					try {
+						Producto producto = proDao.buscarProducto(idp);
+						
+						request.setAttribute("producto",producto);///para  producto.jsp		
+						request.setAttribute("action","mostrarProducto");///para el indice.jsp
+						System.out.println("muestro un producto");/////DEBUG*/
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Error en la consulta de mostrar Producto...Catalogo");///DEBUG
+					}
 					
-					request.setAttribute("producto",producto);///para  producto.jsp		
-					request.setAttribute("action","mostrarProducto");///para el indice.jsp
-					System.out.println("muestro un producto");/////DEBUG*/
 					
 					break;
 					

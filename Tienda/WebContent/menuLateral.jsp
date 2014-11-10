@@ -53,7 +53,7 @@
 		</ul>
 		<c:if test="${cliVal!=null}">
 			<div class="navbar-footer">
-			<h2>Bienvenido <c:out value="${cliVal}"></c:out></h2>
+			<h2>Bienvenido </h2><h3><c:out value="${cliVal}"></c:out></h3>
 			</div>
 		</c:if>
 		

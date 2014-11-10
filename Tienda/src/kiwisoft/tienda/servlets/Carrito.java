@@ -4,13 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
+import kiwisoft.daos.ProductoDAO;
 import kiwisoft.dominios.Pedido;
+import kiwisoft.dominios.Producto;
 
 
 
@@ -22,8 +28,24 @@ import kiwisoft.dominios.Pedido;
 public class Carrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public ArrayList<Pedido> listaPedidos;
-
+    
+    @PersistenceContext(unitName="PracticaTiw")
+	private EntityManager em;
+	@Resource
+	private UserTransaction ut;
+	private ProductoDAO proDao;
 	
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		proDao = new ProductoDAO(em,ut);
+	}
+	
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		proDao=null;
+	}
     public Carrito() {
         super();
         this.listaPedidos = new ArrayList<Pedido>();
@@ -41,19 +63,19 @@ public class Carrito extends HttpServlet {
 		
 		switch (action) {
 		case "agregar":///agrega un articulo al carrito, utilizando su id de producto.
-			int idp = Integer.parseInt(request.getParameter("id"));
+			Long idp = Long.parseLong(request.getParameter("id"));
 			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 			agregarPedido(idp,cantidad);		
 			break;
 		
 		case "borrar":///borra un articulo del carrito
-			int idBorrar = Integer.parseInt(request.getParameter("idp"));
+			Long idBorrar = Long.parseLong(request.getParameter("idp"));
 			borrarPedido(idBorrar);
 			mostrarCarrito(request, response);
 			break;
 			
 		case "modificar"://modificar un articulo
-			int idpModificar = Integer.parseInt(request.getParameter("id"));
+			Long idpModificar = Long.parseLong(request.getParameter("id"));
 			int cantidadModificar = Integer.parseInt(request.getParameter("cantidad"));
 			modificarPedido(idpModificar, cantidadModificar);
 			mostrarCarrito(request, response);
@@ -123,16 +145,22 @@ public class Carrito extends HttpServlet {
 	 * @param idp
 	 * @param cantidad
 	 */
-	private void agregarPedido(int idp,int cantidad) {
+	private void agregarPedido(Long idp,int cantidad) {
 		// TODO Auto-generated method stub
 		//comprobamos si existe el pedido y lo sumamos
 		Pedido pedido=sumarPedido(idp,cantidad);
 		
 		if(pedido==null){//si no existe el pedido,es un nuevo pedido
-			/*String nombre =dbSimulacion.obtenerProducto(idp).getNombre();
-			double precio = dbSimulacion.obtenerProducto(idp).getPre_max();
-			Pedido pedidoAdd = new Pedido(idp, nombre, cantidad, precio);
-			listaPedidos.add(pedidoAdd);//se crea el pedido*/
+			try {
+				Producto producto = proDao.buscarProducto(idp);
+				Pedido pedidoAdd = new Pedido(producto, cantidad, cantidad*producto.getPrecio());
+				listaPedidos.add(pedidoAdd);//se crea el pedido*/
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Error en la consulta de agregar Pedido...Carrito");///DEBUG
+			}
+			
 		}
 		
 	}
@@ -141,10 +169,10 @@ public class Carrito extends HttpServlet {
 	 * 
 	 * @param idBorrar
 	 */
-	private void borrarPedido(int idBorrar){
+	private void borrarPedido(long idBorrar){
 		for (int i = 0; i < listaPedidos.size(); i++) {
 			Pedido pedido = listaPedidos.get(i);
-			if(pedido.getId()==idBorrar){
+			if(pedido.getProducto().getId()==idBorrar){
 				listaPedidos.remove(pedido);
 				break;
 			}
@@ -158,24 +186,31 @@ public class Carrito extends HttpServlet {
 	 * @param idp
 	 * @param cantidad
 	 */
-	private void modificarPedido(int idp,int cantidad) {
+	private void modificarPedido(Long idp,int cantidad) {
 		// TODO Auto-generated method stub
 		boolean existePedido=false;
 		for (int i = 0; i < listaPedidos.size(); i++) {
 			Pedido pedido = listaPedidos.get(i);
-			if(pedido.getId()==idp){
+			if(pedido.getProducto().getId()==idp){
 				listaPedidos.get(i).setCantidad(cantidad);
-				/*double nuevoPrecio =cantidad*dbSimulacion.obtenerProducto(idp).getPre_max();
-				listaPedidos.get(i).setPrecio(nuevoPrecio);*/
+				double nuevoPrecio =cantidad*pedido.getProducto().getPrecio();
+				listaPedidos.get(i).setPrecio(nuevoPrecio);
 				existePedido=true;
 				return;
 			}
 		}
 		if(!existePedido){
-			/*String nombre =dbSimulacion.obtenerProducto(idp).getNombre();
-			double precio = dbSimulacion.obtenerProducto(idp).getPre_max();
-			Pedido pedidoAdd = new Pedido(idp, nombre, cantidad, precio);
-			listaPedidos.add(pedidoAdd);//se crea el pedido*/
+			try {
+				Producto producto = proDao.buscarProducto(idp);
+				double precio = producto.getPrecio()*cantidad;
+				
+				Pedido pedidoAdd = new Pedido(producto, cantidad, precio);
+				listaPedidos.add(pedidoAdd);//se crea el pedido*/
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Error al consultar el producto, en agregar o modificar nuevo pedido....Carrito");
+			}
+			
 		}
 		
 		
@@ -187,14 +222,14 @@ public class Carrito extends HttpServlet {
 	 * @param cantidad
 	 * @return
 	 */
-	private Pedido sumarPedido(int idp,int cantidad) {
+	private Pedido sumarPedido(Long idp,int cantidad) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < listaPedidos.size(); i++) {
 			Pedido pedido = listaPedidos.get(i);
-			if(pedido.getId()==idp){
+			if(pedido.getProducto().getId()==idp){
 				listaPedidos.get(i).setCantidad(pedido.getCantidad()+cantidad);
-			/*	double nuevoPrecio = pedido.getCantidad()*dbSimulacion.obtenerProducto(idp).getPre_max();
-				listaPedidos.get(i).setPrecio(nuevoPrecio);*/
+				double nuevoPrecio = pedido.getCantidad()* proDao.buscarProducto(idp).getPrecio();
+				listaPedidos.get(i).setPrecio(nuevoPrecio);
 				return pedido;
 			}
 		}

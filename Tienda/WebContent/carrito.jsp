@@ -30,21 +30,21 @@
 
 						<c:forEach items="${listaPedido}" var="pedido">
 							<tr>
-									<td><c:out value="${pedido.idp}"></c:out></td>
-									<td><c:out value="${pedido.nombre}"></c:out></td>
+									<td><c:out value="${pedido.producto.id}"></c:out></td>
+									<td><c:out value="${pedido.producto.nombre}"></c:out></td>
 									<td><c:out value="${pedido.cantidad}"></c:out></td>
 									<td><c:out value="${pedido.precio}"></c:out></td>
 									<td class="text-center">
 									<a class="btn btn-info btn-xs"
 										data-toggle="modal tooltip" data-placement="left"
 										title="Modificar Pedido"
-										href="catalogo?action=mostrarProducto&id=${pedido.idp}"><span
+										href="catalogo?action=mostrarProducto&id=${pedido.producto.id}"><span
 											class="glyphicon glyphicon-pencil"></span></a>
 											
 									<a class="btn btn-danger btn-xs"
 										data-toggle="modal tooltip" data-placement="left"
 										title="Eliminar Pedido"
-										href="cart?action=borrar&idp=${pedido.idp}"><span
+										href="cart?action=borrar&idp=${pedido.producto.id}"><span
 											class="glyphicon glyphicon-trash"></span></a>
 											
 									

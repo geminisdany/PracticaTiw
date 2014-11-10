@@ -22,7 +22,7 @@
 							</div>
 							<div class="member-content">
 								<h4>${producto.nombre}</h4>
-								<p>${producto.pre_max}</p>
+								<p>${producto.precio}</p>
 							</div>
 						</div>
 					</div> <!-- /.col-md-4 -->
@@ -31,7 +31,7 @@
 							<div class="member-thumb" id="datosProductoCliente">
 								<p class="formatoCamposProducto">Descripcion: ${producto.descripcion}</p>
 								<p class="formatoCamposProducto">Stock: ${producto.stock}</p>
-								<p class="formatoCamposProducto">Proveedor que lo proporciona:${producto.cif}</p>
+								<p class="formatoCamposProducto">Proveedor que lo proporciona:${producto.id}</p>
 							</div>
 		
 								<form  action="cart"   class="form-inline" role="form" method="get">
@@ -39,7 +39,7 @@
 								    <label class="formatoCamposProducto control-label " >Cantidad</label>
 								    <input type="number" class="form-control" name="cantidad" value="1">
 								    <input type="text" name="action" value="modificar" hidden/>
-								    <input type="text" name="id" value="${producto.idp}" hidden/> 
+								    <input type="text" name="id" value="${producto.id}" hidden/> 
 								  </div>
 								  <div class="row blank-space"></div>
 								  <div class="form-group">
