@@ -25,11 +25,11 @@
 								<div class="overlay">
 									<a class="btn btn-success" data-toggle="modal tooltip"
 											data-placement="left" title="Agregar al carrito"
-											href="cart?action=agregar&id=${producto.idp}&cantidad=1">Comprar</a>
+											href="cart?action=agregar&id=${producto.id}&cantidad=1">Comprar</a>
 									
 									<a class="btn btn-info" data-toggle="modal tooltip"
 											data-placement="left" title="Ver detalles del producto"
-											href="catalogo?action=mostrarProducto&id=${producto.idp}">Detalles</a>
+											href="catalogo?action=mostrarProducto&id=${producto.id}">Detalles</a>
 								</div>
 							</div>
 							<div class="member-content">

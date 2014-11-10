@@ -27,15 +27,15 @@
 
 					<div class="row">
 					  <div class="form-group col-md-5">
-						<label for="emailC">Email <span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Email"></span></label>
-						<input type="email" class="form-control" id="emailC" name="emailC" 
-								   placeholder="Email">
-					  </div>
-					  <div class="form-group col-md-2"></div>
-					  <div class="form-group col-md-5">
 						<label for="telefonoC">Tel&eacute;fono <span class="red">*</span><span class="glyphicon glyphicon-phone-alt" title="Telefono"></span></label>
 						<input type="tel" class="form-control" id="telefonoC" name="telefonoC"
 							   placeholder="Telefono">
+					  </div>
+					  <div class="form-group col-md-2"></div>
+					  <div class="form-group col-md-5">
+						<label for="emailC">Email <span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Email"></span></label>
+						<input type="email" class="form-control" id="emailC" name="emailC" 
+								   placeholder="Email">
 					  </div>
 					</div>
 					<br>

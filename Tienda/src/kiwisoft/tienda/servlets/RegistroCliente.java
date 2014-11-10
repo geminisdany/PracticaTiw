@@ -112,7 +112,7 @@ public class RegistroCliente extends HttpServlet {
 				System.out.println("datos en proceso");///DEBUG
 				try {
 					nuevoCliente = cliDao.guardarCliente(nuevoCliente);
-					System.out.println("****************guardamos el nuevo cliente******************");///DEBUG
+					System.out.println("****************se ha guardado el nuevo cliente******************");///DEBUG
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
