@@ -70,8 +70,12 @@ public class ProductoDAO {
 		return em.createQuery("select u from Producto u where u.tipo='"+tipo+"'",Producto.class).getResultList();
 	}
 	
-	public Collection<Producto> buscarProductoNombre(String nombre){
-		return em.createQuery("select u from Producto u where u.nombre='"+nombre+"'",Producto.class).getResultList();
+	public Producto buscarProductoNombre(String nombre){
+		return em.createQuery("select u from Producto u where u.nombre='"+nombre+"'",Producto.class).getSingleResult();
+	}
+	
+	public Collection<Producto> buscarProductoOferta(){
+		return em.createQuery("select u from Producto u where u.oferta='"+true+"'",Producto.class).getResultList();
 	}
 
 }

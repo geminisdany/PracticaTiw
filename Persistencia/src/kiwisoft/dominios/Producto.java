@@ -28,11 +28,26 @@ public class Producto implements Serializable {
 	private String descripcion;
 	private int stock;
 	private boolean oferta;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String urlImagen;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Blob imagen;
 	
+	public Producto(String nombre, double pre_min, double pre_max,
+			double precio, String tipo, String descripcion, int stock,
+			boolean oferta, String urlImagen, Blob imagen) {
+		super();
+		this.nombre = nombre;
+		this.pre_min = pre_min;
+		this.pre_max = pre_max;
+		this.precio = precio;
+		this.tipo = tipo;
+		this.descripcion = descripcion;
+		this.stock = stock;
+		this.oferta = oferta;
+		this.urlImagen = urlImagen;
+		this.imagen = imagen;
+	}
 	
 	public String getNombre() {
 		return nombre;
