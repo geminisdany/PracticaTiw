@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.daos.ProductoDAO;
@@ -55,7 +56,7 @@ public class Carrito extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession sesionCarritoTotal = request.getSession();
 		String action = request.getParameter("action");
 		if(action==null){
 			action="default";
@@ -65,26 +66,33 @@ public class Carrito extends HttpServlet {
 		case "agregar":///agrega un articulo al carrito, utilizando su id de producto.
 			Long idp = Long.parseLong(request.getParameter("id"));
 			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-			agregarPedido(idp,cantidad);		
+			agregarPedido(idp,cantidad);
+			request.setAttribute("cestaTotal",listaPedidos.size());
+			sesionCarritoTotal.setAttribute("cestaTotal",listaPedidos.size());
 			break;
 		
 		case "borrar":///borra un articulo del carrito
 			Long idBorrar = Long.parseLong(request.getParameter("idp"));
 			borrarPedido(idBorrar);
 			mostrarCarrito(request, response);
+			if(listaPedidos.size()>0)
+				sesionCarritoTotal.setAttribute("cestaTotal",listaPedidos.size());
+			else
+				sesionCarritoTotal.setAttribute("cestaTotal",null);
 			break;
 			
 		case "modificar"://modificar un articulo
 			Long idpModificar = Long.parseLong(request.getParameter("id"));
 			int cantidadModificar = Integer.parseInt(request.getParameter("cantidad"));
 			modificarPedido(idpModificar, cantidadModificar);
-			mostrarCarrito(request, response);
-			
+			mostrarCarrito(request, response);	
+			sesionCarritoTotal.setAttribute("cestaTotal",listaPedidos.size());
 			break;
 		
 		case "vaciar"://elminar todos los articulos del carrito
 			listaPedidos= new ArrayList<Pedido>();
 			mostrarCarrito(request, response);
+			sesionCarritoTotal.setAttribute("cestaTotal",null);
 			break;
 			
 			

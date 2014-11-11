@@ -1,23 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<c:set var="cestTotal" scope="session" value="${cestaTotal}"></c:set>
+	
 	<div id="topbar" class="hidden-xs hidden-sm">
+		
 		<!-- Cesta de la compra -->
 		<div class="cesta-compra">
 			<a href="cart?action=mostrarLista">Cesta de la compra <img
 				src="images/carritoCompra.png" alt="Carrito Compra" width="27"
-				height="27"></a>
+				height="27"> <c:if test="${cestTotal!=null}"><span class="badge"> <c:out value="${cestTotal}"></c:out></span></c:if></a>
 		</div>
 		<!-- Fin de cesta de la compra -->
 		
 		<!-- Menu de Usuario de Sesion -->
-			<jsp:include page="sesionCliente.jsp"></jsp:include>	
+			<div><jsp:include page="sesionCliente.jsp"></jsp:include></div>	
 		<!-- Fin de Menu de Usuario de Sesion -->
+		
+		<!-- Buscador -->
+			<div class="col-md-5"><jsp:include page="buscador.jsp"></jsp:include></div>
+		<!-- Fin Buscador -->
+	
 	</div>
-	
-	
-	
-	
 	
 	
 	<!------------------------ Ventana Modal:Login -------------------------->				

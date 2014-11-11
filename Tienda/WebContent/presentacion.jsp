@@ -22,7 +22,7 @@
 							<h2>Un catálogo amplio</h2>
 							<p>Busca el producto que se ajuste a tus necesidades</p>
 							<a href="#" rel="nofollow"
-								class="largeButton homeBgColor">CatÃ¡logo</a>
+								class="largeButton homeBgColor">Catalogo</a>
 						</div> <img src="images/slide2.jpg" alt="Slide 2">
 					</li>
 
@@ -31,7 +31,7 @@
 							<h2>Ayudanos a mejorar</h2>
 							<p>Cualquier idea será bienvenida, especialmente ahora que
 								estamos empezando este proyecto</p>
-							<a href="#" rel="nofollow" class="largeButton homeBgColor">CuÃ©ntanos
+							<a href="#" rel="nofollow" class="largeButton homeBgColor">Cuentanos
 								tu idea</a>
 						</div> <img src="images/slide3.jpg" alt="Slide 3">
 					</li>

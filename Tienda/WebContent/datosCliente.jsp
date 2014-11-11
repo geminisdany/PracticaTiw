@@ -3,6 +3,9 @@
 <!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". -->
 	<div id="main-content">
 		<div class="container-fluid" id="formularioRegistroC">
+			
+		
+		
 			<h1 id="registroC">Cambio de contraseña</h1>
 			<p>Bienvenido a la pa¡gina de cambio de contraseña de
 				Talaverámica. Por favor, introduzca su contraseña actual y la

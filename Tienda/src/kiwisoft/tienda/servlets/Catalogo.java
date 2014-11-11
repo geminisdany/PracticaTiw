@@ -78,8 +78,23 @@ public class Catalogo extends HttpServlet {
 					
 				switch (action) {
 				case "buscar":
-					
-					break;
+							String opcion= request.getParameter("opcion");
+							String palabraClave = request.getParameter("palabraClave");
+							switch (opcion) {
+							case "producto":
+								try {
+									Producto producto= proDao.buscarProductoNombre(palabraClave);
+									request.setAttribute("producto",producto);///para  producto.jsp		
+									request.setAttribute("action","mostrarProducto");///para el indice.jsp
+									System.out.println("muestro un producto");/////DEBUG*/
+								} catch (Exception e) {
+									// TODO: handle exception
+									System.out.println("BUSCAR*******no existe el producto");
+								}
+								break;
+								}
+		
+				break;
 					
 				case "mostrarProducto":
 					/**mostrar una categoria**/
@@ -132,14 +147,8 @@ public class Catalogo extends HttpServlet {
 					break;
 					
 				default:
-					/**si no hay parametro, por defecto se retorna la lista con ofertas**/
-					System.out.println("busco el tipo: ofertas");
-					/*Collection<Producto> collection=simulacionbd.ofertaCatalogo();
-					System.out.println("tamaño de la lista de productos "+collection.size());///DEBUG
-					request.setAttribute("tipoCatalogo","oferta");///para catalogo.jsp
-					request.setAttribute("listaProducto", collection);
-					request.setAttribute("action","catalogo");///para el indice.jsp
-					System.out.println("muestro catalogo");/////DEBUG*/
+					/**si no hay parametro, Se realiza la busqueda anterior**/
+					
 					break;
 				}
 				
