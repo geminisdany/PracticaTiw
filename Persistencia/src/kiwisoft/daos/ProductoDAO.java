@@ -77,5 +77,6 @@ public class ProductoDAO {
 	public Collection<Producto> buscarProductoOferta(){
 		return em.createQuery("select u from Producto u where u.oferta='"+true+"'",Producto.class).getResultList();
 	}
+	
 
 }
