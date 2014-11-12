@@ -34,9 +34,6 @@ public class Producto implements Serializable {
 	@Column(nullable = true)
 	private Blob imagen;
 	
-	@OneToOne
-	private Proveedor proveedor;
-	
 	public Producto(String nombre, double pre_min, double pre_max,
 			double precio, String tipo, String descripcion, int stock,
 			boolean oferta, String urlImagen, Blob imagen) {

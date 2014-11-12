@@ -1,10 +1,14 @@
 package kiwisoft.dominios;
 
+import static javax.persistence.CascadeType.ALL;
+
 import java.io.Serializable;
 import java.lang.Long;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.*;
+
 
 
 /**
@@ -27,13 +31,34 @@ public class Proveedor implements Serializable {
 	private String web;
 	private String email;
 	private String password;
+	
+	@OneToOne(cascade = ALL)
 	private Direccion direccion;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private ArrayList<Producto> productos;
+	@JoinColumn(name="prove_id", referencedColumnName="id")
+	private Collection<Producto> productos;
 	
 	
-
+	
+	
+	public Proveedor(String cif, String nombre, int telefono, String web,
+			String email, String password, Direccion direccion) {
+		this.cif = cif;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.web = web;
+		this.email = email;
+		this.password = password;
+		this.direccion = direccion;
+		this.productos = new ArrayList<Producto>();
+	}
+	
+	//agregar producto a productos
+		public void agregarProducto(Producto producto) {
+			this.productos.add(producto);
+		}
+		
 	public String getCif() {
 		return cif;
 	}
@@ -76,10 +101,10 @@ public class Proveedor implements Serializable {
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
-	public ArrayList<Producto> getProductos() {
+	public Collection<Producto> getProductos() {
 		return productos;
 	}
-	public void setProductos(ArrayList<Producto> productos) {
+	public void setProductos(Collection<Producto> productos) {
 		this.productos = productos;
 	}
 	public Proveedor() {
