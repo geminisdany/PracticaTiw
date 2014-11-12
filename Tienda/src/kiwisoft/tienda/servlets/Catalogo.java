@@ -190,9 +190,17 @@ public class Catalogo extends HttpServlet {
 			 provedor=proveDao.guardarProveedor(provedor);
 			 
 			 //crear su producto
-			 Producto prod1= new Producto("xxx", 12.1, 12.1, 21.1, "wwww", "wwwwwww", 21, true, "wqwqwqw",null);
+			 Producto prod1= new Producto("Fuente azul", 12.1, 12.1, 21.1, "fuente", "Vasija de estética china, perfecta para decorar.", 21, true, "http://media-cache-ec0.pinimg.com/736x/95/70/4e/95704ea6eb353dc3014d5f55a1f55250.jpg",null,provedor);
 			 provedor.agregarProducto(prod1);
 			 proveDao.modificarProveedor(provedor);
+			 
+			
+			 //mostrar producto
+			 Producto productoFinal = proDao.buscarProductoNombre("Fuente azul");
+			 System.out.println("nombre producto:"+productoFinal.getNombre());
+			 System.out.println("nombre precio:"+productoFinal.getPrecio());
+			 System.out.println("nombre nonbre Proveedor:"+productoFinal.getProveedor().getNombre());
+			 
 			 
 			 
 		} catch (Exception e) {
