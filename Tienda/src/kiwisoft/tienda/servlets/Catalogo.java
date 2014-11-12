@@ -1,7 +1,9 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -14,7 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.daos.ProductoDAO;
+import kiwisoft.daos.ProveedorDAO;
+import kiwisoft.dominios.Direccion;
 import kiwisoft.dominios.Producto;
+import kiwisoft.dominios.Proveedor;
 
 
 
@@ -31,11 +36,13 @@ public class Catalogo extends HttpServlet {
 	@Resource
 	private UserTransaction ut;
 	private ProductoDAO proDao;
+	private ProveedorDAO proveDao;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		proDao = new ProductoDAO(em,ut);
+		proveDao = new ProveedorDAO(em, ut);
 		try {
 			Producto productos = proDao.buscarProductoNombre("Fuente azul");
 			if(productos!=null){
@@ -55,6 +62,7 @@ public class Catalogo extends HttpServlet {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		proDao=null;
+		proveDao=null;
 	}
 	
 	/**
@@ -169,7 +177,30 @@ public class Catalogo extends HttpServlet {
 	
 	/********Carga de catalogo*********/
 	 private void iniciarDB(){
-	    String[] nombres={"Fuente azul","Vasija china"};
+		 try {
+			
+			 /*List<Producto> productos = new ArrayList<Producto>();
+			 Producto nuevoProducto = new Producto("xxx", 12.1, 12.1, 21.1, "wwww", "wwwwwww", 21, true, "wqwqwqw",null);
+			 nuevoProducto = proDao.guardarProducto(nuevoProducto);
+			 productos.add(nuevoProducto);*/
+			 
+			 //crear proveedor
+			 Direccion direccion =new Direccion("mi casa", "peru", "peru", "peru", 123);
+			 Proveedor provedor = new Proveedor("A01", "uc3m", 91919191, "www.uc3m.es", "uc3m@uc3m", "uc3m", direccion);
+			 provedor=proveDao.guardarProveedor(provedor);
+			 
+			 //crear su producto
+			 Producto prod1= new Producto("xxx", 12.1, 12.1, 21.1, "wwww", "wwwwwww", 21, true, "wqwqwqw",null);
+			 provedor.agregarProducto(prod1);
+			 proveDao.modificarProveedor(provedor);
+			 
+			 
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error en la carga de BD");
+			System.out.println(e);
+		}
+	    /*String[] nombres={"Fuente azul","Vasija china"};
 	    String[] descripcion={"Fuente azul perfecta para diferentes snacks.","Vasija de estética china, perfecta para decorar."};
 	    String[] urlImagen={"http://media-cache-ec0.pinimg.com/736x/95/70/4e/95704ea6eb353dc3014d5f55a1f55250.jpg","http://www.museodevigo.org/img/coleccion/china.jpg"};
 	    double [] pre_min={25,37.5};
@@ -189,10 +220,9 @@ public class Catalogo extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-	    }
+	    }*/
 			
-		}
-		 
+		}	 
 	/**Fin de Carga de Catalogo**/
 	
 
