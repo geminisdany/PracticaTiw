@@ -35,8 +35,7 @@ public class Proveedor implements Serializable {
 	@OneToOne(cascade = ALL)
 	private Direccion direccion;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="prove_id", referencedColumnName="id")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "proveedor")
 	private Collection<Producto> productos;
 	
 	

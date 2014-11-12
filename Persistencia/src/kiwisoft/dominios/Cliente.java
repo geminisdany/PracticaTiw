@@ -28,7 +28,7 @@ public class Cliente implements Serializable {
 	private int telefono;
 	private String email;
 	private String password;
-	@OneToOne(cascade = ALL)
+	@OneToOne(cascade = ALL,fetch=EAGER)
 	private Direccion direccion;
 	
 	

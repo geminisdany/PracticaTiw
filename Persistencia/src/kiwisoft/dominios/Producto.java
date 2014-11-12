@@ -34,9 +34,12 @@ public class Producto implements Serializable {
 	@Column(nullable = true)
 	private Blob imagen;
 	
+	@OneToOne
+	private Proveedor proveedor;
+
 	public Producto(String nombre, double pre_min, double pre_max,
 			double precio, String tipo, String descripcion, int stock,
-			boolean oferta, String urlImagen, Blob imagen) {
+			boolean oferta, String urlImagen, Blob imagen,Proveedor proveedor) {
 		super();
 		this.nombre = nombre;
 		this.pre_min = pre_min;
@@ -48,6 +51,15 @@ public class Producto implements Serializable {
 		this.oferta = oferta;
 		this.urlImagen = urlImagen;
 		this.imagen = imagen;
+		this.proveedor=proveedor;
+	}
+	
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 	
 	public String getNombre() {
