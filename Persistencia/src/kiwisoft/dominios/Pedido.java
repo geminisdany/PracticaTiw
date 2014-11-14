@@ -18,9 +18,10 @@ public class Pedido implements Serializable {
 	private Long id;
 	private static final long serialVersionUID = 1L;
 	
-	private Producto producto;
 	private int cantidad;
 	private double precio;
+	@OneToOne
+	private Producto producto;
 	
 	public Pedido(Producto producto, int cantidad, double precio) {
 		super();

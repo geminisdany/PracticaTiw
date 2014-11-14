@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 
 
 
@@ -32,12 +34,11 @@ public class Proveedor implements Serializable {
 	private String email;
 	private String password;
 	
-	@OneToOne(cascade = ALL)
+	@OneToOne(cascade = ALL, fetch = EAGER)
 	private Direccion direccion;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "proveedor")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "proveedor", fetch = LAZY)
 	private Collection<Producto> productos;
-	
 	
 	
 	

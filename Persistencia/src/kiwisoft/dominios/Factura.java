@@ -3,15 +3,18 @@ package kiwisoft.dominios;
 import java.io.Serializable;
 import java.lang.Long;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.ALL;
+
+
 
 /**
  * Entity implementation class for Entity: Factura
  *
  */
 @Entity
-
 public class Factura implements Serializable {
 
 	   
@@ -21,24 +24,48 @@ public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Direccion direccion;
-	private ArrayList<Pedido>pedidos;
 	private String fecha;
 	private String hora;
 	private double importe;
 	
+	@OneToMany(cascade = ALL, mappedBy = "producto")
+	private Collection<Pedido>pedidos;
+	
+	public Factura(Direccion direccion, String fecha,String hora, double importe) {
+		this.direccion=direccion;
+		this.fecha=fecha;
+		this.hora=hora;
+		this.importe=importe;
+		this.pedidos=new ArrayList<Pedido>();
+	} 
+	
+	//agregar factura
+	public void agregarPedido(Pedido pedido) {
+			this.pedidos.add(pedido);
+	}
+		
+	public Collection<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Collection<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public Factura() {
+		super();
+	} 
 	
 	public Direccion getDireccion() {
 		return direccion;
 	}
+
+	
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
-	public ArrayList<Pedido> getPedidos() {
-		return pedidos;
-	}
-	public void setPedidos(ArrayList<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+
+	
 	public String getFecha() {
 		return fecha;
 	}
@@ -60,9 +87,7 @@ public class Factura implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Factura() {
-		super();
-	}   
+	  
 	public Long getId() {
 		return this.id;
 	}

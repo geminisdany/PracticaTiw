@@ -1,8 +1,10 @@
 package kiwisoft.dominios;
 
+
 import java.io.Serializable;
 import java.lang.Long;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.*;
 import static javax.persistence.FetchType.EAGER;
@@ -13,10 +15,8 @@ import static javax.persistence.CascadeType.ALL;
  * Entity implementation class for Entity: Cliente
  *
  */
-@Entity
 public class Cliente implements Serializable {
-
-	   
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -28,21 +28,38 @@ public class Cliente implements Serializable {
 	private int telefono;
 	private String email;
 	private String password;
+	
 	@OneToOne(cascade = ALL,fetch=EAGER)
 	private Direccion direccion;
 	
 	
+	@OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "cliente")
+	private Collection<Factura> facturas;
+	
 	
 	public Cliente(String nombre, String apellidos, int telefono, String email, String password,Direccion direccion) {
-		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
 		this.direccion=direccion;
+		this.facturas=new ArrayList<Factura>();
 	}
 	
+	//agregar factura
+	public void agregarProducto(Factura factura) {
+		this.facturas.add(factura);
+	}
+	
+	public Collection<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(Collection<Factura> facturas) {
+		this.facturas = facturas;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -97,5 +114,6 @@ public class Cliente implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
    
 }

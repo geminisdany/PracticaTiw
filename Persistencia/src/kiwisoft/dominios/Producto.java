@@ -5,7 +5,6 @@ import java.lang.Long;
 import java.sql.Blob;
 
 import javax.persistence.*;
-import static javax.persistence.CascadeType.ALL;
 
 /**
  * Entity implementation class for Entity: Producto
