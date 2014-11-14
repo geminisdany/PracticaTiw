@@ -209,6 +209,8 @@ public class Catalogo extends HttpServlet {
 			System.out.println(e);
 		}
 	    /*String[] nombres={"Fuente azul","Vasija china"};
+	    String[] proveedorNom={}
+	    
 	    String[] descripcion={"Fuente azul perfecta para diferentes snacks.","Vasija de estética china, perfecta para decorar."};
 	    String[] urlImagen={"http://media-cache-ec0.pinimg.com/736x/95/70/4e/95704ea6eb353dc3014d5f55a1f55250.jpg","http://www.museodevigo.org/img/coleccion/china.jpg"};
 	    double [] pre_min={25,37.5};
