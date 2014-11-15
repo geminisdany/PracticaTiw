@@ -4,7 +4,13 @@
 <!DOCTYPE html>
 <html>
 	<div id="main-content">
+	
+		
+		
 		<div class="blank-space"></div>
+		<!-- Buscador -->
+			<div class=" col-md-offset-2 col-md-8"><jsp:include page="buscador.jsp"></jsp:include></div>
+		<!-- Fin Buscador -->
 		<div class="container-fluid">
 		   
 		   <div id="${tipoCatalogo}s" class="section-content">

@@ -18,9 +18,6 @@
 			<div><jsp:include page="sesionCliente.jsp"></jsp:include></div>	
 		<!-- Fin de Menu de Usuario de Sesion -->
 		
-		<!-- Buscador -->
-			<div class="col-md-5"><jsp:include page="buscador.jsp"></jsp:include></div>
-		<!-- Fin Buscador -->
 	
 	</div>
 	
