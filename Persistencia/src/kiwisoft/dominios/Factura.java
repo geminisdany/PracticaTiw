@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+
 import static javax.persistence.CascadeType.ALL;
 
 
@@ -15,35 +16,38 @@ import static javax.persistence.CascadeType.ALL;
  *
  */
 @Entity
+@Table(name = "factura")
 public class Factura implements Serializable {
-
-	   
+  
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private static final long serialVersionUID = 1L;
 	
-	private Direccion direccion;
+	@Column(nullable = false)
 	private String fecha;
+	@Column(nullable = false)
 	private String hora;
+	@Column(nullable = false)
 	private double importe;
 	
-	@OneToMany(cascade = ALL, mappedBy = "producto")
+	@OneToOne(cascade = ALL)
+	private Direccion direccion;
+	@OneToMany(cascade = ALL)
 	private Collection<Pedido>pedidos;
 	
-	public Factura(Direccion direccion, String fecha,String hora, double importe) {
-		this.direccion=direccion;
-		this.fecha=fecha;
-		this.hora=hora;
-		this.importe=importe;
-		this.pedidos=new ArrayList<Pedido>();
+	public Factura() {
+		super();
 	} 
-	
-	//agregar factura
-	public void agregarPedido(Pedido pedido) {
-			this.pedidos.add(pedido);
+	public Factura(String fecha, String hora,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
+		super();
+		this.direccion = direccion;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.importe = importe;
+		this.pedidos = pedidos;
 	}
-		
+	
 	public Collection<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -52,9 +56,10 @@ public class Factura implements Serializable {
 		this.pedidos = pedidos;
 	}
 
-	public Factura() {
-		super();
-	} 
+	//agregar pedido
+	public void agregarPedido(Pedido pedido) {
+			this.pedidos.add(pedido);
+	}
 	
 	public Direccion getDireccion() {
 		return direccion;

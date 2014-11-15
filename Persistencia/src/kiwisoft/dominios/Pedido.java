@@ -10,7 +10,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@Table(name = "pedido")
 public class Pedido implements Serializable {
 	   
 	@Id
@@ -18,20 +18,31 @@ public class Pedido implements Serializable {
 	private Long id;
 	private static final long serialVersionUID = 1L;
 	
+	@Column(nullable = false)
 	private int cantidad;
-	private double precio;
+	@Column(nullable = false)
+	private double precio;	
+	
 	@OneToOne
 	private Producto producto;
 	
+
 	public Pedido(Producto producto, int cantidad, double precio) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
 		this.precio = precio;
 	}
+	
+	public Pedido() {
+		super();
+	} 
 
 	public Producto getProducto() {
 		return producto;
+	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 	
 	public int getCantidad() {
@@ -47,9 +58,7 @@ public class Pedido implements Serializable {
 		this.precio = precio;
 	}
 	
-	public Pedido() {
-		super();
-	}   
+  
 	public Long getId() {
 		return this.id;
 	}

@@ -3,6 +3,7 @@
 	<persistence-unit name="PracticaTiw" transaction-type="JTA">
 		<jta-data-source>jdbc/tiwuc3m</jta-data-source>
 		<class>kiwisoft.dominios.Administrador</class>
+		<class>kiwisoft.dominios.Cliente</class>
 		<class>kiwisoft.dominios.Direccion</class>
 		<class>kiwisoft.dominios.Factura</class>
 		<class>kiwisoft.dominios.Pedido</class>

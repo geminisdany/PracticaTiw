@@ -18,7 +18,7 @@ import static javax.persistence.FetchType.LAZY;
  *
  */
 @Entity
-
+@Table(name = "proveedor")
 public class Proveedor implements Serializable {
 
 	   
@@ -26,12 +26,17 @@ public class Proveedor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private static final long serialVersionUID = 1L;
-	
+	@Column(nullable = false, unique = true)
 	private String cif;
+	@Column(nullable = false)
 	private String nombre;
+	@Column(unique = true)
 	private int telefono;
+	@Column(nullable = false)
 	private String web;
+	@Column(nullable = false, unique = true)
 	private String email;
+	@Column(nullable = false)
 	private String password;
 	
 	@OneToOne(cascade = ALL, fetch = EAGER)

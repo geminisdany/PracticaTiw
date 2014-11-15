@@ -10,7 +10,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@Table(name = "direccion")
 public class Direccion implements Serializable {
 
 	   
@@ -19,12 +19,20 @@ public class Direccion implements Serializable {
 	private Long id;
 	private static final long serialVersionUID = 1L;
 	
+	@Column(nullable = false)
 	private String direccion;
+	@Column(nullable = false)
 	private String ciudad;
+	@Column(nullable = false)
 	private String provincia;
+	@Column(nullable = false)
 	private String pais;
+	@Column(nullable = false)
 	private int cp;
 	
+	public Direccion() {
+		super();
+	}  
 	public Direccion(String direccion, String ciudad, String provincia,
 			String pais, int cp) {
 		super();
@@ -67,9 +75,7 @@ public class Direccion implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Direccion() {
-		super();
-	}   
+	 
 	public Long getId() {
 		return this.id;
 	}

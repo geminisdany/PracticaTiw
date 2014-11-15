@@ -10,7 +10,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@Table(name = "suscripcion")
 public class Suscripcion implements Serializable {
 
 	   
@@ -18,10 +18,20 @@ public class Suscripcion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private static final long serialVersionUID = 1L;
+	
+	@OneToOne
+	private Producto producto;
 
+	
 	public Suscripcion() {
 		super();
 	}   
+	public Producto getProducto() {
+		return producto;
+	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
 	public Long getId() {
 		return this.id;
 	}

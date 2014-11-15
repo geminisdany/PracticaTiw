@@ -11,7 +11,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@Table(name = "producto")
 public class Producto implements Serializable {
 
 	   
@@ -20,13 +20,21 @@ public class Producto implements Serializable {
 	private Long id;
 	private static final long serialVersionUID = 1L;
 	
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false)
 	private double pre_min;
+	@Column(nullable = false)
 	private double pre_max;
+	@Column(nullable = false)
 	private double precio;
+	@Column(nullable = false)
 	private String tipo;
+	@Column(nullable = false)
 	private String descripcion;
+	@Column(nullable = false)
 	private int stock;
+	@Column(nullable = false)
 	private boolean oferta;
 	@Column(nullable = true)
 	private String urlImagen;
