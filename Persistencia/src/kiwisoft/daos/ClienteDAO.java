@@ -27,4 +27,9 @@ public class ClienteDAO {
 	 public Cliente buscarPorEmailYpassword(String email, String password)throws NoResultException{
         return em.createQuery("select u from Cliente u where u.email='"+email+"' and u.password='"+password+"'",Cliente.class).getSingleResult();
 	 }
+	 
+	 /*Se busca un cliente por id*/
+	 public Cliente buscarProducto(Long pk){
+			return em.createQuery("select u from Cliente u where u.id='"+pk+"'",Cliente.class).getSingleResult();
+		}
 }
