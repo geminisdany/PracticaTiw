@@ -5,6 +5,7 @@ import javax.persistence.NoResultException;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.dominios.Cliente;
+import kiwisoft.dominios.Producto;
 
 public class ClienteDAO {
 	private final EntityManager em;
@@ -29,7 +30,15 @@ public class ClienteDAO {
 	 }
 	 
 	 /*Se busca un cliente por id*/
-	 public Cliente buscarProducto(Long pk){
+	 public Cliente buscarClienteID(Long pk){
 			return em.createQuery("select u from Cliente u where u.id='"+pk+"'",Cliente.class).getSingleResult();
 		}
+	 
+	public Cliente actualizarCliente(Cliente clienteActualizado) throws Exception{
+	    ut.begin();
+	    em.merge(clienteActualizado);
+	    ut.commit();
+	    return clienteActualizado;
+	}
+		
 }
