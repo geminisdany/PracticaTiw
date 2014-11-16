@@ -45,8 +45,8 @@
 						<jsp:include page="registroCliente.jsp"></jsp:include>	
 						</c:if>
 						
-						<c:if test="${action=='mostrarDatos'}">
-						<jsp:include page="datosCliente.jsp"></jsp:include>	
+						<c:if test="${action=='seccionCliente'}">
+						<jsp:include page="seccionCliente.jsp"></jsp:include>	
 						</c:if>
 						
 						<c:if test="${action=='catalogo'}">

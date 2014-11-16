@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.daos.ClienteDAO;
@@ -60,19 +61,36 @@ public class RegistroCliente extends HttpServlet {
 		
 		if (action!=null) {
 			switch (action) {
-			case "formulario":
+			case "formulario":///muestra el formulario de registro del cliente 
 				request.setAttribute("action", "registroCliente");
 				break;
 			
 			case "resgitrar":
 				/**registrar entran por post**/
 				break;
-			case "mostrarDatos":
-				request.setAttribute("action","mostrarDatos");
+			
+			case "modificarCliente":///muestra el formulario para cambiar los datos
+				HttpSession sesionRegistro = request.getSession();
+				Long idCliente = (Long) sesionRegistro.getAttribute("idCliente");
+				Cliente cliente = cliDao.buscarClienteID(idCliente);
+				request.setAttribute("action","seccionCliente");
+				request.setAttribute("panelDatos",true);
+				request.setAttribute("cliente", cliente);
 				break;
 			
-			case "cambiarDatos":
-				/**los datos entran por post**/
+			case "cambiarPass": ///muestrado el formulario para cambiar la contraseña 
+				request.setAttribute("action","seccionCliente");
+				request.setAttribute("panelPass",true);
+				break;
+			
+			case "suscripcion": ///muestra los productos a los que esta suscrito
+				request.setAttribute("action","seccionCliente");
+				request.setAttribute("panelSuscripcion",true);
+				break;
+				
+			case "historial":///muestra la lista de facturas
+				request.setAttribute("action","seccionCliente");
+				request.setAttribute("panelHistorial",true);
 				break;
 
 			default:
@@ -122,6 +140,39 @@ public class RegistroCliente extends HttpServlet {
 			
 			case "cambiarDatos":
 				/**los datos entran por post**/
+				String nomRegC= request.getParameter("nombreC");
+				String apeRegC= request.getParameter("apellidosC");
+				String emailRegC= request.getParameter("emailC");
+				int telRegC= Integer.parseInt(request.getParameter("telefonoC"));
+				String paisRegC= request.getParameter("paisC");
+				String proRegC= request.getParameter("provinciaC");
+				String ciuRegC= request.getParameter("ciudadC");
+				String dirRegC= request.getParameter("direccionC");
+				int cpRegC= Integer.parseInt(request.getParameter("cpC"));
+				System.out.println("datos: "+nomRegC+apeRegC+emailRegC+telRegC+proRegC+paisRegC+ciuRegC+dirRegC+cpRegC);///DEBUG
+			    
+				HttpSession sesionRegistro = request.getSession();
+				Long idCliente = (Long) sesionRegistro.getAttribute("idCliente");
+				Cliente cliente = cliDao.buscarClienteID(idCliente);
+				cliente.setNombre(nomRegC);
+				cliente.setApellidos(apeRegC);
+				cliente.setEmail(emailRegC);
+				cliente.setTelefono(telRegC);
+				cliente.getDireccion().setProvincia(proRegC);
+				cliente.getDireccion().setCiudad(ciuRegC);
+				cliente.getDireccion().setPais(paisRegC);
+				cliente.getDireccion().setDireccion(dirRegC);
+				cliente.getDireccion().setCp(cpRegC);
+				
+				try {
+					cliDao.actualizarCliente(cliente);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("**Modificar Cliente**problema al guardar el cliente***");
+				}
+				
+				
 				break;
 
 			default:

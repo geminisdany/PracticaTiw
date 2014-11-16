@@ -8,7 +8,7 @@
 			<div class="container-fluid" id="formularioRegistroC">
 				<h2 id="registroC">Registro de Clientes</h2>
 				<p>Bienvenido a la página de registro de Talaverámica. Por favor, rellene los siguientes campos.</p>
-				<form  action="registro" method="post" class="form-horizontal" role="form" ">
+				<form  action="registro" method="post" class="form-horizontal" role="form">
 					<input type="text" name="action" value="registrar" hidden/>
 					<div class="row">
 					  <div class="form-group col-md-5" id="columnas62">

@@ -8,7 +8,7 @@
 			<c:when test="${cliVal!=null}">
 				<div class="user-menu">
 					<ul>
-						<li class="user-register"><a href="registro?action=mostrarDatos" class="col-xs-3">Mis Datos</a></li>
+						<li class="user-register"><a href="registro?action=modificarCliente" class="col-xs-3">Mis Datos</a></li>
 						<li class="user-login"><a href="login" class="col-md-3">Salir</a></li>				
 					</ul>
 				</div>

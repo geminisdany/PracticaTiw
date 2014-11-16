@@ -73,6 +73,7 @@ public class Login extends HttpServlet {
 			Cliente cliente = cliDao.buscarPorEmailYpassword(email, password);
 			if(cliente!=null){
 				sesionAdmin.setAttribute("clienteValidado",cliente.getNombre());
+				sesionAdmin.setAttribute("idCliente",cliente.getId());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
