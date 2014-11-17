@@ -118,7 +118,7 @@
 								<a href="cart?action=mostrarLista"><button type="button"
 										class="btn btn-default" id="atras">Atras</button></a>
 								<button id="submit" type="submit" class="btn btn-default"
-									id="continuar" name="submit">Continuar</button>
+									id="continuar" name="submit">Confirmar Compra</button>
 
 							</div>
 

@@ -33,7 +33,8 @@ import kiwisoft.dominios.Producto;
 @WebServlet("/cart")
 public class Carrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ArrayList<Pedido> listaPedidos;
+    private ArrayList<Pedido> listaPedidos;
+    private Factura nuevaFactura;
     
     @PersistenceContext(unitName="PracticaTiw")
 	private EntityManager em;
@@ -62,6 +63,7 @@ public class Carrito extends HttpServlet {
     public Carrito() {
         super();
         this.listaPedidos = new ArrayList<Pedido>();
+        this.nuevaFactura= null;
     }
 
 	/**
@@ -116,7 +118,13 @@ public class Carrito extends HttpServlet {
 			///Se obtiene el id del cliente (que se guardo en la Sesion)
 			HttpSession sesionCarrito = request.getSession();
 			Long idCliente = (Long) sesionCarrito.getAttribute("idCliente");
-			Cliente clientePedido = cliDao.buscarClienteID(idCliente);
+			Cliente clientePedido=null;
+			try{
+				clientePedido = cliDao.buscarClienteID(idCliente);
+			}catch(Exception e){
+				System.out.println("Formulario de Pedido...error al buscar el cliente");///DEBUG
+			}
+			
 			request.setAttribute("cliente", clientePedido);
 			request.setAttribute("action", "formPedido");
 			break;
@@ -142,7 +150,7 @@ public class Carrito extends HttpServlet {
 			request.setAttribute("listaPedido", lista);
 		}
 		request.setAttribute("action", "mostrarCarrito");
-		double precioTotal=redondear(calcularTotal(),2);
+		double precioTotal=calcularTotal();
 		request.setAttribute("total", precioTotal);
 	}
 	
@@ -162,7 +170,7 @@ public class Carrito extends HttpServlet {
 			Pedido pedido = listaPedidos.get(i);
 			total+=pedido.getPrecio();
 		}
-		return total;
+		return redondear(total,2);
 	}
 	
 	/**
@@ -285,7 +293,7 @@ public class Carrito extends HttpServlet {
 			System.out.println("Se guardara la factura:"+direccionF+ciudadF+provinciaF+paisF+cpF+opcionPagoF);
 			
 			Direccion dirFactura = new Direccion(direccionF, ciudadF, provinciaF, paisF, cpF);
-			Factura nuevaFactura = new Factura("hoy", "ahora", calcularTotal(), dirFactura, listaPedidos);
+			nuevaFactura = new Factura("hoy", "ahora",opcionPagoF, calcularTotal(), dirFactura, listaPedidos);
 			try {
 				nuevaFactura=facDao.guardarFactura(nuevaFactura);
 			} catch (Exception e) {
@@ -300,16 +308,22 @@ public class Carrito extends HttpServlet {
 			
 			try {
 				clienteP=cliDao.actualizarCliente(clienteP);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("********Guardar Factura en Cliente**Error al asignar la Factura al Cliente");
 			}
 			
-			
 			request.setAttribute("factura", nuevaFactura);
-			request.setAttribute("cliente", clienteP);
+			request.setAttribute("listaPedidos", nuevaFactura.getPedidos());
+			request.setAttribute("cliente", clienteP);		
 			request.setAttribute("action", "datosFactura");
+			//Vaciar el carrito
+			nuevaFactura =null;
+			listaPedidos= new ArrayList<Pedido>();
+			HttpSession sesionCarritoTotal = request.getSession();
+			sesionCarritoTotal.setAttribute("cestaTotal",null);
 			break;
 		
 		default:

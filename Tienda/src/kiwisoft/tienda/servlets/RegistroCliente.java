@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.daos.ClienteDAO;
+import kiwisoft.daos.FacturaDAO;
 import kiwisoft.dominios.Cliente;
 import kiwisoft.dominios.Direccion;
+import kiwisoft.dominios.Factura;
 
 
 /**
@@ -30,17 +32,20 @@ public class RegistroCliente extends HttpServlet {
 	@Resource
 	private UserTransaction ut;
 	private ClienteDAO cliDao;
+	private FacturaDAO facDao;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		cliDao = new ClienteDAO(em,ut);
+		facDao = new FacturaDAO(em,ut);
 	}
 	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		cliDao=null;
+		facDao=null;
 	}
 	
        
@@ -89,10 +94,47 @@ public class RegistroCliente extends HttpServlet {
 				break;
 				
 			case "historial":///muestra la lista de facturas
+				
+				HttpSession sesionHistorial = request.getSession(); 
+				Long idClienteH = (Long) sesionHistorial.getAttribute("idCliente");
+				Cliente clienteHistorial=null;
+				try{
+					 clienteHistorial = cliDao.buscarClienteID(idClienteH);
+				}catch(Exception e){
+					System.out.println("******Historial* Error al buscar el cliente");////DEBUG
+				}
+				
+				request.setAttribute("listaFacturas",clienteHistorial.getFacturas());
+				
 				request.setAttribute("action","seccionCliente");
 				request.setAttribute("panelHistorial",true);
 				break;
-
+			
+			case "detalleFactura":
+				HttpSession sesionDetalleFactura = request.getSession(); 
+				Long idClienteFac = (Long) sesionDetalleFactura.getAttribute("idCliente");
+				Cliente clienteFactura=null;
+				Factura factura=null;
+				try{
+					clienteFactura = cliDao.buscarClienteID(idClienteFac);
+				}catch(Exception e){
+					System.out.println("******Historial* Error al buscar el cliente");////DEBUG
+				}
+				Long idFac = Long.parseLong(request.getParameter("id"));
+				try{
+					factura = facDao.buscarFactura(idFac);
+				}catch(Exception e){
+					System.out.println("******Historial* Error al buscar la factura");////DEBUG
+				}
+				
+				request.setAttribute("factura",factura);
+				request.setAttribute("listaPedidos",factura.getPedidos());
+				request.setAttribute("cliente",clienteFactura);
+				
+				request.setAttribute("action","seccionCliente");
+				request.setAttribute("panelHistorial",true);
+				break;
+			
 			default:
 				break;
 			}

@@ -3,8 +3,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-<body>
-	<div id="main-content">
+		<div id="main-content">
 		<div id="templatemo">
 			
 			<div class="container-fluid" id="formularioRegistroC">
@@ -12,9 +11,10 @@
 					<a href="index.jsp">Home</a><span> ></span> <a href="gestionCompra.jsp">1.
 						Su Carrito</a><span> ></span> <a>2. Identificación</a><span> >
 						<a href="registrarFactura.jsp">3. Envío/Pago</a>
-					</span> <span> > </span><a href="gestionCompra4.jsp">4. Fin</a>
+					</span> <span> > </span><a href="gestionCompra4.jsp">4. Resumen</a>
 				</h3>
-				<h2>Contenido de la compra:</h2>
+				<h2>Su compra se ha realizado con Exito.</h2>
+				<h3>Contenido de la compra:</h3>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -25,29 +25,19 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach items="${listaPedidos}" var="pedido" >
 						<tr>
-							<td>jarron</td>
-							<td>2€</td>
-							<td>1</td>
-							<td>2€</td>
+							<td>${pedido.producto.nombre}</td>
+							<td>${pedido.producto.precio}€</td>
+							<td>${pedido.cantidad}</td>
+							<td>${pedido.precio}€</td>
 						</tr>
+						</c:forEach>
 						<tr>
-							<td>fuente</td>
-							<td>100€</td>
-							<td>2</td>
-							<td>200€</td>
-						</tr>
-						<tr>
-							<td>Vasija</td>
-							<td>33€</td>
-							<td>3</td>
-							<td>99€</td>
-						</tr>
-						<tr>
-							<td>Total</td>
-							<td></td>
-							<td>6</td>
-							<td>301€</td>
+						<td>TOTAL DE FACTURA</td>
+						<td></td>
+						<td></td>
+						<td>${factura.importe}€</td>
 						</tr>
 					</tbody>
 				</table>
@@ -60,11 +50,14 @@
 						<div class="panel-body">
 
 							<h4>Nombre: <c:out value="${cliente.nombre}"></c:out></h4>
-							<h4>Ciudad: <c:out value="${factura.direccion.ciudad}"></c:out></h4>
-							<h4>Direccion: <c:out value="${factura.direccion.direccion}"></c:out></h4>
-							<h4>pais: <c:out value="${factura.direccion.pais}"></c:out></h4>
-							<h4>provincia: <c:out value="${factura.direccion.provincia}"></c:out></h4>
-							<h4>Codigo postal: <c:out value="${factura.direccion.cp}"></c:out></h4>
+							<h4>Telefono: <c:out value="${cliente.telefono}"></c:out></h4>
+							<h4>Forma de Pago: <c:out value="${factura.tipoPago}"></c:out></h4>
+							
+							<h5>Direccion: <c:out value="${factura.direccion.direccion}"></c:out></h5>
+							<h5>Ciudad: <c:out value="${factura.direccion.ciudad}"></c:out></h5>
+							<h5>provincia: <c:out value="${factura.direccion.provincia}"></c:out></h5>
+							<h5>pais: <c:out value="${factura.direccion.pais}"></c:out></h5>	
+							<h5>Codigo postal: <c:out value="${factura.direccion.cp}"></c:out></h5>
 					
 						</div>
 					</div>
@@ -76,14 +69,9 @@
 				<br></br>
 				<div class="form-group col-xs-12">
 				<div id="botones">
-					<a href="registrarFactura.jsp"><button type="button"
-							class="btn btn-default" id="atras">
-							Atras <span></span>				
-						</button ></a> <a href="#"
-						data-toggle="modal" data-target="#basicModal"><button
-							class="btn btn-default">
-								Finalizar Compra <span></span>
-							</button></a> 
+					<a class="btn btn-default" href="catalogo">
+						Seguir Comprando 
+					</a> 
 				</div>
 				</div>
 			
@@ -91,5 +79,4 @@
 		</div>
 		
 	</div>
-</body>
 </html>

@@ -25,6 +25,7 @@ import kiwisoft.dominios.Cliente;
 
 /**
  * Servlet implementation class Catalogo
+ * http://www.objectdb.com/java/jpa/query/jpql/select
  */
 @WebServlet("/catalogo")
 public class Catalogo extends HttpServlet {
