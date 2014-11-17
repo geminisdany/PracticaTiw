@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <c:set var="cliVal" scope="session" value="${clienteValidado}"></c:set>
 <!--Menu Top -para tablets, moviles y pantallas pequeñas -->
 	<div class="responsive-navigation visible-sm visible-xs">

@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import kiwisoft.daos.ClienteDAO;
 import kiwisoft.daos.ProductoDAO;
 import kiwisoft.daos.ProveedorDAO;
 import kiwisoft.dominios.Direccion;
 import kiwisoft.dominios.Producto;
 import kiwisoft.dominios.Proveedor;
+import kiwisoft.dominios.Cliente;
 
 
 
@@ -35,12 +37,14 @@ public class Catalogo extends HttpServlet {
 	private UserTransaction ut;
 	private ProductoDAO proDao;
 	private ProveedorDAO proveDao;
+	private ClienteDAO cliDao;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		proDao = new ProductoDAO(em,ut);
 		proveDao = new ProveedorDAO(em, ut);
+		cliDao= new ClienteDAO(em, ut);
 		try {
 			Producto productos = proDao.buscarProductoNombre("Fuente azul");
 			if(productos!=null){
@@ -61,6 +65,7 @@ public class Catalogo extends HttpServlet {
 		// TODO Auto-generated method stub
 		proDao=null;
 		proveDao=null;
+		cliDao=null;
 	}
 	
 	/**
@@ -176,6 +181,10 @@ public class Catalogo extends HttpServlet {
 	/********Carga de catalogo*********/
 	 private void iniciarDB(){
 		 try {
+			 //crer Cliente
+			 Direccion casa =new Direccion("pardo santallana", "villalba", "madrid", "spain", 28400);
+			 Cliente yo = new Cliente("alex", "ruiz", 680606060, "alex@alex", "alex", casa);
+			 cliDao.guardarCliente(yo);
 			
 			 //crear proveedor
 			 Direccion dir1 = new Direccion("C/Agua 9", "Malaga", "Malaga", "Espana", 29012);

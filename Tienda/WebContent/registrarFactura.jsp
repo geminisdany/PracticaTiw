@@ -1,8 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <body>
 <c:set var="cliVal" scope="session" value="${clienteValidado}" />
@@ -12,6 +11,7 @@
 			<c:choose>
 				<c:when test="${cliVal!=null}">
 					<form  action="cart" method="post" class="form-horizontal">
+					<input type="text" name="action" value="guardarFactura" hidden/>
 						<div class="container-fluid" id="formularioRegistroC">
 							<h3>
 								<a href="index.jsp">Home</a><span> ></span> <a
@@ -32,7 +32,7 @@
 										<label for="nombreC">Nombre de usuario <span class="glyphicon glyphicon-user"
 											title="Usuario"></span></label> <input type="text"
 											class="form-control" id="nombreC" name="nombreC"
-											placeholder="Nombre" readonly>
+											value="${cliente.nombre}" readonly>
 									</div>
 									<div class="form-group col-md-2"></div>
 									<div class="form-group col-md-5">
@@ -40,7 +40,7 @@
 											class="glyphicon glyphicon-phone-alt" title="Teléfono"></span></label>
 										<input type="text" class="form-control" id="telefonoC"
 											name="phoneC" maxlength="9"
-											placeholder="Teléfono de 9 dígitos" readonly>
+											value="${cliente.telefono}" readonly>
 									</div>
 								</div>
 
@@ -51,9 +51,8 @@
 												<span class="red">* </span>
 											</label>
 											<div class="controls">
-												<select name="pais" id="addressesCountry2"
+												<select name="paisF" id="addressesCountry2"
 													class="form-control" data-unique="newbilling">
-													<option value="España"></option>
 													<option value="Spain">España</option>
 													<option value="Portugal">Portugal</option>
 													<option value="Francia">Francia</option>
@@ -63,34 +62,34 @@
 									</div>
 									<div class="form-group col-md-2"></div>
 									<div class="form-group col-md-5">
-										<label for="provinciaC">Provincia <span class="red">*</span></label>
+										<label for="provincia">Provincia <span class="red">*</span></label>
 										<input type="text" class="form-control" id="provincia"
-											name="provincia" placeholder="Provincia">
+											name="provinciaF" placeholder="Provincia" value="${cliente.direccion.provincia}">
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-md-5">
-										<label for="CiudadC">Ciudad <span class="red">*</span><span
+										<label for="Ciudad">Ciudad <span class="red">*</span><span
 											title="Ciudad"></span></label> <input type="text"
-											class="form-control" id="ciudad" name="ciudad"
-											placeholder="Ciudad">
+											class="form-control" id="ciudad" name="ciudadF"
+											placeholder="Ciudad" value="${cliente.direccion.ciudad}">
 									</div>
 
 									<div class="form-group col-md-2"></div>
 									<div class="form-group col-md-5">
-										<label for="direccionC">Dirección <span class="red">*
+										<label for="direccion">Dirección <span class="red">*
 										</span><span title="direccion"></span></label> <input type="text"
-											class="form-control" id="direccion" name="direccion"
-											placeholder="Dirección">
+											class="form-control" id="direccion" name="direccionF"
+											placeholder="Dirección" value="${cliente.direccion.direccion}">
 									</div>
 
 								</div>
 
 								<div class="row">
 									<div class="form-group col-md-5">
-										<label for="cpC">Código postal <span class="red">*</span></label>
-										<input type="text" class="form-control" id="cp" name="cp"
-											maxlength="5" placeholder="Código postal">
+										<label for="cp">Código postal <span class="red">*</span></label>
+										<input type="text" class="form-control" id="cp" name="cpF"
+											maxlength="5" placeholder="Código postal" value="${cliente.direccion.cp}">
 									</div>
 
 								</div>
@@ -101,22 +100,22 @@
 							<h3>Seleccione la forma de pago:</h3>
 							<div id="opcionePago">
 								<div class="pago">
-									<input type="radio" name="opcion1" value="Tarjeta">
+									<input type="radio" name="opcionPago" value="Tarjeta">
 									Tarjeta
 								</div>
 								<div class="pago">
-									<input type="radio" name="opcion1" value="Paypal">
+									<input type="radio" name="opcionPago" value="Paypal">
 									Paypal
 								</div>
 								<div class="pago">
-									<input type="radio" name="opcion1" value="Transferencia">
+									<input type="radio" name="opcionPago" value="Transferencia" checked>
 									Tranferencia
 								</div>
 							</div>
 
 							<br></br>
 							<div id="botones">
-								<a href="gestionCompra.jsp"><button type="button"
+								<a href="cart?action=mostrarLista"><button type="button"
 										class="btn btn-default" id="atras">Atras</button></a>
 								<button id="submit" type="submit" class="btn btn-default"
 									id="continuar" name="submit">Continuar</button>

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <body>
 	<div id="main-content">
 		<div id="templatemo">
@@ -59,13 +59,12 @@
 						</div>
 						<div class="panel-body">
 
-							<h4>Nombre: <c:out value="${factura.nombreC}"></c:out></h4>
-							<h4>Ciudad: <c:out value="${factura.ciudad}"></c:out></h4>
-							<h4>Direccion: <c:out value="${factura.direccion}"></c:out></h4>
-							<h4>pais: <c:out value="${factura.pais}"></c:out></h4>
-							<h4>DNI: <c:out value="${factura.DNI}"></c:out></h4>
-							<h4>provincia: <c:out value="${factura.provincia}"></c:out></h4>
-							<h4>Codigo postal: <c:out value="${factura.cp}"></c:out></h4>
+							<h4>Nombre: <c:out value="${cliente.nombre}"></c:out></h4>
+							<h4>Ciudad: <c:out value="${factura.direccion.ciudad}"></c:out></h4>
+							<h4>Direccion: <c:out value="${factura.direccion.direccion}"></c:out></h4>
+							<h4>pais: <c:out value="${factura.direccion.pais}"></c:out></h4>
+							<h4>provincia: <c:out value="${factura.direccion.provincia}"></c:out></h4>
+							<h4>Codigo postal: <c:out value="${factura.direccion.cp}"></c:out></h4>
 					
 						</div>
 					</div>

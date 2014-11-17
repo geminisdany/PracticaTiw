@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". -->
 	
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 
@@ -9,7 +9,7 @@
 		
 			<div class="container-fluid" id="formularioRegistroC">
 				<form  action="registro" method="post" class="form-horizontal" role="form">
-					<input type="text" name="action" value="registrar" hidden/>
+					<input type="text" name="action" value="editarCliente" hidden/>
 					<div class="row">
 					  <div class="form-group col-md-5" id="columnas62">
 						<label for="nombreC">Nombre <span class="red">*</span><span class="glyphicon glyphicon-user" title="Usuario"></span></label>

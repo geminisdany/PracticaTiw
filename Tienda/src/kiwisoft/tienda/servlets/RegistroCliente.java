@@ -108,6 +108,7 @@ public class RegistroCliente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession sesionRegistro = request.getSession();
 		String action= request.getParameter("action");
 			
 		if (action!=null) {
@@ -138,40 +139,70 @@ public class RegistroCliente extends HttpServlet {
 				
 				break;
 			
-			case "cambiarDatos":
+			case "editarCliente":
 				/**los datos entran por post**/
-				String nomRegC= request.getParameter("nombreC");
-				String apeRegC= request.getParameter("apellidosC");
-				String emailRegC= request.getParameter("emailC");
-				int telRegC= Integer.parseInt(request.getParameter("telefonoC"));
-				String paisRegC= request.getParameter("paisC");
-				String proRegC= request.getParameter("provinciaC");
-				String ciuRegC= request.getParameter("ciudadC");
-				String dirRegC= request.getParameter("direccionC");
-				int cpRegC= Integer.parseInt(request.getParameter("cpC"));
-				System.out.println("datos: "+nomRegC+apeRegC+emailRegC+telRegC+proRegC+paisRegC+ciuRegC+dirRegC+cpRegC);///DEBUG
+				String nomEdit= request.getParameter("nombreC");
+				String apeEdit= request.getParameter("apellidosC");
+				String emailedit= request.getParameter("emailC");
+				int telEdit= Integer.parseInt(request.getParameter("telefonoC"));
+				String paisEdit= request.getParameter("paisC");
+				String proEdit= request.getParameter("provinciaC");
+				String ciuEdit= request.getParameter("ciudadC");
+				String dirEdit= request.getParameter("direccionC");
+				int cpEdit= Integer.parseInt(request.getParameter("cpC"));
+				System.out.println("datos a editar: "+nomEdit+apeEdit+emailedit+telEdit+proEdit+paisEdit+ciuEdit+dirEdit+cpEdit);///DEBUG
 			    
-				HttpSession sesionRegistro = request.getSession();
+				///Se obtiene el id del cliente (que se guardo en la Sesion)
 				Long idCliente = (Long) sesionRegistro.getAttribute("idCliente");
+				
+				///Obtenemos el cliente buscando por su id (se busca en la BD)
 				Cliente cliente = cliDao.buscarClienteID(idCliente);
-				cliente.setNombre(nomRegC);
-				cliente.setApellidos(apeRegC);
-				cliente.setEmail(emailRegC);
-				cliente.setTelefono(telRegC);
-				cliente.getDireccion().setProvincia(proRegC);
-				cliente.getDireccion().setCiudad(ciuRegC);
-				cliente.getDireccion().setPais(paisRegC);
-				cliente.getDireccion().setDireccion(dirRegC);
-				cliente.getDireccion().setCp(cpRegC);
+				
+				cliente.setNombre(nomEdit);
+				cliente.setApellidos(apeEdit);
+				cliente.setEmail(emailedit);
+				cliente.setTelefono(telEdit);
+				cliente.getDireccion().setProvincia(proEdit);
+				cliente.getDireccion().setCiudad(ciuEdit);
+				cliente.getDireccion().setPais(paisEdit);
+				cliente.getDireccion().setDireccion(dirEdit);
+				cliente.getDireccion().setCp(cpEdit);
 				
 				try {
 					cliDao.actualizarCliente(cliente);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("**Modificar Cliente**problema al guardar el cliente***");
+					System.out.println("**Modificar Cliente**Error al actualizar el cliente***");
 				}
+				break;
 				
+			case "cambiarPass":
+				String passActualC= request.getParameter("passActual");
+				
+				String pass1C= request.getParameter("pass1C");
+				//String pass2C= request.getParameter("pass2C");
+				
+				///Se obtiene el id del cliente (que se guardo en la Sesion)
+				
+				Long idPass = (Long) sesionRegistro.getAttribute("idCliente");
+				
+				///Obtenemos el cliente buscando por su id (se busca en la BD)
+				Cliente clientePass = cliDao.buscarClienteID(idPass);
+				
+				if(passActualC.equals(clientePass.getPassword())){
+					clientePass.setPassword(pass1C);
+					try {
+						cliDao.actualizarCliente(clientePass);
+						System.out.println("+++++Cambiar Pass+++Se ha cambiado la contraseña");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						System.out.println("***********Cambiar Pass *** Error al guardar la nueva contraseña ");
+					}
+				}else{
+					System.out.println("*Error en la contraseña Actual");
+				}
 				
 				break;
 

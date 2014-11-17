@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <div id="main-content">
 	<div class="blank-space"></div>
 	
@@ -24,7 +24,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li <c:if test="${panelDatos}"> class="active" </c:if> >
-						<a href="registro?action=modificarCliente">Modificar Datos <span class="sr-only">(current)</span></a>
+						<a href="registro?action=modificarCliente">Editar Datos <span class="sr-only">(current)</span></a>
 					</li>
 					<li <c:if test="${panelPass}"> class="active" </c:if>>
 						<a href="registro?action=cambiarPass">Cambiar Contraseña</a>
@@ -50,7 +50,7 @@
 	
 	
 	
-	<c:if test="${panelDatos}"><jsp:include page="datosCliente.jsp"></jsp:include></c:if> 
+	<c:if test="${panelDatos}"><jsp:include page="editarCliente.jsp"></jsp:include></c:if> 
 	
 	<c:if test='${panelPass}'> <jsp:include page="cambiarPassCliente.jsp"></jsp:include></c:if>
 	
