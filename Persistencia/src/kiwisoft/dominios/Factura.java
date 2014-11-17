@@ -29,6 +29,8 @@ public class Factura implements Serializable {
 	@Column(nullable = false)
 	private String hora;
 	@Column(nullable = false)
+	private String tipoPago;
+	@Column(nullable = false)
 	private double importe;
 	
 	@OneToOne(cascade = ALL)
@@ -39,15 +41,22 @@ public class Factura implements Serializable {
 	public Factura() {
 		super();
 	} 
-	public Factura(String fecha, String hora,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
+	public Factura(String fecha, String hora,String tipoPago,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
 		super();
 		this.direccion = direccion;
 		this.fecha = fecha;
 		this.hora = hora;
 		this.importe = importe;
 		this.pedidos = pedidos;
+		this.tipoPago=tipoPago;
 	}
 	
+	public String getTipoPago() {
+		return tipoPago;
+	}
+	public void setTipoPago(String tipoPago) {
+		this.tipoPago = tipoPago;
+	}
 	public Collection<Pedido> getPedidos() {
 		return pedidos;
 	}
