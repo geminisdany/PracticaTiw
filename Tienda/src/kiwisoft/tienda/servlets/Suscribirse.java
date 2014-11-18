@@ -1,6 +1,9 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -121,7 +124,7 @@ public class Suscribirse extends HttpServlet {
 					// TODO: handle exception
 				}
 				
-				  try {
+				try {
 					  suscripcion=susDao.buscarSuscripcionClienteProducto(cliente.getId(), producto.getId());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -138,13 +141,46 @@ public class Suscribirse extends HttpServlet {
 				}
 				
 				break;
-			
+				
+			case "suscripcion": ///muestra los productos a los que esta suscrito
+				
+				try {
+					Long idCliente = (Long) sesionSuscripcion.getAttribute("idCliente");
+					cliente = cliDao.buscarClienteID(idCliente);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				Collection<Producto> listaProductos=null;
+				if(cliente!=null){
+					Collection<Suscripcion> listaSuscripciones =cliente.getSuscripciones();
+					listaProductos = obtenerProductos(listaSuscripciones);
+				}
+				request.setAttribute("listaProductos",listaProductos);
+				request.setAttribute("action","seccionCliente");
+				request.setAttribute("panelSuscripcion",true);
+				break;
+
+				
 			default:
 				break;
 			}
 		}
 		
+		response.setContentType("text/html");
+		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+
+	private Collection<Producto> obtenerProductos(
+			Collection<Suscripcion> listaSuscripciones) {
+		// TODO Auto-generated method stub
+		Collection<Producto> listaProductos= new ArrayList<Producto>();
+		Iterator<Suscripcion> nombreIterator = listaSuscripciones.iterator();
+		while(nombreIterator.hasNext()){
+			Suscripcion suscripcion = nombreIterator.next();
+			listaProductos.add(suscripcion.getProducto());
+		}
 		
+		return listaProductos;
 	}
 
 	/**

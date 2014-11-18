@@ -88,10 +88,7 @@ public class RegistroCliente extends HttpServlet {
 				request.setAttribute("panelPass",true);
 				break;
 			
-			case "suscripcion": ///muestra los productos a los que esta suscrito
-				request.setAttribute("action","seccionCliente");
-				request.setAttribute("panelSuscripcion",true);
-				break;
+			
 				
 			case "historial":///muestra la lista de facturas
 				
