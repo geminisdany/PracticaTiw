@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.persistence.*;
+
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.AUTO;
+import static javax.persistence.CascadeType.PERSIST;
 
 /**
  * Entity implementation class for Entity: Cliente
@@ -37,10 +40,12 @@ public class Cliente implements Serializable {
 	
 	@OneToOne(cascade = ALL)
 	private Direccion direccion;
-	@OneToMany(fetch = LAZY, cascade = ALL)
-	private Collection<Suscripcion> suscripciones;
+
 	@OneToMany(fetch=LAZY, cascade = ALL)
 	private Collection<Factura> facturas;
+	
+	@OneToMany(fetch = LAZY, cascade = ALL, mappedBy="cliente")
+	private Collection<Suscripcion> suscripciones;
 	
 	public Cliente() {
 		super();
@@ -113,6 +118,17 @@ public class Cliente implements Serializable {
 	}
 	public void setFacturas(Collection<Factura> facturas) {
 		this.facturas = facturas;
+	}
+	
+	public void borrarSuscripcion(Producto producto){
+		Suscripcion suscripcion=null;
+		for (Iterator<Suscripcion> iterator = suscripciones.iterator(); iterator.hasNext();) {
+			suscripcion = (Suscripcion) iterator.next();
+			if(suscripcion.getProducto()==producto){	
+				suscripciones.remove(suscripcion);
+				return;
+			}
+		}
 	}
    
 }

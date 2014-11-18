@@ -3,6 +3,7 @@ package kiwisoft.dominios;
 import java.io.Serializable;
 import java.lang.Long;
 import java.sql.Blob;
+import java.util.Collection;
 
 import javax.persistence.*;
 
@@ -41,8 +42,11 @@ public class Producto implements Serializable {
 	@Column(nullable = true)
 	private Blob imagen;
 	
-	@OneToOne
+	@ManyToOne
 	private Proveedor proveedor;
+	
+	@OneToMany(mappedBy="producto")
+	private Collection<Suscripcion> suscripciones;
 
 	public Producto(String nombre, double pre_min, double pre_max,
 			double precio, String tipo, String descripcion, int stock,

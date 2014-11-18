@@ -19,13 +19,31 @@ public class Suscripcion implements Serializable {
 	private Long id;
 	private static final long serialVersionUID = 1L;
 	
-	@OneToOne
+	@ManyToOne
 	private Producto producto;
+	@ManyToOne
+	private Cliente cliente;
+	
+	
 
 	
 	public Suscripcion() {
 		super();
 	}   
+	public Suscripcion(Producto producto, Cliente cliente) {
+		super();
+		this.producto = producto;
+		this.cliente = cliente;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public Producto getProducto() {
 		return producto;
 	}
