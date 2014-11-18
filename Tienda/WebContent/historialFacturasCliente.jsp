@@ -3,12 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="es">
-<h2>Historial de Compras</h2>
 
 <c:choose>
-	<c:when test="${panelHistorial}">
+
+	<c:when test="${hayFacturas}">
 		<!-- Lista de Facturas -->
 		<c:if test="${listaFacturas!=null}">
+		<h2>Historial de Compras</h2>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -28,10 +29,10 @@
 							<td><c:out value="${factura.fecha}"></c:out></td>
 							<td><c:out value="${factura.hora}"></c:out></td>
 							<td><c:out value="${factura.importe}"></c:out></td>
-							<td class="text-center"><a class="btn btn-danger btn-xs"
+							<td class="text-center"><a class="btn btn-info btn-xs"
 								title="Ver Detalles de Factura"
 								href="registro?action=detalleFactura&id=${factura.id}"> <span
-									class="glyphicon glyphicon-trash"></span>
+									class="glyphicon glyphicon-eye-open"></span>
 							</a></td>
 						</tr>
 					</c:forEach>
@@ -48,6 +49,7 @@
 		
 	</c:when>
 	<c:otherwise>
+		
 		<h3>No hay historial de Compras</h3>
 	</c:otherwise>
 </c:choose>

@@ -48,9 +48,16 @@
 									  <button class="btn btn-success" data-toggle="modal tooltip" type="submit"
 												data-placement="left" title="Agregar al carrito">Comprar
 									  </button>
+									  <a class="btn btn-warning" data-toggle="modal tooltip"
+											data-placement="left" title="Suscribirse al producto"
+											href="suscribirse?action=guardar&id=${producto.id}">Suscribirse</a>
+									  <a class="btn btn-warning" data-toggle="modal tooltip"
+											data-placement="left" title="Suscribirse al producto"
+											href="suscribirse?action=borrar&id=${producto.id}">Anular Suscripcion</a>
 									  <a class="btn btn-danger" data-toggle="modal tooltip"
 											data-placement="left" title="Agregar al carrito"
 											href="catalogo">Cancelar</a>
+									  
 								  </div>
 								  
 								</form>

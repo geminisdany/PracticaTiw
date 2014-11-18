@@ -104,10 +104,13 @@ public class RegistroCliente extends HttpServlet {
 					System.out.println("******Historial* Error al buscar el cliente");////DEBUG
 				}
 				
-				request.setAttribute("listaFacturas",clienteHistorial.getFacturas());
-				
-				request.setAttribute("action","seccionCliente");
+				if(clienteHistorial.getFacturas().size()>0){
+					request.setAttribute("listaFacturas",clienteHistorial.getFacturas());
+					request.setAttribute("hayFacturas",true);
+				}
 				request.setAttribute("panelHistorial",true);
+				request.setAttribute("action","seccionCliente");
+				
 				break;
 			
 			case "detalleFactura":
@@ -130,7 +133,7 @@ public class RegistroCliente extends HttpServlet {
 				request.setAttribute("factura",factura);
 				request.setAttribute("listaPedidos",factura.getPedidos());
 				request.setAttribute("cliente",clienteFactura);
-				
+				request.setAttribute("hayFacturas",true);
 				request.setAttribute("action","seccionCliente");
 				request.setAttribute("panelHistorial",true);
 				break;
