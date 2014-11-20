@@ -143,7 +143,7 @@ public class Cliente implements Serializable {
 			suscripcion = (Suscripcion) iterator.next();
 			if (suscripcion.getProducto().getId()==idProducto) {
 				suscripciones.remove(suscripcion);
-				System.out.println("Clase cliente, Se encontrado el producto suscrito y se ha borrado");
+				System.out.println("Clase cliente, Se ha encontrado el producto suscrito y se ha borrado");
 				return;
 			}
 		}
