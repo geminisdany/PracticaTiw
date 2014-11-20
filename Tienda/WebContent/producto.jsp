@@ -48,12 +48,20 @@
 									  <button class="btn btn-success" data-toggle="modal tooltip" type="submit"
 												data-placement="left" title="Agregar al carrito">Comprar
 									  </button>
-									  <a class="btn btn-warning" data-toggle="modal tooltip"
-											data-placement="left" title="Suscribirse al producto"
-											href="suscribirse?action=guardar&id=${producto.id}">Suscribirse</a>
-									  <a class="btn btn-warning" data-toggle="modal tooltip"
+									  
+									  <c:choose>
+									  <c:when test="${productoSuscrito}">
+									  		<a class="btn btn-warning" data-toggle="modal tooltip"
 											data-placement="left" title="Suscribirse al producto"
 											href="suscribirse?action=borrar&id=${producto.id}">Anular Suscripcion</a>
+									  </c:when>
+									  <c:otherwise>
+									  		<a class="btn btn-warning" data-toggle="modal tooltip"
+											data-placement="left" title="Suscribirse al producto"
+											href="suscribirse?action=guardar&id=${producto.id}">Suscribirse</a>
+									  </c:otherwise>
+									  </c:choose>
+									 
 									  <a class="btn btn-danger" data-toggle="modal tooltip"
 											data-placement="left" title="Agregar al carrito"
 											href="catalogo">Cancelar</a>
@@ -61,7 +69,12 @@
 								  </div>
 								  
 								</form>
-								
+								<c:if test="${mensajeValidarse}">
+									<div class="alert alert-warning alert-dismissible" role="alert">
+								  		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								  		<strong>Warning!</strong> Antes de Suscribirte debes inciar sesion. Haz clic en ENTRAR o REGISTRARSE
+									</div>
+								</c:if>
 								
 							</div>
 							

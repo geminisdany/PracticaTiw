@@ -34,7 +34,7 @@
 						<a href="registro?action=historial">Historial de Compras</a>
 					</li>
 					<li <c:if test="${panelSuscripcion}"> class="active" </c:if>>
-						<a href="registro?action=suscripcion">Suscripciones</a>
+						<a href="suscribirse?action=mostrarSuscripciones">Suscripciones</a>
 					</li>
 					
 				</ul>

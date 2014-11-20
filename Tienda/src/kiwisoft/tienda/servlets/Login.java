@@ -55,6 +55,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession sesionAdmin = request.getSession();
 		sesionAdmin.setAttribute("clienteValidado",null);
+		sesionAdmin.setAttribute("idCliente",null);
 		response.setContentType("text/html");
 		this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}

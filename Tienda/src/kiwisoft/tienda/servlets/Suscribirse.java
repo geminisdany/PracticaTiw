@@ -142,7 +142,7 @@ public class Suscribirse extends HttpServlet {
 				
 				break;
 				
-			case "suscripcion": ///muestra los productos a los que esta suscrito
+			case "mostrarSuscripciones": ///muestra los productos a los que esta suscrito
 				
 				try {
 					Long idCliente = (Long) sesionSuscripcion.getAttribute("idCliente");
@@ -155,9 +155,10 @@ public class Suscribirse extends HttpServlet {
 					Collection<Suscripcion> listaSuscripciones =cliente.getSuscripciones();
 					listaProductos = obtenerProductos(listaSuscripciones);
 				}
-				request.setAttribute("listaProductos",listaProductos);
+				request.setAttribute("listaProducto",listaProductos);
 				request.setAttribute("action","seccionCliente");
 				request.setAttribute("panelSuscripcion",true);
+				request.setAttribute("haySuscripciones",true);
 				break;
 
 				

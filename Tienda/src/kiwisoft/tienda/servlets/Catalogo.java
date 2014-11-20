@@ -11,15 +11,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.daos.ClienteDAO;
 import kiwisoft.daos.ProductoDAO;
 import kiwisoft.daos.ProveedorDAO;
+import kiwisoft.daos.SuscripcionDAO;
 import kiwisoft.dominios.Direccion;
 import kiwisoft.dominios.Producto;
 import kiwisoft.dominios.Proveedor;
 import kiwisoft.dominios.Cliente;
+import kiwisoft.dominios.Suscripcion;
 
 
 
@@ -39,6 +42,7 @@ public class Catalogo extends HttpServlet {
 	private ProductoDAO proDao;
 	private ProveedorDAO proveDao;
 	private ClienteDAO cliDao;
+	private SuscripcionDAO susDao;
 	
 	@Override
 	public void init() throws ServletException {
@@ -46,6 +50,7 @@ public class Catalogo extends HttpServlet {
 		proDao = new ProductoDAO(em,ut);
 		proveDao = new ProveedorDAO(em, ut);
 		cliDao= new ClienteDAO(em, ut);
+		susDao = new SuscripcionDAO(em, ut);
 		try {
 			Producto productos = proDao.buscarProductoNombre("Fuente azul");
 			if(productos!=null){
@@ -67,6 +72,7 @@ public class Catalogo extends HttpServlet {
 		proDao=null;
 		proveDao=null;
 		cliDao=null;
+		susDao= null;
 	}
 	
 	/**
@@ -111,6 +117,16 @@ public class Catalogo extends HttpServlet {
 				case "mostrarProducto":
 					/**mostrar una categoria**/
 					Long idp = Long.parseLong(request.getParameter("id"));
+		
+					try {
+						HttpSession sesionCatalogo= request.getSession();
+						Long idClien = (Long)sesionCatalogo.getAttribute("idCliente");
+						Suscripcion suscripcion=susDao.buscarSuscripcionClienteProducto(idClien, idp);
+						request.setAttribute("productoSuscrito", true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					try {
 						Producto producto = proDao.buscarProducto(idp);
 						
