@@ -72,93 +72,140 @@ public class Suscribirse extends HttpServlet {
 		Producto producto=null;
 		Cliente cliente=null;
 		Suscripcion suscripcion=null;
+		Long idCliente = (Long) sesionSuscripcion.getAttribute("idCliente");
 		String action= request.getParameter("action");
 		if (action!=null) {
 			switch (action) {
 			case "guardar":
-				try {
-					Long idp = Long.parseLong(request.getParameter("id"));
+				Long idp = Long.parseLong(request.getParameter("id"));
+				
+				//se comprueba que el usuario esta en sesion, de lo contrario
+				//se retorna al catalogo en producto donde encontraba
+				if(idCliente==null){
+					System.out.println("****Guardar suscripcion, Error usuario no registrado");
+					request.setAttribute("mensajeValidarse", "true");
+					response.setContentType("text/html");
+					this.getServletContext().getRequestDispatcher("/catalogo?action=mostrarProducto&id="+idp).forward(request, response);
+					return;
+				}
+				
+				//se captura el producto de la BD
+				try {			
 					producto = proDao.buscarProducto(idp);
+					System.out.println("+++Guardar Suscripcion, Se obtiene el objeto Producto de la BD");///DEBUG
 				} catch (Exception e) {
 					// TODO: handle exception
+					System.out.println("*****Guardar Suscripcion, Error al buscar el producto en la BD");///DEBUG
 				}
 				
-				
-				try {
-					Long idCliente = (Long) sesionSuscripcion.getAttribute("idCliente");
+				//se captura el cliente de BD
+				try {			
 					cliente = cliDao.buscarClienteID(idCliente);
+					System.out.println("+++Guardar Suscripcion, Se obtiene el objeto Cliente de la BD");///DEBUG
 				} catch (Exception e) {
 					// TODO: handle exception
+					System.out.println("*****Guardar Suscripcion, Error al buscar el cliente en la BD");///DEBUG
 				}
-				
+				//se crea la suscripcion del producto y cliente y se guarda en la BD
 				suscripcion= new Suscripcion(producto, cliente);
 				try {
 					suscripcion=susDao.guardarSuscripcion(suscripcion);
+					System.out.println("+++Guardar Suscripcion, Se guarda la suscripcion en la BD");///DEBUG
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-					System.out.println("*****Suscripcion*Error al guardar la suscripcion");//DEBUG
+					System.out.println("*****Guardar Suscripcion, Error al guardar la suscripcion");//DEBUG
 				}
 				cliente.getSuscripciones().add(suscripcion);
 				try {
 					cliDao.actualizarCliente(cliente);
-					System.out.println("+++++Suscripcion Guardada");
+					System.out.println("+++++Guardar Suscripcion, Se actualiza el cliente");///DEBUG
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("*****Guardar Suscripcion, Error al actualizar el cliente");///DEBUG
 				}
-				
 				break;	
 			
 			case "borrar":
-				try {
-					Long idp = Long.parseLong(request.getParameter("id"));
-					producto = proDao.buscarProducto(idp);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				try {
-					Long idCliente = (Long) sesionSuscripcion.getAttribute("idCliente");
-					cliente = cliDao.buscarClienteID(idCliente);
-				} catch (Exception e) {
-					// TODO: handle exception
+				Long idpBorrar = Long.parseLong(request.getParameter("id"));
+				//se comprueba que el usuario esta en sesion, de lo contrario
+				//se retorna al catalogo en producto donde encontraba
+				//(no deberia de entrar nunca ya que el jsp no da la opcion de aular suscripcion si no esta resgistrado)
+				if(idCliente==null){
+					System.out.println("****Guardar suscripcion, Error usuario no registrado");
+					request.setAttribute("mensajeValidarse", "true");
+					response.setContentType("text/html");
+					this.getServletContext().getRequestDispatcher("/catalogo?action=mostrarProducto&id="+idpBorrar+".jsp").forward(request, response);
+					return;
 				}
 				
+				
+				
+				
+				//se busca la suscripcion en la BD que se desea borrar y se captura el objeto
 				try {
-					  suscripcion=susDao.buscarSuscripcionClienteProducto(cliente.getId(), producto.getId());
+					  suscripcion=susDao.buscarSuscripcionClienteProducto(idCliente, idpBorrar);
+					  System.out.println("+++Borrar Suscripccion, Se ha obtenido de la busqueda el objeto Suscripcion");///DEBUG
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println("*******Borrar Suscripccion, Error al buscar la Suscripcion en la BD");///DEBUG
 				}
 				  
-				  
+				// se borra la suscripcion de la BD  
 				try {
 					susDao.borrarSuscripcion(suscripcion);
+					System.out.println("+++Borrar Suscripccion, Se ha borrado la suscripcion de BD"); ///DEBUG
+				
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-					System.out.println("*****Suscripcion*Error al Borrar Suscripcion");
+					System.out.println("*****Suscripcion*Error al Borrar Suscripcion de la BD");///DEBUG
 				}
+				
+				//se captura el cliente
+				try {
+					cliente = cliDao.buscarClienteID(idCliente);
+					System.out.println("+++Borrar Suscripccion, Se ha obtenido el objeto cliente");///DEBUG
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("*******Borrar Suscripccion, Error al ontener el objeto cliente");///DEBUG
+				}
+				
+				//actualizar el cliente
+				cliente.borrarSuscripcion(idpBorrar);
+				try {
+					cliDao.actualizarCliente(cliente);
+					System.out.println("+++Borrar Suscripccion, Se ha actualizado el cliente");///DEBUG
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println("*****Suscripcion*Error al actualizar el cliente");///DEBUG
+				}
+				
 				
 				break;
 				
 			case "mostrarSuscripciones": ///muestra los productos a los que esta suscrito
 				
+				//se comprueba que el usuario esta en sesion
 				try {
-					Long idCliente = (Long) sesionSuscripcion.getAttribute("idCliente");
 					cliente = cliDao.buscarClienteID(idCliente);
+					System.out.println("+++Mostrar Suscripcion, Se ha capturado el cliente");///DEBUG
 				} catch (Exception e) {
 					// TODO: handle exception
+					System.out.println("*****Mostrar Suscripcion, Error al capturar el cliente");///DEBUG
 				}
 				Collection<Producto> listaProductos=null;
 				if(cliente!=null){
 					Collection<Suscripcion> listaSuscripciones =cliente.getSuscripciones();
 					listaProductos = obtenerProductos(listaSuscripciones);
+					System.out.println("Hay: "+listaSuscripciones.size() + " productos suscritos");///DEBUG
+					
+					if(listaSuscripciones.size()>0){
+						request.setAttribute("listaProducto",listaProductos);			
+						request.setAttribute("haySuscripciones",true);
+					}
 				}
-				request.setAttribute("listaProducto",listaProductos);
+				
 				request.setAttribute("action","seccionCliente");
 				request.setAttribute("panelSuscripcion",true);
-				request.setAttribute("haySuscripciones",true);
 				break;
 
 				

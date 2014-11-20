@@ -121,11 +121,11 @@ public class Catalogo extends HttpServlet {
 					try {
 						HttpSession sesionCatalogo= request.getSession();
 						Long idClien = (Long)sesionCatalogo.getAttribute("idCliente");
-						Suscripcion suscripcion=susDao.buscarSuscripcionClienteProducto(idClien, idp);
+						susDao.buscarSuscripcionClienteProducto(idClien, idp);
 						request.setAttribute("productoSuscrito", true);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						System.out.println("***Mostrar Producto, el producto no se ecuentra en suscritos");
 					}
 					try {
 						Producto producto = proDao.buscarProducto(idp);
