@@ -3,6 +3,7 @@ package kiwisoft.dominios;
 import java.io.Serializable;
 import java.lang.Long;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -63,6 +64,7 @@ public class Producto implements Serializable {
 		this.urlImagen = urlImagen;
 		this.imagen = imagen;
 		this.proveedor=proveedor;
+		this.suscripciones=new ArrayList<Suscripcion>();
 	}
 	
 	public Proveedor getProveedor() {
