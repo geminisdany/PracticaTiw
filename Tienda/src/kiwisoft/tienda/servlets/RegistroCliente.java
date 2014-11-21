@@ -1,6 +1,10 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -61,6 +65,8 @@ public class RegistroCliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sesionRegistro = request.getSession();
+		Long idCliente = (Long) sesionRegistro.getAttribute("idCliente");
 		
 		String action= request.getParameter("action");
 		
@@ -75,8 +81,7 @@ public class RegistroCliente extends HttpServlet {
 				break;
 			
 			case "modificarCliente":///muestra el formulario para cambiar los datos
-				HttpSession sesionRegistro = request.getSession();
-				Long idCliente = (Long) sesionRegistro.getAttribute("idCliente");
+				
 				Cliente cliente = cliDao.buscarClienteID(idCliente);
 				request.setAttribute("action","seccionCliente");
 				request.setAttribute("panelDatos",true);
@@ -92,11 +97,9 @@ public class RegistroCliente extends HttpServlet {
 				
 			case "historial":///muestra la lista de facturas
 				
-				HttpSession sesionHistorial = request.getSession(); 
-				Long idClienteH = (Long) sesionHistorial.getAttribute("idCliente");
 				Cliente clienteHistorial=null;
 				try{
-					 clienteHistorial = cliDao.buscarClienteID(idClienteH);
+					 clienteHistorial = cliDao.buscarClienteID(idCliente);
 				}catch(Exception e){
 					System.out.println("******Historial* Error al buscar el cliente");////DEBUG
 				}
@@ -111,15 +114,8 @@ public class RegistroCliente extends HttpServlet {
 				break;
 			
 			case "detalleFactura":
-				HttpSession sesionDetalleFactura = request.getSession(); 
-				Long idClienteFac = (Long) sesionDetalleFactura.getAttribute("idCliente");
-				Cliente clienteFactura=null;
 				Factura factura=null;
-				try{
-					clienteFactura = cliDao.buscarClienteID(idClienteFac);
-				}catch(Exception e){
-					System.out.println("******Historial* Error al buscar el cliente");////DEBUG
-				}
+				
 				Long idFac = Long.parseLong(request.getParameter("id"));
 				try{
 					factura = facDao.buscarFactura(idFac);
@@ -129,11 +125,23 @@ public class RegistroCliente extends HttpServlet {
 				
 				request.setAttribute("factura",factura);
 				request.setAttribute("listaPedidos",factura.getPedidos());
-				request.setAttribute("cliente",clienteFactura);
 				request.setAttribute("hayFacturas",true);
 				request.setAttribute("action","seccionCliente");
 				request.setAttribute("panelHistorial",true);
 				break;
+			
+			case "buscarFacturasByFecha":
+				System.out.println("++++buscando facturas");
+				String fecha =request.getParameter("fecha");
+				Collection<Factura> facturas=facDao.buscarByFecha(convertirFecha(fecha), idCliente);
+				if(facturas.size()>0){
+					request.setAttribute("listaFacturas",facturas);
+					request.setAttribute("hayFacturas",true);
+				}
+				request.setAttribute("panelHistorial",true);
+				request.setAttribute("action","seccionCliente");
+				break;
+			
 			
 			default:
 				break;
@@ -255,6 +263,20 @@ public class RegistroCliente extends HttpServlet {
 		}
 		response.setContentType("text/html");
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+	
+	
+	private Date convertirFecha(String fecha) {
+		// TODO Auto-generated method stub
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date convFecha=null;
+		try {
+			convFecha=formatter.parse(fecha);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return convFecha;
 	}
 
 }

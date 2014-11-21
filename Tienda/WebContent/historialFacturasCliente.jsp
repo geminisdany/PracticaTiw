@@ -10,13 +10,21 @@
 		<!-- Lista de Facturas -->
 		<c:if test="${listaFacturas!=null}">
 		<h2>Historial de Compras</h2>
+			<form action="registro"  method="get" class="form-inline" role="form">
+			  <div class="form-group">
+			  <input type="text" name="action" value="buscarFacturasByFecha" hidden>
+			  <input type="text" class="form-control" id="datepicker" name="fecha" placeholder="dd/mm/yyyy">
+			  </div>
+			  <button type="submit" class=" btn btn-default">Buscar por Fecha</button>
+			  <a href="#" class="btn btn-default">Ordenar por fecha</a>
+			</form>
+			
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>ID Factura</th>
 						<th>Pedidos</th>
 						<th>Fecha</th>
-						<th>Hora</th>
 						<th>Precio Total</th>
 						<th class="text-center">Opciones</th>
 					</tr>
@@ -26,8 +34,7 @@
 						<tr>
 							<td><c:out value="${factura.id}"></c:out></td>
 							<td><c:out value="${factura.pedidos.size()}"></c:out></td>
-							<td><c:out value="${factura.fecha}"></c:out></td>
-							<td><c:out value="${factura.hora}"></c:out></td>
+							<td><c:out value="${factura.fechaUsuario()}"></c:out></td>
 							<td><c:out value="${factura.importe}"></c:out></td>
 							<td class="text-center"><a class="btn btn-info btn-xs"
 								title="Ver Detalles de Factura"

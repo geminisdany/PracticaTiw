@@ -21,8 +21,8 @@ jQuery(document).ready(function($){
 	$('.menu-toggle-btn').click(function(){
         $('.responsive-menu').stop(true,true).slideToggle();
     });
-
-
-
-
 });
+
+$(function() {
+    $( "#datepicker" ).datepicker();
+  });

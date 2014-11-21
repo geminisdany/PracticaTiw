@@ -49,8 +49,8 @@
 						</div>
 						<div class="panel-body">
 
-							<h4>Nombre: <c:out value="${cliente.nombre}"></c:out></h4>
-							<h4>Telefono: <c:out value="${cliente.telefono}"></c:out></h4>
+							<h4>Nombre: <c:out value="${factura.cliente.nombre}"></c:out></h4>
+							<h4>Telefono: <c:out value="${factura.cliente.telefono}"></c:out></h4>
 							<h4>Forma de Pago: <c:out value="${factura.tipoPago}"></c:out></h4>
 							
 							<h5>Direccion: <c:out value="${factura.direccion.direccion}"></c:out></h5>

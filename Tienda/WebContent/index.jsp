@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/personal_misc.css">
 <link rel="stylesheet" href="css/personal_cliente.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery-ui.structure.css">
+<link rel="stylesheet" href="css/jquery-ui.theme.css">
 
 <!-- JavaScripts -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -23,6 +26,8 @@
 <script src="js/jquery.singlePageNav.js"></script>
 <script src="js/jquery.flexslider.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/jquery-ui.js"></script>
+
 
 
 </head>

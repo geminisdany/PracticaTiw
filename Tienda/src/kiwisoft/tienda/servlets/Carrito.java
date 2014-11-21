@@ -1,8 +1,11 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -65,7 +68,76 @@ public class Carrito extends HttpServlet {
         this.listaPedidos = new ArrayList<Pedido>();
         this.nuevaFactura= null;
     }
-
+    
+    /**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Si se envian datos por metodo post significa que se va a registrar una factura
+	 * se crea una nueva factura y se asocia al cliente
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		  
+		String action = request.getParameter("action");
+		if(action==null){
+			action="default";
+		}
+		
+		switch (action) {
+		case "guardarFactura":
+			String direccionF = request.getParameter("direccionF");
+			String ciudadF = request.getParameter("ciudadF");
+			String provinciaF = request.getParameter("provinciaF");
+			String paisF = request.getParameter("paisF");
+			int cpF = Integer.parseInt(request.getParameter("cpF"));
+			String opcionPagoF = request.getParameter("opcionPago");
+			
+			HttpSession sesionCart = request.getSession();
+			Long idCliente = (Long) sesionCart.getAttribute("idCliente");
+			Cliente clienteP = cliDao.buscarClienteID(idCliente);
+			
+			System.out.println("Se guardara la factura:"+direccionF+ciudadF+provinciaF+paisF+cpF+opcionPagoF);
+			
+			Direccion dirFactura = new Direccion(direccionF, ciudadF, provinciaF, paisF, cpF);
+			
+			nuevaFactura = new Factura(clienteP, new Date(),opcionPagoF, calcularTotal(), dirFactura, listaPedidos);
+			try {
+				nuevaFactura=facDao.guardarFactura(nuevaFactura);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("********Guardar Factura**Error al guardar la Factura");
+			}
+			
+			clienteP.agregarFactura(nuevaFactura);
+			
+			try {
+				clienteP=cliDao.actualizarCliente(clienteP);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("********Guardar Factura en Cliente**Error al asignar la Factura al Cliente");
+			}
+			
+			request.setAttribute("factura", nuevaFactura);
+			request.setAttribute("listaPedidos", nuevaFactura.getPedidos());
+			request.setAttribute("cliente", clienteP);		
+			request.setAttribute("action", "datosFactura");
+			//Vaciar el carrito
+			nuevaFactura =null;
+			listaPedidos= new ArrayList<Pedido>();
+			HttpSession sesionCarritoTotal = request.getSession();
+			sesionCarritoTotal.setAttribute("cestaTotal",null);
+			break;
+		
+		default:
+			break;
+		}
+		
+		response.setContentType("text/html");
+		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+	
+	
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -269,70 +341,14 @@ public class Carrito extends HttpServlet {
 		return null;
 	}
 	
+	
+	
+	
+	
+	
+	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * Si se envian datos por metodo post significa que se va a registrar una factura
-	 * se crea una nueva factura y se asocia al cliente
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		  
-		String action = request.getParameter("action");
-		if(action==null){
-			action="default";
-		}
-		
-		switch (action) {
-		case "guardarFactura":
-			String direccionF = request.getParameter("direccionF");
-			String ciudadF = request.getParameter("ciudadF");
-			String provinciaF = request.getParameter("provinciaF");
-			String paisF = request.getParameter("paisF");
-			int cpF = Integer.parseInt(request.getParameter("cpF"));
-			String opcionPagoF = request.getParameter("opcionPago");
-			
-			System.out.println("Se guardara la factura:"+direccionF+ciudadF+provinciaF+paisF+cpF+opcionPagoF);
-			
-			Direccion dirFactura = new Direccion(direccionF, ciudadF, provinciaF, paisF, cpF);
-			nuevaFactura = new Factura("hoy", "ahora",opcionPagoF, calcularTotal(), dirFactura, listaPedidos);
-			try {
-				nuevaFactura=facDao.guardarFactura(nuevaFactura);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("********Guardar Factura**Error al guardar la Factura");
-			}
-			HttpSession sesionCart = request.getSession();
-			Long idCliente = (Long) sesionCart.getAttribute("idCliente");
-			Cliente clienteP = cliDao.buscarClienteID(idCliente);
-			clienteP.getFacturas().add(nuevaFactura);
-			
-			try {
-				clienteP=cliDao.actualizarCliente(clienteP);
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("********Guardar Factura en Cliente**Error al asignar la Factura al Cliente");
-			}
-			
-			request.setAttribute("factura", nuevaFactura);
-			request.setAttribute("listaPedidos", nuevaFactura.getPedidos());
-			request.setAttribute("cliente", clienteP);		
-			request.setAttribute("action", "datosFactura");
-			//Vaciar el carrito
-			nuevaFactura =null;
-			listaPedidos= new ArrayList<Pedido>();
-			HttpSession sesionCarritoTotal = request.getSession();
-			sesionCarritoTotal.setAttribute("cestaTotal",null);
-			break;
-		
-		default:
-			break;
-		}
-		
-		response.setContentType("text/html");
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	}
+	
 
 	
 }

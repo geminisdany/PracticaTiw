@@ -1,7 +1,11 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -15,14 +19,16 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.daos.ClienteDAO;
+import kiwisoft.daos.FacturaDAO;
 import kiwisoft.daos.ProductoDAO;
 import kiwisoft.daos.ProveedorDAO;
 import kiwisoft.daos.SuscripcionDAO;
 import kiwisoft.dominios.Direccion;
+import kiwisoft.dominios.Factura;
+import kiwisoft.dominios.Pedido;
 import kiwisoft.dominios.Producto;
 import kiwisoft.dominios.Proveedor;
 import kiwisoft.dominios.Cliente;
-import kiwisoft.dominios.Suscripcion;
 
 
 
@@ -43,6 +49,7 @@ public class Catalogo extends HttpServlet {
 	private ProveedorDAO proveDao;
 	private ClienteDAO cliDao;
 	private SuscripcionDAO susDao;
+	private FacturaDAO facDao;
 	
 	@Override
 	public void init() throws ServletException {
@@ -51,6 +58,7 @@ public class Catalogo extends HttpServlet {
 		proveDao = new ProveedorDAO(em, ut);
 		cliDao= new ClienteDAO(em, ut);
 		susDao = new SuscripcionDAO(em, ut);
+		facDao = new FacturaDAO(em, ut);
 		try {
 			Producto productos = proDao.buscarProductoNombre("Fuente azul");
 			if(productos!=null){
@@ -73,6 +81,7 @@ public class Catalogo extends HttpServlet {
 		proveDao=null;
 		cliDao=null;
 		susDao= null;
+		facDao=null;
 	}
 	
 	/**
@@ -193,7 +202,18 @@ public class Catalogo extends HttpServlet {
 	
 	
 	
-	
+	private Date convertirFecha(String fecha) {
+		// TODO Auto-generated method stub
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date convFecha=null;
+		try {
+			convFecha=formatter.parse(fecha);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return convFecha;
+	}
 	
 	/********Carga de catalogo*********/
 	 private void iniciarDB(){
@@ -202,7 +222,19 @@ public class Catalogo extends HttpServlet {
 			 Direccion casa =new Direccion("pardo santallana", "villalba", "madrid", "spain", 28400);
 			 Cliente yo = new Cliente("alex", "ruiz", 680606060, "alex@alex", "alex", casa);
 			 cliDao.guardarCliente(yo);
-			
+			 
+			 Factura nuevaFactura = new Factura(yo, convertirFecha("12/12/2012"), "tarjeta", 12,new Direccion("casa", "madrid", "madrid", "spain", 28400), new ArrayList<Pedido>());//Factura de prueba sin pedidos//////
+			 facDao.guardarFactura(nuevaFactura);
+			 
+			 yo.agregarFactura(nuevaFactura);
+			 cliDao.actualizarCliente(yo);
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 			 //crear proveedor
 			 Direccion dir1 = new Direccion("C/Agua 9", "Malaga", "Malaga", "Espana", 29012);
 			 Proveedor prov1 = new Proveedor("A0001N", "Empresa de Vasijas", 66546546 ,"vasijas@vasijas", "http://www.vasijas.com", "vasijas", dir1);
