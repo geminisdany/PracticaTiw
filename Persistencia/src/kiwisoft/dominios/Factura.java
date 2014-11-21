@@ -2,8 +2,10 @@ package kiwisoft.dominios;
 
 import java.io.Serializable;
 import java.lang.Long;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -25,14 +27,17 @@ public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = false)
-	private String fecha;
-	@Column(nullable = false)
-	private String hora;
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+	
 	@Column(nullable = false)
 	private String tipoPago;
+	
 	@Column(nullable = false)
 	private double importe;
 	
+	@OneToOne
+	private Cliente cliente;
 	@OneToOne(cascade = ALL)
 	private Direccion direccion;
 	@OneToMany(cascade = ALL)
@@ -41,16 +46,33 @@ public class Factura implements Serializable {
 	public Factura() {
 		super();
 	} 
-	public Factura(String fecha, String hora,String tipoPago,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
+	public Factura(Cliente cliente,Date fecha, String tipoPago,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
 		super();
 		this.direccion = direccion;
-		this.fecha = fecha;
-		this.hora = hora;
+		this.fecha = new Date();
 		this.importe = importe;
 		this.pedidos = pedidos;
 		this.tipoPago=tipoPago;
+		this.fecha= fecha;
+		this.cliente=cliente;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public String fechaUsuario(){
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(this.fecha);
 	}
 	
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 	public String getTipoPago() {
 		return tipoPago;
 	}
@@ -79,19 +101,6 @@ public class Factura implements Serializable {
 		this.direccion = direccion;
 	}
 
-	
-	public String getFecha() {
-		return fecha;
-	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-	public String getHora() {
-		return hora;
-	}
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
 	public double getImporte() {
 		return importe;
 	}

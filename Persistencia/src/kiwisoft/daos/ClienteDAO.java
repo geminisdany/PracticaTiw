@@ -5,7 +5,6 @@ import javax.persistence.NoResultException;
 import javax.transaction.UserTransaction;
 
 import kiwisoft.dominios.Cliente;
-import kiwisoft.dominios.Producto;
 
 public class ClienteDAO {
 	private final EntityManager em;

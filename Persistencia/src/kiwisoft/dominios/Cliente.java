@@ -11,7 +11,6 @@ import javax.persistence.*;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.AUTO;
-import static javax.persistence.CascadeType.PERSIST;
 
 /**
  * Entity implementation class for Entity: Cliente
@@ -135,6 +134,15 @@ public class Cliente implements Serializable {
 		this.facturas = facturas;
 	}
 
+	public void agregarFactura(Factura factura) {
+		// TODO Auto-generated method stub
+		this.facturas.add(factura);
+	}
+	
+	public void agregarSuscripcion(Suscripcion suscripcion) {
+		// TODO Auto-generated method stub
+		suscripciones.add(suscripcion);
+	}
 	public void borrarSuscripcion(Long idProducto) {
 		Suscripcion suscripcion = null;
 		Collection<Suscripcion> collection = this.suscripciones;

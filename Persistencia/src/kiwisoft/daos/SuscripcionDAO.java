@@ -3,8 +3,6 @@ package kiwisoft.daos;
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
 
-import kiwisoft.dominios.Cliente;
-import kiwisoft.dominios.Producto;
 import kiwisoft.dominios.Suscripcion;
 
 public class SuscripcionDAO {

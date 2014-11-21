@@ -1,4 +1,7 @@
 package kiwisoft.daos;
+import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
 
@@ -31,7 +34,16 @@ public class FacturaDAO {
 		em.remove(em.merge(factura));
 		ut.commit();
 	}
-
+	
+	public Collection<Factura> ordenarByFecha(Long id) {
+		// TODO Auto-generated method stub
+		return em.createQuery("select f from Factura f where f.cliente.id='"+id+"'ORDER BY f.fecha",Factura.class).getResultList();
+	}
+	
+	public Collection<Factura> buscarByFecha(Date fecha, Long idCliente) {
+		// TODO Auto-generated method stub
+		return em.createQuery("select f from Factura f where f.cliente.id='"+idCliente+"' and f.fecha='"+fecha+"'",Factura.class).getResultList();
+	}
 	
 	public Factura buscarFactura(Long id) {
 		// TODO Auto-generated method stub
