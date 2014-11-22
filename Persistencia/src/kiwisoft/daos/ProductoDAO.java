@@ -58,6 +58,27 @@ public class ProductoDAO {
 		return em.createQuery("select u from Producto u where u.id='"+pk+"'",Producto.class).getSingleResult();
 	}
 	
+	public Collection<Producto> buscarProductoOferta(){
+		return em.createQuery("select u from Producto u where u.oferta='"+true+"'",Producto.class).getResultList();
+	}
+	
+	
+	//busqueda simple por nombre
+	public Producto buscarProductoNombre(String nombre){
+		return em.createQuery("select u from Producto u where u.nombre='"+nombre+"'",Producto.class).getSingleResult();
+	}
+	
+	//busqueda simple por tipo
+	public Collection<Producto> buscarProductoTipo(String tipo){
+		return em.createQuery("select u from Producto u where u.tipo='"+tipo+"'",Producto.class).getResultList();
+	}
+	
+	//busqueda simple por proveedor
+	public Collection<Producto> buscarProductoProveedor(String proveedor){
+		return em.createQuery("select u from Producto u where u.proveedor.nombre='"+proveedor+"'",Producto.class).getResultList();
+	}
+	
+	///busqueda Basica por Precio
 	public Collection<Producto> buscarProductoMayor(Float precio){
 		return em.createQuery("select u from Producto u where u.precio>='"+precio+"'",Producto.class).getResultList();
 	}
@@ -66,17 +87,9 @@ public class ProductoDAO {
 		return em.createQuery("select u from Producto u where u.precio<='"+precio+"'",Producto.class).getResultList();
 	}
 	
-	public Collection<Producto> buscarProductoTipo(String tipo){
-		return em.createQuery("select u from Producto u where u.tipo='"+tipo+"'",Producto.class).getResultList();
+	public Collection<Producto> buscarProductoIgual(Float precio){
+		return em.createQuery("select u from Producto u where u.precio='"+precio+"'",Producto.class).getResultList();
 	}
 	
-	public Producto buscarProductoNombre(String nombre){
-		return em.createQuery("select u from Producto u where u.nombre='"+nombre+"'",Producto.class).getSingleResult();
-	}
 	
-	public Collection<Producto> buscarProductoOferta(){
-		return em.createQuery("select u from Producto u where u.oferta='"+true+"'",Producto.class).getResultList();
-	}
-	
-
 }
