@@ -2,10 +2,10 @@ package kiwisoft.dominios;
 
 import java.io.Serializable;
 import java.lang.Long;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.persistence.*;
 
@@ -27,7 +27,6 @@ public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
 	@Column(nullable = false)
@@ -46,14 +45,15 @@ public class Factura implements Serializable {
 	public Factura() {
 		super();
 	} 
-	public Factura(Cliente cliente,Date fecha, String tipoPago,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
+	public Factura(Cliente cliente, String tipoPago,double importe, Direccion direccion, ArrayList<Pedido> pedidos) {
 		super();
+		java.util.Date hoy= new java.util.Date();
+		
 		this.direccion = direccion;
-		this.fecha = new Date();
+		this.fecha = new Date( hoy.getTime());
 		this.importe = importe;
 		this.pedidos = pedidos;
 		this.tipoPago=tipoPago;
-		this.fecha= fecha;
 		this.cliente=cliente;
 	}
 	public Cliente getCliente() {

@@ -1,10 +1,9 @@
 package kiwisoft.daos;
+import java.sql.Date;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
-
 import kiwisoft.dominios.Factura;
 
 
