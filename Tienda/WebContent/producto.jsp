@@ -33,7 +33,7 @@
 							<div class="member-thumb" id="datosProductoCliente">
 								<p class="formatoCamposProducto">Descripcion: ${producto.descripcion}</p>
 								<p class="formatoCamposProducto">Stock: ${producto.stock}</p>
-								<p class="formatoCamposProducto">Proveedor que lo proporciona:${producto.id}</p>
+								<p class="formatoCamposProducto">Proveedor:${producto.proveedor.nombre}</p>
 							</div>
 		
 								<form  action="cart"   class="form-inline" role="form" method="get">

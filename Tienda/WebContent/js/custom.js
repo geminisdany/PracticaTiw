@@ -24,5 +24,15 @@ jQuery(document).ready(function($){
 });
 
 $(function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
   });
+
+$(document).ready(function(){
+	$(".datos").hide();
+	  $(".cerrar").click(function(){
+		$(".datos").hide();
+	  });
+	  $(".ava").click(function(){
+		$(".datos").show();
+	  });
+	});

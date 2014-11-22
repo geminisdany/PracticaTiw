@@ -1,10 +1,10 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -67,7 +67,7 @@ public class RegistroCliente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesionRegistro = request.getSession();
 		Long idCliente = (Long) sesionRegistro.getAttribute("idCliente");
-		
+		Collection<Factura> facturas=null;
 		String action= request.getParameter("action");
 		
 		if (action!=null) {
@@ -133,7 +133,16 @@ public class RegistroCliente extends HttpServlet {
 			case "buscarFacturasByFecha":
 				System.out.println("++++buscando facturas");
 				String fecha =request.getParameter("fecha");
-				Collection<Factura> facturas=facDao.buscarByFecha(convertirFecha(fecha), idCliente);
+				System.out.println("++++Busca Factura, Se busca la fecha: "+fecha);
+				
+				try {
+					facturas=facDao.buscarByFecha(convertirFecha(fecha), idCliente);
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("*****Buscar por Fecha, Error al buscar por fecha");///DEBUG
+					e.printStackTrace();
+				}
+				
 				if(facturas.size()>0){
 					request.setAttribute("listaFacturas",facturas);
 					request.setAttribute("hayFacturas",true);
@@ -142,6 +151,22 @@ public class RegistroCliente extends HttpServlet {
 				request.setAttribute("action","seccionCliente");
 				break;
 			
+			
+			case "ordenarByFecha":
+				try {
+					facturas=facDao.ordenarByFecha(idCliente);
+					System.out.println("+++Ordenar por fecha, Se ordena por fecha las facturas");
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("*****Ordenar por Fecha, Error al ordenar por fecha");///DEBUG
+				}
+				if(facturas.size()>0){
+					request.setAttribute("listaFacturas",facturas);
+					request.setAttribute("hayFacturas",true);
+				}
+				request.setAttribute("panelHistorial",true);
+				request.setAttribute("action","seccionCliente");
+				break;
 			
 			default:
 				break;
@@ -269,14 +294,14 @@ public class RegistroCliente extends HttpServlet {
 	private Date convertirFecha(String fecha) {
 		// TODO Auto-generated method stub
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date convFecha=null;
+		java.util.Date convFecha=null;
 		try {
 			convFecha=formatter.parse(fecha);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return convFecha;
+		return new Date(convFecha.getTime());
 	}
 
 }

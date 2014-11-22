@@ -16,7 +16,7 @@
 			  <input type="text" class="form-control" id="datepicker" name="fecha" placeholder="dd/mm/yyyy">
 			  </div>
 			  <button type="submit" class=" btn btn-default">Buscar por Fecha</button>
-			  <a href="#" class="btn btn-default">Ordenar por fecha</a>
+			  <a href="registro?action=ordenarByFecha" class="btn btn-default">Ordenar por fecha</a>
 			</form>
 			
 			<table class="table table-hover">
@@ -24,9 +24,9 @@
 					<tr>
 						<th>ID Factura</th>
 						<th>Pedidos</th>
-						<th>Fecha</th>
+						<th>Fecha (day/month/year/)</th>
 						<th>Precio Total</th>
-						<th class="text-center">Opciones</th>
+						<th class="text-center">Ver</th>
 					</tr>
 				</thead>
 				<tbody>

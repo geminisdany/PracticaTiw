@@ -1,11 +1,8 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -97,7 +94,7 @@ public class Carrito extends HttpServlet {
 			
 			Direccion dirFactura = new Direccion(direccionF, ciudadF, provinciaF, paisF, cpF);
 			
-			nuevaFactura = new Factura(clienteP, new Date(),opcionPagoF, calcularTotal(), dirFactura, listaPedidos);
+			nuevaFactura = new Factura(clienteP,opcionPagoF, calcularTotal(), dirFactura, listaPedidos);
 			try {
 				nuevaFactura=facDao.guardarFactura(nuevaFactura);
 			} catch (Exception e) {

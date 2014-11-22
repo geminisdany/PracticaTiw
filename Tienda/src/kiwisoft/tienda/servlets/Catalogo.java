@@ -1,11 +1,8 @@
 package kiwisoft.tienda.servlets;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -202,18 +199,7 @@ public class Catalogo extends HttpServlet {
 	
 	
 	
-	private Date convertirFecha(String fecha) {
-		// TODO Auto-generated method stub
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date convFecha=null;
-		try {
-			convFecha=formatter.parse(fecha);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return convFecha;
-	}
+	
 	
 	/********Carga de catalogo*********/
 	 private void iniciarDB(){
@@ -223,7 +209,7 @@ public class Catalogo extends HttpServlet {
 			 Cliente yo = new Cliente("alex", "ruiz", 680606060, "alex@alex", "alex", casa);
 			 cliDao.guardarCliente(yo);
 			 
-			 Factura nuevaFactura = new Factura(yo, convertirFecha("12/12/2012"), "tarjeta", 12,new Direccion("casa", "madrid", "madrid", "spain", 28400), new ArrayList<Pedido>());//Factura de prueba sin pedidos//////
+			 Factura nuevaFactura = new Factura(yo, "tarjeta", 12,new Direccion("casa", "madrid", "madrid", "spain", 28400), new ArrayList<Pedido>());//Factura de prueba sin pedidos//////
 			 facDao.guardarFactura(nuevaFactura);
 			 
 			 yo.agregarFactura(nuevaFactura);

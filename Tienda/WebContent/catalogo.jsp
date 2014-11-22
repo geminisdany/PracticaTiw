@@ -8,7 +8,7 @@
 		
 		<div class="blank-space"></div>
 		<!-- Buscador -->
-			<div class=" col-md-offset-2 col-md-8"><jsp:include page="buscador.jsp"></jsp:include></div>
+			<div class=" col-md-10"><jsp:include page="buscador.jsp"></jsp:include></div>
 		<!-- Fin Buscador -->
 		<div class="container-fluid">
 		   
