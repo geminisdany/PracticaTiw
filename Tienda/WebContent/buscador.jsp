@@ -24,15 +24,15 @@
 	
 	<!-- ********************Formulario de busqueda Basica ************************-->
 	<form action="catalogo" method="get">
-	<input type="text" name="action" value="buscar" hidden>	
+	<input type="text" name="action" value="busquedaBasica" hidden>	
 	   <ul class="nav navbar-nav">
 			<li><a><select class="btn btn-default btn-xs" name="opcion" id="addressesCountry2"  data-unique="newbilling">
 				<option value="producto">Producto</option>
 				<option value="tipo">Tipo</option>
-				<option value="prove">Proveedor</option>
-				<option value="mayor"> Precio Mayor que</option>
-				<option value="menor">Precio Menor que</option>
-				<option value="igual">Precio Igual que</option>
+				<option value="proveedor">Proveedor</option>
+				<option value="precioMayor"> Precio Mayor que</option>
+				<option value="precioMenor"> Precio Menor que</option>
+				<option value="precioIgual"> Precio Igual que</option>
 			</select></a></li>
 		</ul>
 	 <div class="navbar-form navbar-left" role="search">

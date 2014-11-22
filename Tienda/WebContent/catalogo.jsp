@@ -10,8 +10,7 @@
 		<!-- Buscador -->
 			<div class=" col-md-10"><jsp:include page="buscador.jsp"></jsp:include></div>
 		<!-- Fin Buscador -->
-		<div class="container-fluid">
-		   
+		<div class="container-fluid"> 
 		   <div id="${tipoCatalogo}s" class="section-content">
 				<div class="row">
 					<div class="col-md-12">

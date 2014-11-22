@@ -95,30 +95,69 @@ public class Catalogo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+				Collection<Producto> productos=null;
 				
 				String action = request.getParameter("action");
 				if(action==null)
 					action="default";
 					
 				switch (action) {
-				case "buscar":
+				case "busquedaBasica":
 							String opcion= request.getParameter("opcion");
+							System.out.println("Busqueda simple por:"+opcion);
 							String palabraClave = request.getParameter("palabraClave");
 							switch (opcion) {
-							case "producto":
-								try {
-									Producto producto= proDao.buscarProductoNombre(palabraClave);
-									request.setAttribute("producto",producto);///para  producto.jsp		
-									request.setAttribute("action","mostrarProducto");///para el indice.jsp
-									System.out.println("muestro un producto");/////DEBUG*/
-								} catch (Exception e) {
-									// TODO: handle exception
-									System.out.println("BUSCAR*******no existe el producto");
-								}
+								case "producto":
+									try {
+										Producto producto= proDao.buscarProductoNombre(palabraClave);
+										request.setAttribute("producto",producto);///para  producto.jsp		
+										request.setAttribute("action","mostrarProducto");///para el indice.jsp
+										System.out.println("muestro un producto");/////DEBUG*/
+										} catch (Exception e) {
+										// TODO: handle exception
+										System.out.println("Busqueda Basica*******No existe el producto");
+										request.setAttribute("titulo", "Error en la busqueda");
+										request.setAttribute("descripcion", "No se ha encontrado ningun producto con el nombre:"+palabraClave);
+									}
 								break;
-								}
-		
+								
+								case "tipo":
+									try {
+										productos=proDao.buscarProductoTipo(palabraClave);
+										request.setAttribute("listaProducto", productos);
+										request.setAttribute("tipoCatalogo", "Busqueda de: "+palabraClave);
+										request.setAttribute("action", "catalogo");
+										System.out.println("+++++Busqueda Simple por Tipo, Con Exito");
+										
+									} catch (Exception e) {
+										// TODO: handle exception
+										System.out.println("********Busqueda Simple por Tipo, NO encontrado");
+									}
+									
+									break;
+								
+								case "proveedor":
+									
+									break;
+								
+								case "precioMayor":
+									break;
+								
+								case "precioMenor":
+									break;
+								case "precioIgual":
+									break;
+								
+									
+							}
 				break;
+				
+				
+				case "busquedaAvanzada":
+					
+					break;
+				
+					
 					
 				case "mostrarProducto":
 					/**mostrar una categoria**/
@@ -147,6 +186,7 @@ public class Catalogo extends HttpServlet {
 					
 					
 					break;
+					
 					
 				case "categoria":
 					/**mostrar una categoria**/
