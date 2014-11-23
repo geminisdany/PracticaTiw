@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
+<script src="js/ValidacionR.js"></script>
 
 
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 
@@ -8,7 +11,9 @@
 			<div class="container-fluid" id="formularioRegistroC">
 				<h2 id="registroC">Registro de Clientes</h2>
 				<p>Bienvenido a la página de registro de Talaverámica. Por favor, rellene los siguientes campos.</p>
-				<form  action="registro" method="post" class="form-horizontal" role="form">
+				
+				<form onSubmit="return validarR(this)" action="registro" method="post" class="form-horizontal" role="form">
+				
 					<input type="text" name="action" value="registrar" hidden/>
 					<div class="row">
 					  <div class="form-group col-md-5" id="columnas62">
@@ -19,8 +24,10 @@
 					  <div class="form-group col-md-2"></div>
 					   <div class="form-group col-md-5">
 						<label for="apellido1C">Apellidos <span class="red">*</span></label>
-						<input type="text" class="form-control" id="apellidoC" name="apellidosC" 
-							   placeholder="Apellidos">
+						
+						<input type="text" class="form-control" id="apellidosC" name="apellidosC" 
+							   placeholder="Apellido">
+							   
 					  </div>  
 					</div>
 					<br>
@@ -28,14 +35,18 @@
 					<div class="row">
 					  <div class="form-group col-md-5">
 						<label for="telefonoC">Tel&eacute;fono <span class="red">*</span><span class="glyphicon glyphicon-phone-alt" title="Telefono"></span></label>
-						<input type="tel" class="form-control" id="telefonoC" name="telefonoC"
+						
+						<input type="text" class="form-control" id="telefonoC" name="telefonoC"
 							   placeholder="Telefono">
+							   
 					  </div>
 					  <div class="form-group col-md-2"></div>
 					  <div class="form-group col-md-5">
 						<label for="emailC">Email <span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Email"></span></label>
-						<input type="email" class="form-control" id="emailC" name="emailC" 
+						
+						<input type="text" class="form-control" id="emailC" name="emailC" 
 								   placeholder="Email">
+								   
 					  </div>
 					</div>
 					<br>
@@ -111,7 +122,9 @@
 				  </div>
 				  <br>
 				  <div id="botones">
-					<button type="submit" class="btn btn-default" id="enviar" class="validadorForm()" onclick="pwdIguales()">Enviar <span class="glyphicon glyphicon-ok"></span></button>
+						<button id="submit" type="submit" class="btn btn-default" id="continuar" name="submit" >
+								Enviar <span class="glyphicon glyphicon-ok"></span><span></span>
+							</button>
 					<span><button type="reset" class="btn btn-default" id="cancelar">Cancelar <span class="glyphicon glyphicon-remove"></span></button></span>
 				  </div>
 				</form>

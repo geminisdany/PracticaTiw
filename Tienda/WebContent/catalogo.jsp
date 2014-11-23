@@ -15,7 +15,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-title">
-							<h2>${tipoCatalogo}</h2>
+							<h2>${tituloTipoCatalogo}</h2>
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 							</div>
 							<div class="member-content">
 								<h4>${producto.nombre}</h4>
-								<p>${producto.pre_max} €</p>
+								<p>${producto.precio} €</p>
 							</div>
 						</div>
 					</div>

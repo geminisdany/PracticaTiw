@@ -7,6 +7,12 @@ h1, h2, h3, h4, h5, h6 { font-family: "Open Sans", Arial, "Helvetice Neue", sans
 #main-content, .full-width-slider { float: right; width: 82%; }
 
 
+.centro {text-align: center; width: 100%; padding: 10px;}
+.nada {width: 100%; height: 200px;}
+.nadah {width: 100%; height: 80px;}
+
+
+
 /* Menu superior SmallScreen*/
 .logo-small {padding: 0; margin: 0;}
 .logo-small a { border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; color: white; font-weight: 600; font-size: 30px; text-align: center; text-transform: uppercase; padding: 20px; width: 100%; background-color: #5C2929; }
@@ -49,8 +55,12 @@ ul li.fuentes a:hover { color: #4747FF;  background-color: #383e41; }
 .user-menu ul {list-style: none; padding: 0; margin: 0; float: left; width:100%;}
 .user-menu ul li a {float: right; color: white; text-align: center; text-transform: uppercase; border-bottom: 0.7vh solid;  border-color: #383e41; padding: 1.5vh 30px; background-color: #495054; -webkit-transition: all 350ms ease-in;  -moz-transition: all 300ms ease-in;   -o-transition: all 300ms ease-in;   transition: all 300ms ease-in; }
 .user-menu li a:hover {background-color: #292f32; }
-.user-login a{border-bottom-left-radius: 5vh; border-left: 0.7vh solid;width: 10vw;}
-.user-register a {width: 11.7vw}
+
+
+.user-login a {width: 8vw}
+.user-register a {width: 11vw;}
+.user-bvd a{border-bottom-left-radius: 5vh; border-left: 0.7vh solid;width: 21vw;}
+.user-in a{border-bottom-left-radius: 5vh; border-left: 0.7vh solid;width: 8vw;}
 
 
 /* Navegación lateral*/

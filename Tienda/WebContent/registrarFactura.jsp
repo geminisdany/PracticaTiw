@@ -3,6 +3,29 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<script>
+$(document).ready(function(){
+	$(".dato2").hide();
+	$(".dato3").hide();
+		$(".uno").click(function(){
+			$(".dato1").show();
+			$(".dato2").hide();
+			$(".dato3").hide();
+		});
+		$(".dos").click(function(){
+			$(".dato2").show();
+			$(".dato1").hide();
+			$(".dato3").hide();
+		});
+		$(".tres").click(function(){
+			$(".dato3").show();
+			$(".dato2").hide();
+			$(".dato1").hide();
+		});
+});
+</script>
+<script src="js/ValidacionD.js"></script>
+
 <body>
 <c:set var="cliVal" scope="session" value="${clienteValidado}" />
 	
@@ -10,13 +33,13 @@
 		<div id="templatemo">	
 			<c:choose>
 				<c:when test="${cliVal!=null}">
-					<form  action="cart" method="post" class="form-horizontal">
+					<form  onSubmit="return validarD(this)" action="cart" method="post" class="form-horizontal">
 					<input type="text" name="action" value="guardarFactura" hidden/>
 						<div class="container-fluid" id="formularioRegistroC">
 							<h3>
 								<a href="index.jsp">Home</a><span> ></span> <a
-									href="gestionCompra.jsp">1. Su Carrito</a><span> ></span> <a>2.
-									Identificación</a><span> > <a href="registrarFactura.jsp">3.
+									href="cart?action=mostrarLista">1. Su Carrito</a><span> ></span> <a>2.
+									Identificación</a><span> > <a href="cart?action=formPedido">3.
 										Envío/Pago</a></span> <span> > 4. Fin</span>
 							</h3>
 							
@@ -97,21 +120,47 @@
 
 							</div>
 							
-							<h3>Seleccione la forma de pago:</h3>
-							<div id="opcionePago">
-								<div class="pago">
-									<input type="radio" name="opcionPago" value="Tarjeta">
-									Tarjeta
+							<div class="row">
+									<div class="form-group col-md-5">
+										<div class="control-group">
+											<label class="control-label" for="fpago">Seleccione la forma de pago: 
+												<span class="red">* </span>
+											</label>
+											<div class="controls">
+												<select name="opcionPago" id="fpago"
+													class="form-control" data-unique="newbilling">
+													<option class="uno" value="Tarjeta">Tarjeta</option>
+													<option class="dos" value="Paypal">Paypal</option>
+													<option class="tres" value="Transferencia">Transferencia</option>
+												</select>
+											</div>
+										</div>
+									</div>
+						
+									<div class="form-group col-md-2"></div>
+									<div class="form-group col-md-5">
+										
+									<div class="dato1">
+											<label for="tarjeta">Tarjeta: <span class="red">*
+											</span><span title="tarjeta"></span></label> 
+											<input type="text" class="form-control" id="tarjeta" name="ctarjeta"
+												placeholder="Cuenta de la tarjeta">
+									</div>
+									<div class="dato2">
+											<label for="paypal">Paypal: <span class="red">*
+											</span><span title="paypal"></span></label> 
+											<input type="text" class="form-control" id="paypal" name="cpaypal"
+												placeholder="Cuenta de la paypal">
+									</div>
+									<div class="dato3">
+											<label for="transferencia">Transferencia: <span class="red">*
+											</span><span title="transferencia"></span></label> 
+											<input type="text" class="form-control" id="transferencia" name="ctransferencia"
+												placeholder="Cuenta de la transferencia">
+									</div>
+									</div>
+
 								</div>
-								<div class="pago">
-									<input type="radio" name="opcionPago" value="Paypal">
-									Paypal
-								</div>
-								<div class="pago">
-									<input type="radio" name="opcionPago" value="Transferencia" checked>
-									Tranferencia
-								</div>
-							</div>
 
 							<br></br>
 							<div id="botones">
@@ -128,7 +177,23 @@
 				</c:when>
 				<c:otherwise>
 					<div class="blank-space"></div>
-					Cliente no Validado, Inicia Sesion, presiendo el boton Entrar o registrate
+					<div class="nadah">
+							<h3>
+								<a href="index.jsp">Home</a><span> ></span> <a
+									href="cart?action=mostrarLista">1. Su Carrito</a><span> > <a href="#">  2.
+									Identificación</a></span> <span> > 3. Envío/Pago</span> <span> > 4. Fin</span>
+							</h3>
+						</div>	
+						<h1 class="centro">Cliente no Validado: </h1>
+						<div id="botones">
+							<a href="cart?action=mostrarLista"><button type="button"
+										class="btn btn-default" id="atras">Atras</button></a>
+								<a data-toggle="modal" data-target="#modalLogin" href="#Iniciar-Sesion"><button type="button"
+										class="btn btn-default">Iniciar Sesion</button></a>
+								<a href="registro?action=formulario"><button id="submit" type="submit" class="btn btn-default"
+									id="continuar" name="submit">Registrarse</button></a>
+							</div>	
+								<div class="nada"></div>
 				</c:otherwise>
 			</c:choose>
 		</div>

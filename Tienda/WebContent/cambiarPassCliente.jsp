@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html >
 <html lang="es">
+
+
+<script src="js/ValidacionCambio.js"></script>
+
+
 <!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". -->
 	<div id="main-content">
-			<form action="registro" method="post" class="form-horizontal" role="form">
+			
+			<form onSubmit="return validarCambio(this)" action="registro" method="post" class="form-horizontal" role="form">
+			
 			<input type="text" name="action" value="cambiarPass" hidden/>
 				<div class="row">
 					<div class="form-group col-xs-5">
@@ -43,5 +50,6 @@
 						</button></span>
 				</div>
 			</form>
+			<br></br>
 		</div>
 </html>

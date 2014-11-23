@@ -73,6 +73,10 @@
 							<jsp:include page="datosFactura.jsp"></jsp:include>	
 						</c:if>
 						
+						<c:if test="${action=='mensaje'}">
+							<jsp:include page="mensaje.jsp"></jsp:include>	
+						</c:if>
+						
 					</c:when>
 					<c:otherwise>
 						<jsp:include page="presentacion.jsp"></jsp:include>					

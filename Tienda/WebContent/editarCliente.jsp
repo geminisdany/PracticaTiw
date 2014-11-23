@@ -2,13 +2,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="es">
+
+<script src="js/ValidacionEC.js"></script>
+
 <!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". -->
 	
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 
 	<div id="main-content">
 		
 			<div class="container-fluid" id="formularioRegistroC">
-				<form  action="registro" method="post" class="form-horizontal" role="form">
+				
+				<form  onSubmit="return validarEC(this)" action="registro" method="post" class="form-horizontal" role="form">
+				
 					<input type="text" name="action" value="editarCliente" hidden/>
 					<div class="row">
 					  <div class="form-group col-md-5" id="columnas62">
@@ -28,13 +33,15 @@
 					<div class="row">
 					  <div class="form-group col-md-5">
 						<label for="telefonoC">Tel&eacute;fono <span class="red">*</span><span class="glyphicon glyphicon-phone-alt" title="Telefono"></span></label>
-						<input type="tel" class="form-control" id="telefonoC" name="telefonoC"
+						
+						<input type="text" class="form-control" id="telefonoC" name="telefonoC"
 							   placeholder="Telefono" value="${cliente.telefono}">
+					  
 					  </div>
 					  <div class="form-group col-md-2"></div>
 					  <div class="form-group col-md-5">
 						<label for="emailC">Email <span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Email"></span></label>
-						<input type="email" class="form-control" id="emailC" name="emailC" 
+						<input type="text" class="form-control" id="emailC" name="emailC" 
 								   placeholder="Email" value="${cliente.email}">
 					  </div>
 					</div>

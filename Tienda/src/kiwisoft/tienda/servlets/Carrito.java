@@ -98,8 +98,7 @@ public class Carrito extends HttpServlet {
 			try {
 				nuevaFactura=facDao.guardarFactura(nuevaFactura);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("********Guardar Factura**Error al guardar la Factura");
 			}
 			

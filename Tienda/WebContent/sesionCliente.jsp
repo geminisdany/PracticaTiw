@@ -8,16 +8,18 @@
 			<c:when test="${cliVal!=null}">
 				<div class="user-menu">
 					<ul>
+					<li class="user-login"><a href="login" class="col-md-3">Salir</a></li>	
 						<li class="user-register"><a href="registro?action=modificarCliente" class="col-xs-3">Mis Datos</a></li>
-						<li class="user-login"><a href="login" class="col-md-3">Salir</a></li>				
+						<li class="user-bvd"><a  class="col-md-5">Bienvenido <c:out value="${cliVal}"></c:out></a></li>					
 					</ul>
 				</div>
 			</c:when>
 			<c:otherwise>
 				<div class="user-menu">
 					<ul>
+					
 						<li class="user-register"><a href="registro?action=formulario" class="col-xs-3">Registrarse</a></li>
-						<li class="user-login"><a  data-toggle="modal" data-target="#modalLogin" href="#Iniciar-Sesion" class="col-md-3">Entrar</a></li>				
+						<li class="user-in"><a  data-toggle="modal" data-target="#modalLogin" href="#Iniciar-Sesion" class="col-md-3">Entrar</a></li>
 					</ul>
 				</div>
 			</c:otherwise>

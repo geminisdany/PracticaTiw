@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<script src="js/ValidacionP.js"></script>
+
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 
 	<div id="main-content">
 		<div class="blank-space"></div>
@@ -36,12 +38,17 @@
 								<p class="formatoCamposProducto">Proveedor:${producto.proveedor.nombre}</p>
 							</div>
 		
-								<form  action="cart"   class="form-inline" role="form" method="get">
+								<form  onSubmit="return validarP(this)" action="cart"   class="form-inline" role="form" method="get">
+								 
 								  <div class="form-group ">
 								    <label class="formatoCamposProducto control-label " >Cantidad</label>
-								    <input type="number" class="form-control" name="cantidad" value="1">
+								    
+								    <input type="text" class="form-control" name="cantidad" value="1">
+								    <input type="text" name="stock" value="${producto.stock}" hidden/>
+								    
 								    <input type="text" name="action" value="modificar" hidden/>
-								    <input type="text" name="id" value="${producto.id}" hidden/> 
+								    <input type="text" name="id" value="${producto.id}" hidden/>
+								     
 								  </div>
 								  <div class="row blank-space"></div>
 								  <div class="form-group">

@@ -51,12 +51,6 @@
 			<li class="tinajas"><a href="catalogo?action=categoria&tipoCatalogo=tinaja">Tinajas</a></li>
 			<li class="fuentes"><a href="catalogo?action=categoria&tipoCatalogo=fuente">Fuentes</a></li>
 		</ul>
-		<c:if test="${cliVal!=null}">
-			<div class="navbar-footer">
-			<h2>Bienvenido <c:out value="${cliVal}"></c:out></h2>
-			</div>
-		</c:if>
-		
 	</div>
 	<!-- ****fin pantallas grandes*** -->
 
