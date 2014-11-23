@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Long;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.PERSIST;
 
 /**
  * Entity implementation class for Entity: Pedido
@@ -26,12 +27,23 @@ public class Pedido implements Serializable {
 	@OneToOne
 	private Producto producto;
 	
+	@ManyToOne(cascade = PERSIST)
+	private Factura factura;
 
-	public Pedido(Producto producto, int cantidad, double precio) {
+	public Pedido(Producto producto, int cantidad, double precio, Factura factura) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
 		this.precio = precio;
+		this.factura = factura;
+	}
+	
+	public Factura getFactura() {
+		return factura;
+	}
+	
+	public void setFactura(Factura factura) {
+		this.factura = factura;
 	}
 	
 	public Pedido() {

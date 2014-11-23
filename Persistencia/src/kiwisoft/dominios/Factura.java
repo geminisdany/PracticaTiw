@@ -56,6 +56,19 @@ public class Factura implements Serializable {
 		this.tipoPago=tipoPago;
 		this.cliente=cliente;
 	}
+	
+	public Factura(Cliente cliente, String tipoPago,double importe, Direccion direccion) {
+		super();
+		java.util.Date hoy= new java.util.Date();
+		
+		this.direccion = direccion;
+		this.fecha = new Date( hoy.getTime());
+		this.importe = importe;
+		this.pedidos = new ArrayList<Pedido>();
+		this.tipoPago=tipoPago;
+		this.cliente=cliente;
+	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}

@@ -1,5 +1,7 @@
 package kiwisoft.daos;
 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
 
@@ -35,6 +37,12 @@ public class SuscripcionDAO {
 		return em.createQuery("select u from Suscripcion u where u.cliente.id='"+idcliente+"' and u.producto.id='"+idproducto+"'", Suscripcion.class).getSingleResult();
 	}
 
+	public Collection<Suscripcion> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return em.createQuery("select from Suscripcion").getResultList();
+	}
 	
-	
+	public Collection<Suscripcion> buscarSuscripcionProducto(Long idProducto){
+		return em.createQuery("select u from Suscripcion u join u.producto p where p.id='"+idProducto+"'",Suscripcion.class).getResultList();
+	}
 }

@@ -1,9 +1,11 @@
 package kiwisoft.daos;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
+
 import kiwisoft.dominios.Factura;
 
 
@@ -49,5 +51,18 @@ public class FacturaDAO {
 		return em.find(Factura.class, id);
 	}
 
+	public List<Factura> findAll() {
+		// TODO Auto-generated method stub
+		return em.createQuery("select from Factura").getResultList();
+	}
+	
+	public Factura modificarFactura(Factura factura) throws  Exception{
+	// TODO Auto-generated method stub
+		ut.begin();
+		em.merge(factura);
+		ut.commit();
+		return factura;
+	}
+	
 	
 }

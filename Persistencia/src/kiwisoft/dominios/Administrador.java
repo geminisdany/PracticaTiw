@@ -10,18 +10,35 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@Table(name = "administrador")
 public class Administrador implements Serializable {
 
 	   
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private static final long serialVersionUID = 1L;
-	
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false, unique = true)
 	private String email;
+	@Column(nullable = false)
 	private String password;
+	
+	
+	
+	public Administrador(String nombre, String email, String password) {
+		super();
+		this.nombre = nombre;
+		this.email = email;
+		this.password = password;
+	}
+	
+	public Administrador() {
+		super();
+	} 
 	
 	public String getNombre() {
 		return nombre;
@@ -41,9 +58,7 @@ public class Administrador implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Administrador() {
-		super();
-	}   
+	  
 	public Long getId() {
 		return this.id;
 	}

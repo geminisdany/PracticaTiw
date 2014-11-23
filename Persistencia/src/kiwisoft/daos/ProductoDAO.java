@@ -19,6 +19,12 @@ public class ProductoDAO {
 		this.ut = ut;
 	}
 	
+	public Collection<Producto> findAll() throws Exception{
+		// TODO Auto-generated method stub
+		return em.createQuery("select u from Producto u",Producto.class).getResultList();
+	}
+	
+	
 	public Producto guardarProducto(Producto nuevoProducto) throws Exception{
 		ut.begin();
 		em.persist(nuevoProducto); 
@@ -48,6 +54,13 @@ public class ProductoDAO {
         return productoActualizado;
 	}
 	
+	public Producto modificarProducto(Producto producto) throws Exception{
+		// TODO Auto-generated method stub
+		ut.begin();
+		em.merge(producto);
+		ut.commit();
+		return producto;
+	}
 	 
 
 	 public Collection<Producto> listarProductos()throws NoResultException{
@@ -100,7 +113,7 @@ public class ProductoDAO {
 	public Collection<Producto> buscarProductoIgual(double precio){
 		return em.createQuery("select u from Producto u where u.precio='"+precio+"'",Producto.class).getResultList();
 	}
-
+	
 	public Collection<Producto> buscarAvanzado(String campo1,String valor1, String operador, String campo2,String valor2) {
 		// TODO Auto-generated method stub
 		if(campo1.equals("proveedor"))
@@ -111,5 +124,20 @@ public class ProductoDAO {
 		return em.createQuery("select u from Producto u where lower(u."+campo1+") like lower('%"+valor1+"%') "+operador+" u."+campo2+" like lower('%"+valor2+"%')",Producto.class).getResultList();
 	}
 	
+	
+	
+	
+	
+	public Collection<Producto> buscarProductoProveedor(Long idProveedor){
+		return em.createQuery("select u from Producto u join u.proveedor p where p.id='"+idProveedor+"'",Producto.class).getResultList();
+	}
+	
+	public Collection<Producto> buscarProductoProveedorTipo(Long idProveedor, String tipo){
+		return em.createQuery("select u from Producto u join u.proveedor p where p.id='"+idProveedor+"' and u.tipo='"+tipo+"'",Producto.class).getResultList();
+	}
+	
+	public Collection<Producto> buscarProductoProveedorOferta(Long idProveedor){
+		return em.createQuery("select u from Producto u join u.proveedor p where p.id='"+idProveedor+"' and u.oferta='"+true+"'",Producto.class).getResultList();
+	}
 	
 }

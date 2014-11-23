@@ -1,5 +1,7 @@
 package kiwisoft.daos;
 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.transaction.UserTransaction;
@@ -39,5 +41,26 @@ public class ClienteDAO {
 	    ut.commit();
 	    return clienteActualizado;
 	}
-		
+	
+	public Cliente modificarCliente(Cliente clienteActualizado) throws Exception{
+	    ut.begin();
+	    em.merge(clienteActualizado);
+	    ut.commit();
+	    return clienteActualizado;
+	}
+	
+	public void borrarCliente(Cliente cliente)throws Exception{
+        ut.begin();
+        em.remove(em.merge(cliente));
+        ut.commit();
+	}
+	
+	public Collection<Cliente> listarCliente()throws Exception{
+        return em.createQuery("select c from Cliente c",Cliente.class).getResultList();
+	 }
+	
+	public Cliente buscarCliente(Long id) {
+		// TODO Auto-generated method stub
+		return em.find(Cliente.class, id);
+	}
 }

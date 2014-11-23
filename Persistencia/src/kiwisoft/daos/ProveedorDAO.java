@@ -1,6 +1,6 @@
 package kiwisoft.daos;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
@@ -46,8 +46,11 @@ public class ProveedorDAO {
 	}
 
 	
-	public List<Proveedor> findAll() throws Exception{
+	public Collection<Proveedor> findAll() throws Exception{
 		// TODO Auto-generated method stub
 		return em.createQuery("select u from Proveedor u",Proveedor.class).getResultList();
 	}
+	public Proveedor buscarPorEmailYpassword(String email, String password)throws Exception{
+        return em.createQuery("select u from Proveedor u where u.email='"+email+"' and u.password='"+password+"'",Proveedor.class).getSingleResult();
+	 }
 }
