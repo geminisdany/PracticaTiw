@@ -5,11 +5,11 @@
 <!DOCTYPE html >
 <html lang="es">
 <head>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'  rel='stylesheet' type='text/css'>
 <link href="style/css/bootstrap.css" rel="stylesheet">
 <link href="style/css/cssPersonalizado.css" rel="stylesheet">
 
@@ -25,32 +25,29 @@
 			
 			<div class="header">
 				<c:choose>
-					<c:when test="${AdmValidado}">
+					<c:when test="${AdmValidado!=null}">
 						<jsp:include page="InCabeceraLogIn.jsp"></jsp:include>
 					</c:when>
 					<c:otherwise>
 						<jsp:include page="InCabeceraLogOut.jsp"></jsp:include>
 					</c:otherwise>	
 				</c:choose>			
-			</div><!--Fin de cabecera-->
-			
+			</div><!--Fin de cabecera-->			
 			<div class="row">
-				<div class="col-md-12">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs nav-justified" role="tablist">
-					  <li <c:if test='${panelCliente}'>class="active"</c:if> > <a href="<c:if test='${!AdmValidado}'>#</c:if>gestionClientes" role="tab" >Clientes</a></li>
-					  <li <c:if test='${panelProveedor}'>class="active"</c:if> > <a href="<c:if test='${!AdmValidado}'>#</c:if>gestionProveedores" role="tab">Proveedores</a></li>
-					  <li <c:if test='${panelProducto}'>class="active"</c:if> ><a href="<c:if test='${!AdmValidado}'>#</c:if>gestionProductos" role="tab" >Productos</a></li>
-					  <li><a href="#otros" role="tab" data-toggle="tab">Settings</a></li>
-					</ul>
-					
-					<c:if test="${AdmValidado}">
-						<jsp:include page="InCuerpo.jsp"></jsp:include>
+				<div class="col-md-12">									
+					<c:if test="${AdmValidado!=null}">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs nav-justified" role="tablist">
+							  <li <c:if test='${panelCliente}'>class="active"</c:if> > <a href="<c:if test='${AdmValidado==null}'>#</c:if>gestionClientes" role="tab" >Clientes</a></li>
+							  <li <c:if test='${panelProveedor}'>class="active"</c:if> > <a href="<c:if test='${!AdmValidado==null}'>#</c:if>gestionProveedores" role="tab">Proveedores</a></li>
+							  <li <c:if test='${panelProducto}'>class="active"</c:if> ><a href="<c:if test='${!AdmValidado==null}'>#</c:if>gestionProductos" role="tab" >Productos</a></li>
+							   <li <c:if test='${panelImpuestos}'>class="active"</c:if> ><a href="<c:if test='${!AdmValidado==null}'>#</c:if>gestionFacturas?action=impuestos" role="tab" >Impuestos</a></li>
+								<li <c:if test='${panelFacturas}'>class="active"</c:if> ><a href="<c:if test='${!AdmValidado==null}'>#</c:if>gestionFacturas?action=facturas" role="tab" >Facturas</a></li>
+							</ul>
+						<jsp:include page="InCuerpo.jsp"></jsp:include>						
 					</c:if>
-				</div>
-				
-			</div>
-				
+				</div>				
+			</div>				
 	</div>							
 	<!-- Pie de pagina -->
 		<jsp:include page="InPiePagina.jsp"></jsp:include>

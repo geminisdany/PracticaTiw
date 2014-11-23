@@ -3,15 +3,19 @@ package kiwiSoft.administracion.servlets;
 import java.io.IOException;
 import java.util.Collection;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
 
-import kiwiSoft.administracion.BD.Proveedor;
-import kiwiSoft.administracion.BD.SimulacionBD;
+import kiwisoft.daos.ProveedorDAO;
+import kiwisoft.dominios.Proveedor;
 
 /**
  * Servlet implementation class gestionProveedor
@@ -19,16 +23,38 @@ import kiwiSoft.administracion.BD.SimulacionBD;
 @WebServlet("/gestionProveedores")
 public class GestionProveedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private SimulacionBD dbSimulacion;
+	
+	@PersistenceContext(unitName="PracticaTiw")
+	private EntityManager em;
+	@Resource()
+	private UserTransaction ut;
+	
+	private ProveedorDAO proveDao;
+	
+	//private SimulacionBD dbSimulacion;
     /**
      **@see HttpServlet#HttpServlet()
      */
     public GestionProveedor() {
         super();
         // TODO Auto-generated constructor stub
-        this.dbSimulacion = new SimulacionBD();
+       // this.dbSimulacion = new SimulacionBD();
     }
 
+    @Override
+    public void init() throws ServletException {
+    	// TODO Auto-generated method stub
+    	super.init();
+    	this.proveDao= new ProveedorDAO(em, ut);
+    	
+    }
+    
+    @Override
+    public void destroy() {
+    	// TODO Auto-generated method stub
+    	super.destroy();
+    	this.proveDao=null;
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -36,22 +62,52 @@ public class GestionProveedor extends HttpServlet {
 		
 		// TODO Auto-generated method stub
 				
-				Collection<Proveedor> collection= dbSimulacion.dbProveedores;
-				
+		//		Collection<Proveedor> collection= dbSimulacion.dbProveedores;
 				String accion = request.getParameter("action");
 				if(accion!=null){
 					if(accion.equals("borrar")){
-						String cif = request.getParameter("cif");
-						dbSimulacion.eliminarProveedor(cif);
+						Long idP = Long.parseLong(request.getParameter("id"));
+						Proveedor proveedor=null;
+						try {
+							proveedor = proveDao.buscarProveedor(idP);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						if(proveedor!=null){
+							try {
+								proveDao.borrarProveedor(proveedor);
+								System.out.println("++++Borrar Proveedor, se ha borrado con exito");
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								System.out.println("****Borrar Proveedor, Error al borrar Proveedor");
+								e.printStackTrace();
+							}
+						}
 					}
 				}
 				
-				request.setAttribute("listaProveedor", collection);
+				request.setAttribute("listaProveedor", listaProveedores());
 				request.setAttribute("panelProveedor", true);
 				System.out.println("envio lista de proveedores");///DEBUG
 				
 				response.setContentType("text/html");
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+	
+	
+	private Collection<Proveedor> listaProveedores() {
+		// TODO Auto-generated method stub
+		Collection<Proveedor> listaProveedores=null;
+		try {
+			listaProveedores = proveDao.findAll();
+			System.out.println("+++++Listar Clientes");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("*******Listar CLientes, error al listar los clientes");
+			e.printStackTrace();
+		}
+		return listaProveedores;
 	}
 
 	/**
@@ -63,29 +119,58 @@ public class GestionProveedor extends HttpServlet {
 		
 		/****/
 		HttpSession sesionAdmin = request.getSession();
-		Boolean validado = (Boolean) sesionAdmin.getAttribute("adminValidado");
-		if(validado){
+		String validado = (String)sesionAdmin.getAttribute("adminValidado");
+		if(validado!=null){
 			System.out.println("esta validado, se puede editar el Proveedor******"); ////DEBUG
 			String cif = request.getParameter("cif");
 			String nombre = request.getParameter("nombre");
-			String direccion = request.getParameter("direccion");
+			int telefono = Integer.parseInt(request.getParameter("tlf"));
 			String email = request.getParameter("email");
-			int tlf = Integer.parseInt(request.getParameter("tlf"));
+			String password = request.getParameter("contras");
 			String web = request.getParameter("web");
+			String direccion = request.getParameter("direccion");
+			String ciudad = request.getParameter("ciudad");
+			String provincia = request.getParameter("provincia");
+			String pais = request.getParameter("pais");
+			int cp = Integer.parseInt(request.getParameter("cp"));
 			
+			Long idP = Long.parseLong(request.getParameter("id"));
+			Proveedor proveedor=null;
 			try {
-				Proveedor proveedor = new Proveedor(cif, nombre, direccion, tlf, email, web);	
-				dbSimulacion.editarProveedor(cif, proveedor);
-				System.out.println("actualizado proveedor*****"); ///DEBUG
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("Error al editar el Proveedor"+":"+cif);
+				proveedor = proveDao.buscarProveedor(idP);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
+			
+			if (proveedor!=null) {
+				proveedor.setCif(cif);
+				proveedor.setNombre(nombre);
+				proveedor.setEmail(email);
+				proveedor.setPassword(password);
+				proveedor.setTelefono(telefono);
+				proveedor.setWeb(web);
+				proveedor.getDireccion().setPais(pais);
+				proveedor.getDireccion().setProvincia(provincia);
+				proveedor.getDireccion().setCiudad(ciudad);
+				proveedor.getDireccion().setDireccion(direccion);
+				proveedor.getDireccion().setCp(cp);
+				try {
+					proveDao.modificarProveedor(proveedor);
+					System.out.println("actualizado proveedor*****"); ///DEBUG
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("Error al editar el Proveedor"+":"+cif);
+				}
+			}else {
+				System.out.println("ERROR, EL proveedor no existe");
+			}
+			
 		}
 		/****/
-		Collection<Proveedor> collection= dbSimulacion.dbProveedores;
-		request.setAttribute("listaProveedor", collection);
+		
+		request.setAttribute("listaProveedor", listaProveedores());
 		request.setAttribute("panelProveedor", true);
 		System.out.println("envio lista de proveedores");///DEBUG
 		

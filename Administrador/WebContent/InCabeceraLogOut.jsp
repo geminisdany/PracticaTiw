@@ -2,11 +2,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<c:set var="error" scope="request" value="${Error}"></c:set>
 		<hr />
 		<div class="col-md-5 mytema">
 			<div class="hidden-xs hidden-sm logo text-center">
-				<h1><a href="#">Administración Talaverámica</a></h1> <span>Control de clientes,productos y proveedores</span>
+				<h1><a href="index.jsp">Administración Talaverámica</a></h1> <span>Control de clientes,productos y proveedores</span>
 			</div>
 		</div>
 		<div class="col-md-2"></div>
