@@ -42,7 +42,10 @@ function validarP(formulario){
 		formulario.cantidad.style.borderColor = "dotted";
 		return false;
 	}
-	if (formulario.cantidad.value > formulario.stock.value){
+	var pmin2 = parseFloat(formulario.cantidad.value);
+	var pmax2 = parseFloat(formulario.stock.value);
+	if (pmin2 > pmax2){
+		
 		alert("La cantidad no puede superar el stock");
 		formulario.cantidad.style.borderColor = "red";
 		formulario.cantidad.style.borderColor = "dotted";

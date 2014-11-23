@@ -4,7 +4,7 @@
 <html lang="es">
 
 <script src="js/ValidacionP.js"></script>
-
+<br></br>
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 
 	<div id="main-content">
 		<div class="blank-space"></div>

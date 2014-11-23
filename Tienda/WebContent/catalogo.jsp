@@ -3,13 +3,9 @@
 <!DOCTYPE html>
 <html lang="es">
 	<div id="main-content">
-	
-		
-		
+
 		<div class="blank-space"></div>
-		<!-- Buscador -->
-			<div class=" col-md-10"><jsp:include page="buscador.jsp"></jsp:include></div>
-		<!-- Fin Buscador -->
+		<br></br>
 		<div class="container-fluid"> 
 		   <div id="${tipoCatalogo}s" class="section-content">
 				<div class="row">

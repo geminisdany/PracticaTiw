@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <html lang="es">
-
 <script src="js/ValidacionR.js"></script>
 
+<br></br>
 
 	<!-- CONTENIDO QUE DEBERA CAMBIAR: todo el div de "main-content". --> 
 	<div id="main-content">

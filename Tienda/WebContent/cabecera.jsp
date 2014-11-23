@@ -7,7 +7,9 @@
 	<div id="topbar" class="hidden-xs hidden-sm">
 		
 		<!-- Cesta de la compra -->
+		<div ><jsp:include page="buscador.jsp"></jsp:include></div>
 		<div class="cesta-compra">
+		
 			<a href="cart?action=mostrarLista">Cesta de la compra <img
 				src="images/carritoCompra.png" alt="Carrito Compra" width="27"
 				height="27"> <c:if test="${cestTotal!=null}"><span class="badge"> <c:out value="${cestTotal}"></c:out></span></c:if></a>
@@ -19,9 +21,7 @@
 		<!-- Fin de Menu de Usuario de Sesion -->
 		
 	
-	</div>
-	
-	
+	</div>	
 	<!------------------------ Ventana Modal:Login -------------------------->				
 					<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="main-content">	
 						<div id="login-menu">
@@ -41,6 +41,7 @@
 								    <label for="password" class="uppercase">Contraseña</label>
 								    <input type="password" class="form-control" id="password" name="password" placeholder="**********">
 								  </div>
+								  
 								  <div class="row margintop">
 									   <div class="col-md-6"><button type="submit" class="btn btn-block btn-primary">Entrar</button></div>
 									   <div class="col-md-6"><button type="button"  data-dismiss="modal" class="btn btn-block btn-danger">Cancelar</button></div>

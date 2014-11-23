@@ -8,12 +8,23 @@
 		<div class="logo-small row">
 			<a href="index.jsp" class="col-xs-12">Talaverámica</a>
 		</div>
-		<div class="user-menu-small row">
-			<ul>
-				<li class="user-register-small"><a href="registro" class="col-xs-6">Registrarse</a></li>
-				<li class="user-login-small"><a data-toggle="modal" data-target="#modalLogin" href="#Iniciar-Sesion" class="col-xs-6">Entrar</a></li>
-			</ul>
-		</div>
+		<c:if test="${clienteValidado==null}">
+			<div class="user-menu-small row">	
+				<ul>
+					<li class="user-register-small"><a href="registro?action=formulario" class="col-xs-6">Registrarse</a></li>
+					<li class="user-login-small"><a data-toggle="modal" data-target="#modalLogin" href="#Iniciar-Sesion" class="col-xs-6">Entrar</a></li>
+				</ul>
+			</div>
+		</c:if>
+			<c:if test="${clienteValidado!=null}">
+			<div class="user-menu-small row">	
+				<ul>
+					<li class="user-register-small"><a  class="col-xs-4">Bienvenido <c:out value="${cliVal}"></c:out></a></li>	
+					<li class="user-register-small"><a href="registro?action=modificarCliente" class="col-xs-4">Mis Datos</a></li>	
+					<li class="user-login-small"><a href="login" class="col-xs-4">Salir</a></li>				
+				</ul>
+			</div>
+		</c:if>
 		<div class="cesta-compra-small row">
 			<a href="cart?action=mostrarLista" class="col-xs-12">Cesta de la compra <img
 				src="images/carritoCompra.png" alt="Carrito Compra" width="27"

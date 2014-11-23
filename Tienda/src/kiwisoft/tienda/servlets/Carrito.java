@@ -96,6 +96,7 @@ public class Carrito extends HttpServlet {
 			
 			nuevaFactura = new Factura(clienteP,opcionPagoF, calcularTotal(), dirFactura, listaPedidos);
 			try {
+				
 				nuevaFactura=facDao.guardarFactura(nuevaFactura);
 			} catch (Exception e) {
 				//e.printStackTrace();
@@ -254,7 +255,7 @@ public class Carrito extends HttpServlet {
 		if(pedido==null){//si no existe el pedido,es un nuevo pedido
 			try {
 				Producto producto = proDao.buscarProducto(idp);
-				Pedido pedidoAdd = new Pedido(producto, cantidad, cantidad*producto.getPrecio());
+				Pedido pedidoAdd = new Pedido(producto, cantidad, cantidad*producto.getPrecio(),null);
 				listaPedidos.add(pedidoAdd);//se crea el pedido*/
 				
 			} catch (Exception e) {
@@ -305,7 +306,7 @@ public class Carrito extends HttpServlet {
 				Producto producto = proDao.buscarProducto(idp);
 				double precio = producto.getPrecio()*cantidad;
 				
-				Pedido pedidoAdd = new Pedido(producto, cantidad, precio);
+				Pedido pedidoAdd = new Pedido(producto, cantidad, precio,null);
 				listaPedidos.add(pedidoAdd);//se crea el pedido*/
 			} catch (Exception e) {
 				// TODO: handle exception

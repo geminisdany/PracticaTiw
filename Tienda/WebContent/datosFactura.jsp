@@ -3,15 +3,16 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
+<br></br>
 		<div id="main-content">
 		<div id="templatemo">
 			
 			<div class="container-fluid" id="formularioRegistroC">
 				<h3>
-					<a href="index.jsp">Home</a><span> ></span> <a href="gestionCompra.jsp">1.
+					<a href="index.jsp">Home</a><span> ></span> <a href="cart?action=mostrarLista">1.
 						Su Carrito</a><span> ></span> <a>2. Identificación</a><span> >
-						<a href="registrarFactura.jsp">3. Envío/Pago</a>
-					</span> <span> > </span><a href="gestionCompra4.jsp">4. Resumen</a>
+						<a href="cart?action=formPedido">3. Envío/Pago</a>
+					</span> <span> > </span><a href="#">4. Resumen</a>
 				</h3>
 				<h2>Su compra se ha realizado con Exito.</h2>
 				<h3>Contenido de la compra:</h3>

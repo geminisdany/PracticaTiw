@@ -31,8 +31,10 @@ $(document).ready(function(){
 	$(".datos").hide();
 	  $(".cerrar").click(function(){
 		$(".datos").hide();
+		$(".normal").show();
 	  });
 	  $(".ava").click(function(){
 		$(".datos").show();
+		$(".normal").hide();
 	  });
 	});

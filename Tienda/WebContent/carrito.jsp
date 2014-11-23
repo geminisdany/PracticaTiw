@@ -3,13 +3,13 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-
+<br></br>
 <div  id="main-content">
 	<div class="blank-space"></div>
 	<div class="container-fluid">
 	<h3>
 		<a href="index.jsp">Home</a><span> ></span> <a
-			href="gestionCompra.jsp">1. Su Carrito</a><span> > 2.
+			href="#">1. Su Carrito</a><span> > 2.
 			Identificación</span> <span> > 3. Envío/Pago</span> <span> > 4. Fin</span>
 	</h3>
 	<h2>Contenido del carrito de Compra</h2>

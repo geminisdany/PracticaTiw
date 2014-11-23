@@ -11,8 +11,12 @@ h1, h2, h3, h4, h5, h6 { font-family: "Open Sans", Arial, "Helvetice Neue", sans
 .nada {width: 100%; height: 200px;}
 .nadah {width: 100%; height: 80px;}
 
-
-
+.barra {width: 100%;float: right;height: 66px;}
+.ajuste{padding: 5px; margin: 15px;}
+.centro{text-align: center;} 
+.cerrar{color: white;}
+.ava{color: white;}
+.zero{padding: 0px; margin: 0px;}
 /* Menu superior SmallScreen*/
 .logo-small {padding: 0; margin: 0;}
 .logo-small a { border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; color: white; font-weight: 600; font-size: 30px; text-align: center; text-transform: uppercase; padding: 20px; width: 100%; background-color: #5C2929; }
@@ -67,14 +71,14 @@ ul li.fuentes a:hover { color: #4747FF;  background-color: #383e41; }
 #main-sidebar { float: left; width: 18%; height: 100%; position: fixed; background-color: #495054; color: white; }
 .logo { margin-bottom: 10vh; margin-top: 8vh; background-color: #5C2929; padding: 10%; padding-top: 2.5vh; padding-bottom: 2.5vh; }
 .logo a { color: white; }
-.logo a h1 { text-transform: uppercase; font-size: 1.8vw; margin: 0; font-weight: 800; }
+.logo a h1h2 a { text-transform: uppercase; font-size: 1.8vw; margin: 0; font-weight: 800; }
 .logo span { color: #bee3f6; font-size: 100%; }
 .main-menu { text-align: left; padding: 0; margin:0;}
 .main-menu li { padding: 0; margin:0; margin-bottom: 1px; list-style: none;}
 .main-menu li a { color: white; text-transform: uppercase; display: block; border-left: 4px solid; padding: 2vh 30px; background-color: #383e41; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
 .main-menu li a:hover { background-color: #34393b; }
 .navbar-footer h2{ padding-bottom: 1.25vh; padding-top: 2.25vh; margin: 0; position: absolute;  bottom: 0px;  background-color: #292f32;  width: 100%;  font-size: 3vh;  text-align: center;}
-
+@media (max-height: 400px) {.main-menu li a { padding: 1vh 30px;}}
 
 /*Galeria*/
 a.largeButton { color: white; text-transform: uppercase; font-weight: 700; font-size: 14px; display: inline-block; padding: 10px 20px; border-bottom: 3px solid; }
@@ -162,7 +166,7 @@ label { font-family: "Segoe UI"; color: black;}
 .member-item { overflow: hidden; height: auto; }
 .member-item:hover .overlay { opacity: 1; visibility: visible; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
 .member-thumb { width: 100%; overflow: hidden; height: auto; position: relative; }
-.member-thumb img { width: 100%; }
+.member-thumb img { width: 100%; height: 20vw;}
 .member-thumb .overlay { position: absolute; top: 0; right: 0; opacity: 0; visibility: hidden; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); }
 .member-content { margin-top: 10px; overflow: hidden; text-align: center; }
 .member-content h4 { text-transform: uppercase; font-size: 18px; color: #e9b144; }
@@ -171,9 +175,52 @@ label { font-family: "Segoe UI"; color: black;}
 .social-member li a { display: block; line-height: 40px; color: white; }
 .social-member li:hover { background-color: #e5a424; }
 
-
+@media (max-width: 991px) {.member-thumb img { height: 70vw;}}
 
 /* Login menu CSS*/
 .title {font-family: "Segoe UI";	font-style: italic;	text-align: center;	color: #38a9e3;	margin-bottom:6%;}
 #login-menu {color:white; z-index: 15; margin-top: 20vh; margin-bottom: 20vh; float:center; width: 100%; }
 #login-form {border-radius: 2vh; background-color: #495054; padding: 30px; border-color: #192024; border-style: solid;border-width:0.5vw;}
+
+
+
+
+@media (min-width: 1200px) {
+  .container {
+    width: 900px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-collapse {
+  background-color:#495054;
+  	height: 70px;
+   	 width: 100%;
+    border-top: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+.navbar-inverse {
+	border-radius: 0;
+	 width: 100%;
+  background-color: #222;
+  border-color: #495054;;
+}
+ .navbar-nav {
+    float: left;
+    margin: 0;
+    height: 66px;
+  }
+.navbar-inverse .navbar-brand {
+  color: white;
+}  
+.navbar-inverse .navbar-nav > li > a {
+ 	color: white;
+}
+  .navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+}

@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <div class="container" style="padding-top: 1em;">
-	<nav class="navbar navbar-default" role="navigation">
+<div class="col-md-9 barra normal">
+	<nav class="navbar navbar-inverse" role="navigation">
 		<!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
 		<div class="navbar-header">
@@ -37,15 +38,15 @@
 				</ul>
 				<div class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" name="palabraClave"
+						<input type="text" class="form-control ajuste" name="palabraClave"
 							placeholder="Buscar">
 					</div>
-					<button type="submit" class="btn btn-default">Buscar</button>
+					<button type="submit" class="btn btn-default ajuste">Buscar</button>
 				</div>
 				
 				<div class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input name="busquedaExacta" type="checkbox"> busqueda exacta
+						<input class="form-control ajuste" name="busquedaExacta" type="checkbox"> busqueda exacta
 					</div>
 				</div>
 				
@@ -59,9 +60,8 @@
 		</div>
 	</nav>
 </div>
-<div class="container" style="padding-top: 1em;">
-	<div class="datos">
-		<nav class="navbar navbar-default" role="navigation">
+	<div class="col-md-9 barra datos">
+		<nav class="navbar navbar-inverse" role="navigation">
 			<!-- El logotipo y el icono que despliega el menú se agrupan
 			 para mostrarlos mejor en los dispositivos móviles -->
 			<div class="navbar-header">
@@ -71,7 +71,6 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Avanzado:</a>
 			</div>
 			<!-- Agrupar los enlaces de navegación, los formularios y cualquier
 			 otro elemento que se pueda ocultar al minimizar la barra -->
@@ -83,7 +82,7 @@
 					<ul class="nav navbar-nav">	
 						<li>
 							<a>
-								<select class="btn btn-default btn-xs" name="campo1" data-unique="newbilling">
+								<select class="btn btn-default btn-xs zero" name="campo1" data-unique="newbilling">
 									<option value="nombre">Nombre</option>
 									<option value="tipo">Tipo</option>
 									<option value="proveedor">Proveedor</option>
@@ -92,24 +91,24 @@
 						</li>
 						<li class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<input type="text" name="valor1" class="form-control" placeholder="Buscar">
+								<input type="text" name="valor1" class="form-control zero" placeholder="Buscar">
 							</div>
 						</li>
 						
-						<li><a><select class="btn btn-default btn-xs" name="operador" data-unique="newbilling">
+						<li><a><select class="btn btn-default btn-xs zero" name="operador" data-unique="newbilling">
 									<option value="and">AND</option>
 									<option value="or">OR</option>
 							</select></a></li>
-						<li><a><select class="btn btn-default btn-xs" name="campo2" data-unique="newbilling">
+						<li><a><select class="btn btn-default btn-xs zero" name="campo2" data-unique="newbilling">
 									<option value="nombre">Nombre</option>
 									<option value="tipo">Tipo</option>
 									<option value="proveedor">Proveedor</option>
 							</select></a></li>
 						<li class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<input type="text" name="valor2" class="form-control" placeholder="Buscar">
+							<div class="form-group zero">
+								<input type="text" name="valor2" class="form-control " placeholder="Buscar">
 							</div>
-							<button type="submit" class="btn btn-default">Buscar</button>
+							<button type="submit" class="btn btn-default zero">Buscar</button>
 						</li>
 					
 					
@@ -123,4 +122,5 @@
 		</nav>
 	</div>
 </div>
+
 </html>

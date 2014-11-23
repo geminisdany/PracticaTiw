@@ -25,8 +25,7 @@ $(document).ready(function(){
 });
 </script>
 <script src="js/ValidacionD.js"></script>
-
-<body>
+<br></br>
 <c:set var="cliVal" scope="session" value="${clienteValidado}" />
 	
 	<div id="main-content">
@@ -40,7 +39,7 @@ $(document).ready(function(){
 								<a href="index.jsp">Home</a><span> ></span> <a
 									href="cart?action=mostrarLista">1. Su Carrito</a><span> ></span> <a>2.
 									Identificación</a><span> > <a href="cart?action=formPedido">3.
-										Envío/Pago</a></span> <span> > 4. Fin</span>
+										Envío/Pago</a></span> <span> > 4. Resumen</span>
 							</h3>
 							
 							
@@ -198,6 +197,5 @@ $(document).ready(function(){
 			</c:choose>
 		</div>
 	</div>
-</body>
 </html>
 

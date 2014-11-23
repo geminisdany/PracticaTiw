@@ -80,6 +80,9 @@ public class Login extends HttpServlet {
 			// TODO: handle exception
 			/**enviar notifiacion al usuario que no existe el email o contraseña*/
 			System.out.println("Error al buscar al usuario");
+			request.setAttribute("action", "mensaje");
+			request.setAttribute("titulo", "Inicio de Sesion");
+			request.setAttribute("descripcion","El usuario o la contraseña no son validos");
 		}
 		
 		
