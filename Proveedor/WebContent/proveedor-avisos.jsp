@@ -1,6 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,7 +123,6 @@
 				</ul>
 			</div>
 		
-		
 			<div class="main-slider hidden-sm hidden-xs">
 				<div class="flexslider">
 					<ul class="slides">
@@ -157,91 +155,57 @@
 		<!--MAIN CONTENT: ELEMENTOS VARIABLES-->
 		<div id="main-content">		
 			
-
-
-				<div class="blank-space"></div>
-					<div class="container-fluid" id="formularioRegistroC">
-						<h1 id="registroC">Modificaci&oacute;n de datos de producto</h1>
-						<p>Bienvenido a la p&aacute;gina de modificaciones de datos de productos de Talaver&aacute;mica. Por favor, complete los siguientes campos que quiera editar.</p>
-						<c:set var="modificarProducto" scope="session" value="${productoID}"></c:set>
-						<form action="GestionarProducto" class="form-horizontal" role="form" method="post" onsubmit="return precios()">
-							<div class="hidden">
-								<input type="text" class="form-control" id="idProd" name="idProd"
-									   value="${productoID.id}">
+			<div class="container-fluid">
+				<c:set var="provLog" scope="session" value="${proveedorLogeado}"></c:set>
+				<h1 id="registroC">Avisos de stock bajo</h1>
+				<p>A continuaci&oacute;n se muestra el nombre, el stock actual y el umbral de stock m&iacute;nimo de los productos cuyo stock est&aacute; por debajo del deseado.</p>
+				<c:set var="HayAviso" scope="session" value="${hayAvisos}"></c:set>
+				<c:choose>
+					<c:when test="${HayAviso}">
+						<c:set var="listaAviso" scope="session" value="${listaAvisos}"></c:set>
+						<div class="row">
+							<div class="col-xs-4">
+								<b>NOMBRE PRODUCTO</b>
 							</div>
-							<div class="row">
-							  <div class="form-group col-sm-5" id="columnas62">
-								<label for="nombre">Nombre<span class="red">*</span></label>
-								<input type="text" class="form-control" id="nombre" name="nombre"
-									   value="${productoID.nombre}">
-							  </div>
-							  <div class="form-group col-sm-1"></div>
-							  <div class="form-group col-sm-6">
-								<label>Categor&iacute;a<span class="red">*</span></label><br>
-									<input type="radio" name="tipo" value="vasija" checked>Vasija   
-									<input type="radio" name="tipo" value="maceta">Maceta
-									<input type="radio" name="tipo" value="copa">Copa
-									<input type="radio" name="tipo" value="botijo">Botijo
-									<input type="radio" name="tipo" value="tinaja">Tinaja
-									<input type="radio" name="tipo" value="fuente">Fuente
-							  </div>
+							<div class="col-xs-4">
+								<b>UMBRAL M&Iacute;NIMO</b>
 							</div>
-							<br>
-							<div class="row">
-							  <div class="form-group col-sm-5" id="columnas6o2">
-								<label for="stock">Cantidad<span class="red">*</span></label>
-								<input type="text" class="form-control" id="stock" name="stock"
-									   value="${productoID.stock}">
-							  </div>
-							  <div class="form-group col-sm-2"></div>
-							  <div class="form-group col-sm-5">
-								<label for="umbralStock">Umbral m&iacute;nimo de stock<span class="red">*</span></label>
-								<input type="text" class="form-control" id="umbralStock" name="umbralStock"
-									   value="${productoID.umbralStock}">
-							  </div>
+							<div class="col-xs-4">
+								<b>STOCK ACTUAL</b>
 							</div>
-							<br>
+						</div>
+						<c:forEach items="${listaAviso}" var="productoAviso">
 							<div class="row">
-							  <div class="form-group col-sm-5">
-								<label for="pre_min">Precio m&iacute;nimo<span class="red">*</span></label>
-								<input type="text" class="form-control" id="pre_min" name="pre_min"
-									   value="${productoID.pre_min}">&euro;
-							  </div>
-							  <div class="form-group col-sm-2"></div>
-							  <div class="form-group col-sm-5">
-								<label for="pre_max">Precio m&aacute;ximo<span class="red">*</span></label>
-								<input type="text" class="form-control" id="pre_max" name="pre_max"
-									   value="${productoID.pre_max}">&euro;
-							  </div>
-							</div>
-							<div class="row">
-								<div class="form-group col-sm-12">
-									<label for="descripcion">Descripci&oacute;n</label>
-									<input type="text" maxlength="255" class="form-control" id="descripcion" name="descripcion" value="${productoID.descripcion}">
+								<div class="col-xs-4">
+									<c:out value="${productoAviso.nombre}"></c:out>
+								</div>
+								<div class="col-xs-4">
+									<c:out value="${productoAviso.umbralStock}"></c:out>
+								</div>
+								<div class="col-xs-4">
+									<c:out value="${productoAviso.stock}"></c:out>
 								</div>
 							</div>
-							<br>
-							<div class="row">
-							  <div class="form-group col-sm-3"></div>
-							  <div class="form-group col-sm-6">
-								<label for="urlImagen">Imagen del producto<span class="glyphicon glyphicon-picture"></span></label>
-								<input type="text" class="form-control" id="urlImagen" name="urlImagen" value="${productoID.urlImagen}"> 
-							  </div>
-							  <div class="form-group col-sm-3"></div>
-							</div>
-						  <br>
-						  <div id="botones">
-							<button type="submit" class="btn btn-default validadorForm" id="enviar" onclick="precios()">Guardar<span class="glyphicon glyphicon-ok"></span></button>
-							<c:url value="/GestionarProducto" var="cancelarOp"></c:url>
-							<span><a class="btn btn-default" id="cancelar" href="${cancelarOp}">Cancelar<span class="glyphicon glyphicon-remove"></span></a></span>
-						  </div>
-						</form>
-					</div>
+						</c:forEach>
+						<br>
+						<div id="botones">
+							<c:url value="/ProveedorCatalogo" var="volverCatalogo">
+				 				<c:param name="evento" value="todos"/>
+							</c:url>
+							<a class="btn btn-primary" id="miCatalogo" href="${volverCatalogo}">Volver a mi cat&aacute;logo</a>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<p>No hay productos con stock bajo.</p>
+					</c:otherwise>
+				</c:choose>	
+			</div>
+		</div>
 
 
 
-		</div> <!-- /#main-content -->
 
+	
 		
 		<div class="site-footer">
 			<div class="first-footer">
@@ -280,6 +244,7 @@
 	<script src="js/jquery.singlePageNav.js"></script>
 	<script src="js/jquery.flexslider.js"></script>
 	<script src="js/custom.js"></script>
-	<script src="js/proveedor-altamodifproducto.js"></script>
+
+
 </body>
 </html>

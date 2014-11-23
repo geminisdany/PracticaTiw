@@ -38,7 +38,10 @@
 						</a>
 					</div> </div>
 					<div class="col-xs-4" id="page-title">
-						<a href="#"><h1>Talaver&aacute;mica</h1></a>
+					<c:url value="/SesionProveedor" var="volverLogin">
+		 				<c:param name="evento" value="login"/>
+					</c:url>
+						<h1><a href="${volverLogin}">Talaver&aacute;mica</a></h1>
 						<span>Al m&aacute;s puro estilo Romano</span>
 					</div>
 					<div class="col-xs-4 backgroundred"><div class="contact-ref">
@@ -112,7 +115,7 @@
 					  <div class="form-group col-sm-2"></div>
 					  <div class="form-group col-sm-5">
 						<label for="tlf">Tel&eacute;fono del proveedor <span class="red">*</span><span class="glyphicon glyphicon-phone-alt" title="Tel&eacute;fono"></span></label>
-						<input type="tel" class="form-control" id="tlf" name="tlf"
+						<input type="text" class="form-control" id="tlf" name="tlf"
 							   placeholder="Tel&eacute;fono">
 					  </div>
 					</div>
@@ -126,28 +129,42 @@
 					  <div class="form-group col-sm-2"></div>
 					  <div class="form-group col-sm-5">
 						<label for="pwd2P">Confirmar contrase&ntilde;a <span class="red">*</span></label>
-						<input type="password" class="form-control" id="pwd2P" name="word2P"
+						<input type="password" class="form-control" id="pwd2P" name="pwd2P"
 							   placeholder="*************">
 					  </div>
 					</div>
 					<br>
 					<div class="row">
-					  <div class="form-group col-sm-4">
-						<label for="direccion">Direcci&oacute;n<span class="red">*</span><span class="glyphicon glyphicon-lock" title="Direcci&oacute;n"></span></label>
+					  <div class="form-group col-sm-6">
+						<label for="direccion">Direcci&oacute;n<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Direcci&oacute;n"></span></label>
 						<input type="text" class="form-control" id="direccion" name="direccion"
-							   placeholder="C/calle-n&uacute;mero-escalera-piso-puerta">
+							   placeholder="C/calle n&uacute;mero escalera piso puerta">
 					  </div>
 					  <div class="form-group col-sm-1"></div>
+					  <div class="form-group col-sm-5">
+						<label for="ciudad">Localidad<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Localidad"></span></label>
+						<input type="text" class="form-control" id="ciudad" name="ciudad"
+							   placeholder="Localidad">
+					  </div>
+					</div>
+					<br>
+					<div class="row"> 
 					  <div class="form-group col-sm-2">
-						<label for="codpostP"> CP <span class="red">*</span></label>
-						<input type="text" class="form-control" id="codpostP" name="postP"
+						<label for="cp"> CP <span class="red">*</span></label>
+						<input type="text" class="form-control" id="cp" name="cp"
 								placeholder="28054" maxlength="5">
 					  </div>
 					  <div class="form-group col-sm-1"></div>
 					  <div class="form-group col-sm-4">
-						<label for="ciupP">Ciudad, Pa&iacute;s <span class="red">*</span></label>
-						<input type="text" class="form-control" id="ciupP" name="citycP"
-							   placeholder="Ciudad,Pa&iacute;s">
+						<label for=provincia>Provincia<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Provincia"></span></label>
+						<input type="text" class="form-control" id="provincia" name="provincia"
+							   placeholder="Provincia">
+					  </div>
+					  <div class="form-group col-sm-1"></div>
+					  <div class="form-group col-sm-4">
+						<label for="pais">Pa&iacute;s<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Pa&iacute;s"></span></label>
+						<input type="text" class="form-control" id="pais" name="pais"
+							   placeholder="Pa&iacute;s">
 					  </div>
 					</div>
 					<br>
@@ -169,8 +186,8 @@
 				  <div id="botones">
 					<button type="submit" class="btn btn-default validadorForm" id="enviar">Enviar <span class="glyphicon glyphicon-ok"></span></button>
 					<c:url value="/RegistroUsuario" var="cancelarOp"></c:url>
-						<span><a class="btn btn-default" id="cancelar" href="${cancelarOp}">Cancelar<span class="glyphicon glyphicon-remove"></span></a></span>
-					</div>
+					<span><a class="btn btn-default" id="cancelar" href="${cancelarOp}">Cancelar<span class="glyphicon glyphicon-remove"></span></a></span>
+				  </div>
 				</form>
 			</div>
 

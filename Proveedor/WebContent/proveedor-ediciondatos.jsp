@@ -26,7 +26,8 @@
 				<div class="user-menu-small row">
 					<ul>
 						<li class="user-register-small"><a href="#" class ="col-xs-6">Web Cliente</a></li>
-						<li class="user-login-small"><a href="#" class ="col-xs-6">Contacto</a></li>
+						<li class="user-login-small"><a href="#" class ="col-xs-6"><c:set var="provLog" scope="session" value="${proveedorLogeado}"></c:set>
+							Bienvenido <c:out value="${provLog.nombre}"></c:out></a></li>
 					</ul>
 				</div> 
 		        <a href="#" class="menu-toggle-btn menu-small">
@@ -41,12 +42,24 @@
 		 				<c:param name="evento" value="todos"/>
 					</c:url>
 				    <li class="my-products"><a href="${misProducto}">Mis Productos</a></li>
-				    <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li>
+				    <!-- <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li> -->
 				    <c:url value="/ProveedorCatalogo" var="miCuentaP">
 		 				<c:param name="cuenta" value="cuenta"/>
 					</c:url>
 				    <li class="my-account"><a href="${miCuentaP}">Mi Cuenta</a></li>
-				    <c:url value="/ProveedorCatalogo" var="logOut">
+				    <c:url value="/ProveedorCatalogo" var="misSuscripciones">
+		 				<c:param name="suscripcion" value="suscripcion"/>
+					</c:url>
+					<li class="suscripcion"><a href="${misSuscripciones}">Suscripciones</a></li>
+				    <c:url value="/ProveedorCatalogo" var="misAvisos">
+		 				<c:param name="avisos" value="avisos"/>
+					</c:url>
+					<li class="aviso"><a href="${misAvisos}">Avisos de Stock</a></li>
+					<c:url value="/ProveedorCatalogo" var="misFacturas">
+		 				<c:param name="factura" value="factura"/>
+					</c:url>
+					<li class="facturacion"><a href="${misFacturas}">Facturaci&oacute;n</a></li>
+					<c:url value="/ProveedorCatalogo" var="logOut">
 		 				<c:param name="salir" value="salir"/>
 					</c:url>
 					<li class="logout"><a href="${logOut}">Salir</a></li>	
@@ -56,23 +69,22 @@
 		    <div id="cabecera" class="hidden-sm hidden-xs">
 			    <div class="row">
 				    <div class="col-xs-4 backgroundred"><div class="client-ref">
-				        <a href="#">
-	  					  	<span style="display: block;">
-	        					Visitar la p&aacute;gina web de Clientes
-	    					</span>
-						</a>
+				        <span style="display: block;">
+	  						<c:set var="provLog" scope="session" value="${proveedorLogeado}"></c:set>
+							Bienvenido <c:out value="${provLog.nombre}"></c:out>
+	    				</span>
 					</div> </div>
 					<div class="col-xs-4" id="page-title">
 					<c:url value="/ProveedorCatalogo" var="misProduc">
 		 				<c:param name="evento" value="todos"/>
 					</c:url>
-						<a href="${misProduc}"><h1>Talaver&aacute;mica</h1></a>
+						<h1><a href="${misProduc}">Talaver&aacute;mica</a></h1>
 						<span>Al m&aacute;s puro estilo Romano</span>
 					</div>
 					<div class="col-xs-4 backgroundred"><div class="contact-ref">
-				        <a href="#">
+	  					<a href="#">
 	  					  	<span style="display: block;">
-	        					Contactar con Talaver&aacute;mica
+	        					Visitar la p&aacute;gina web de Clientes
 	    					</span>
 						</a>
 					</div> </div>
@@ -89,15 +101,27 @@
 		 				<c:param name="evento" value="todos"/>
 					</c:url>
 				    <li class="my-products"><a href="${misProduct}">Mis Productos</a></li>
-				    <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li>
+				    <!-- <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li> -->
 				    <c:url value="/ProveedorCatalogo" var="miCuenP">
 		 				<c:param name="cuenta" value="cuenta"/>
 					</c:url>
 				    <li class="my-account"><a href="${miCuenP}]">Mi Cuenta</a></li>
-				    <c:url value="/ProveedorCatalogo" var="logOu">
+				    <c:url value="/ProveedorCatalogo" var="misSusc">
+		 				<c:param name="suscripcion" value="suscripcion"/>
+					</c:url>
+					<li class="suscripcion"><a href="${misSusc}">Suscripciones</a></li>
+				    <c:url value="/ProveedorCatalogo" var="misAvis">
+		 				<c:param name="avisos" value="avisos"/>
+					</c:url>
+					<li class="aviso"><a href="${misAvis}">Avisos de Stock</a></li>
+					<c:url value="/ProveedorCatalogo" var="misFact">
+		 				<c:param name="factura" value="factura"/>
+					</c:url>
+					<li class="facturacion"><a href="${misFact}">Facturaci&oacute;n</a></li>
+					<c:url value="/ProveedorCatalogo" var="logOu">
 		 				<c:param name="salir" value="salir"/>
 					</c:url>
-					<li class="logout"><a href="${logOut}">Salir</a></li>	
+					<li class="logout"><a href="${logOu}">Salir</a></li>	
 				</ul>
 			</div>
 		
@@ -140,7 +164,12 @@
 				<h1 id="registroC">Mi Cuenta</h1>
 				<p>Bienvenido a la p&aacute;gina de registro de Talaver&aacute;mica. Por favor, rellene los siguientes campos.</p>
 				<c:set var="cuentaProv" scope="session" value="${cuentaProveedores}"></c:set>
+				<c:set var="cuentaProvDir" scope="session" value="${cuentaProvDireccion}"></c:set>
 				<form action="RegistroUsuario" class="form-horizontal" role="form" method="post" onsubmit="return pwdIguales()">
+					<div class="hidden">
+						<input type="text" class="form-control" id="id" name="id"
+							   value="${cuentaProv.id}">
+					</div>
 					<div class="row">
 					  <div class="form-group col-sm-5" id="columnas62">
 						<label for="nombre">Nombre del Proveedor<span class="red">*</span><span class="glyphicon glyphicon-user" title="Usuario"></span></label>
@@ -164,8 +193,8 @@
 					  <div class="form-group col-sm-2"></div>
 					  <div class="form-group col-sm-5">
 						<label for="tlf">Tel&eacute;fono del proveedor <span class="red">*</span><span class="glyphicon glyphicon-phone-alt" title="Tel&eacute;fono"></span></label>
-						<input type="tel" class="form-control" id="tlf" name="tlf"
-							   value="${cuentaProv.tlf}">
+						<input type="text" class="form-control" id="tlf" name="tlf"
+							   value="${cuentaProv.telefono}">
 					  </div>
 					</div>
 					<br>
@@ -173,33 +202,47 @@
 					  <div class="form-group col-sm-5">
 						<label for="contras">Contrase&ntilde;a del proveedor<span class="red">*</span><span class="glyphicon glyphicon-lock" title="Contrase&ntilde;a"></span></label>
 						<input type="password" class="form-control" id="contras" name="contras"
-							   value="${cuentaProv.contras}">
+							   value="${cuentaProv.password}">
 					  </div>
 					  <div class="form-group col-sm-2"></div>
 					  <div class="form-group col-sm-5">
 						<label for="pwd2P">Confirmar contrase&ntilde;a <span class="red">*</span></label>
-						<input type="password" class="form-control" id="pwd2P" name="word2P"
-							   placeholder="Contrase&ntilde;a">
+						<input type="password" class="form-control" id="pwd2P" name="pwd2P"
+							   value="${cuentaProv.password}">
 					  </div>
 					</div>
 					<br>
 					<div class="row">
-					  <div class="form-group col-sm-4">
-						<label for="direccion">Direcci&oacute;n<span class="red">*</span><span class="glyphicon glyphicon-lock" title="Direcci&oacute;n"></span></label>
+					  <div class="form-group col-sm-6">
+						<label for="direccion">Direcci&oacute;n<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Direcci&oacute;n"></span></label>
 						<input type="text" class="form-control" id="direccion" name="direccion"
-							   value="${cuentaProv.direccion}">
+							    value="${cuentaProvDir.direccion}">
 					  </div>
 					  <div class="form-group col-sm-1"></div>
+					  <div class="form-group col-sm-5">
+						<label for="ciudad">Localidad<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Localidad"></span></label>
+						<input type="text" class="form-control" id="ciudad" name="ciudad"
+							    value="${cuentaProvDir.ciudad}">
+					  </div>
+					</div>
+					<br>
+					<div class="row"> 
 					  <div class="form-group col-sm-2">
-						<label for="codpostP"> CP <span class="red">*</span></label>
-						<input type="text" class="form-control" id="codpostP" name="postP"
-								placeholder="28054" maxlength="5">
+						<label for="cp"> CP <span class="red">*</span></label>
+						<input type="text" class="form-control" id="cp" name="cp"
+								 value="${cuentaProvDir.cp}" maxlength="5">
 					  </div>
 					  <div class="form-group col-sm-1"></div>
 					  <div class="form-group col-sm-4">
-						<label for="ciupP">Ciudad, Pa&iacute;s <span class="red">*</span></label>
-						<input type="text" class="form-control" id="ciupP" name="citycP"
-							   placeholder="Ciudad,Pa&iacute;­s">
+						<label for=provincia>Provincia<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Provincia"></span></label>
+						<input type="text" class="form-control" id="provincia" name="provincia"
+							    value="${cuentaProvDir.provincia}">
+					  </div>
+					  <div class="form-group col-sm-1"></div>
+					  <div class="form-group col-sm-4">
+						<label for="pais">Pa&iacute;s<span class="red">*</span><span class="glyphicon glyphicon-envelope" title="Pa&iacute;s"></span></label>
+						<input type="text" class="form-control" id="pais" name="pais"
+							    value="${cuentaProvDir.pais}">
 					  </div>
 					</div>
 					<br>

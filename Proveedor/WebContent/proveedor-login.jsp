@@ -36,7 +36,10 @@
 						</a>
 					</div> </div>
 					<div class="col-xs-4" id="page-title">
-						<a href="#"><h1>Talaver&aacute;mica</h1></a>
+					<c:url value="/SesionProveedor" var="volverLogin">
+		 				<c:param name="evento" value="login"/>
+					</c:url>
+						<h1><a href="${volverLogin}">Talaver&aacute;mica</a></h1>
 						<span>Al m&aacute;s puro estilo Romano</span>
 					</div>
 					<div class="col-xs-4 backgroundred"><div class="contact-ref">
@@ -112,7 +115,7 @@
 							<div class="social-footer">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
-									<li><a href="https://twitter.com/AsientoVacio" class="fa fa-twitter"></a></li>
+									<li><a href="https://twitter.com/" class="fa fa-twitter"></a></li>
 									<li><a href="#" class="fa fa-dribbble"></a></li>
 									<li><a href="#" class="fa fa-linkedin"></a></li>
 									<li><a href="#" class="fa fa-rss"></a></li>

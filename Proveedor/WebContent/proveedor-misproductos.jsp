@@ -24,7 +24,8 @@
 				<div class="user-menu-small row">
 					<ul>
 						<li class="user-register-small"><a href="#" class ="col-xs-6">Web Cliente</a></li>
-						<li class="user-login-small"><a href="#" class ="col-xs-6">Contacto</a></li>
+						<li class="user-login-small"><a href="#" class ="col-xs-6"><c:set var="provLog" scope="session" value="${proveedorLogeado}"></c:set>
+							Bienvenido <c:out value="${provLog.nombre}"></c:out></a></li>
 					</ul>
 				</div> 
 		        <a href="#" class="menu-toggle-btn menu-small">
@@ -39,11 +40,23 @@
 		 				<c:param name="evento" value="todos"/>
 					</c:url>
 				    <li class="my-products"><a href="${misProducto}">Mis Productos</a></li>
-				    <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li>
+				    <!-- <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li> -->
 				    <c:url value="/ProveedorCatalogo" var="miCuentaP">
 		 				<c:param name="cuenta" value="cuenta"/>
 					</c:url>
 				    <li class="my-account"><a href="${miCuentaP}">Mi Cuenta</a></li>
+				    <c:url value="/ProveedorCatalogo" var="misSuscripciones">
+		 				<c:param name="suscripcion" value="suscripcion"/>
+					</c:url>
+					<li class="suscripcion"><a href="${misSuscripciones}">Suscripciones</a></li>
+					<c:url value="/ProveedorCatalogo" var="misAvisos">
+		 				<c:param name="avisos" value="avisos"/>
+					</c:url>
+					<li class="aviso"><a href="${misAvisos}">Avisos de Stock</a></li>
+				    <c:url value="/ProveedorCatalogo" var="misFacturas">
+		 				<c:param name="factura" value="factura"/>
+					</c:url>
+					<li class="facturacion"><a href="${misFacturas}">Facturaci&oacute;n</a></li>
 				    <c:url value="/ProveedorCatalogo" var="logOut">
 		 				<c:param name="salir" value="salir"/>
 					</c:url>
@@ -54,23 +67,22 @@
 		    <div id="cabecera" class="hidden-sm hidden-xs">
 			    <div class="row">
 				    <div class="col-xs-4 backgroundred"><div class="client-ref">
-				        <a href="#">
-	  					  	<span style="display: block;">
-	        					Visitar la p&aacute;gina web de Clientes
-	    					</span>
-						</a>
+				        <span style="display: block;">
+	  						<c:set var="provLog" scope="session" value="${proveedorLogeado}"></c:set>
+							Bienvenido <c:out value="${provLog.nombre}"></c:out>
+	    				</span>
 					</div> </div>
 					<div class="col-xs-4" id="page-title">
 					<c:url value="/ProveedorCatalogo" var="misProduc">
 		 				<c:param name="evento" value="todos"/>
 					</c:url>
-						<a href="${misProduc}"><h1>Talaver&aacute;mica</h1></a>
+						<h1><a href="${misProduc}">Talaver&aacute;mica</a></h1>
 						<span>Al m&aacute;s puro estilo Romano</span>
 					</div>
 					<div class="col-xs-4 backgroundred"><div class="contact-ref">
-				        <a href="#">
+	  					<a href="#">
 	  					  	<span style="display: block;">
-	        					Contactar con Talaver&aacute;mica
+	        					Visitar la p&aacute;gina web de Clientes
 	    					</span>
 						</a>
 					</div> </div>
@@ -87,15 +99,26 @@
 		 				<c:param name="evento" value="todos"/>
 					</c:url>
 				    <li class="my-products"><a href="${misProduct}">Mis Productos</a></li>
-				    <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li>
+				    <!-- <li class="add-publicity"><a href="#">A&ntilde;adir Publicidad</a></li> -->
 				    <c:url value="/ProveedorCatalogo" var="miCuenP">
 		 				<c:param name="cuenta" value="cuenta"/>
 					</c:url>
 				    <li class="my-account"><a href="${miCuenP}]">Mi Cuenta</a></li>
-				    <c:url value="/ProveedorCatalogo" var="logOu">
+				    <c:url value="/ProveedorCatalogo" var="misSusc">
+		 				<c:param name="suscripcion" value="suscripcion"/>
+					</c:url>
+					<li class="suscripcion"><a href="${misSusc}">Suscripciones</a></li>
+				    <c:url value="/ProveedorCatalogo" var="misAvis">
+		 				<c:param name="avisos" value="avisos"/>
+					</c:url>
+					<li class="aviso"><a href="${misAvis}">Avisos de Stock</a></li>
+					<c:url value="/ProveedorCatalogo" var="misFact">
+		 				<c:param name="factura" value="factura"/>
+					</c:url>
+					<li class="facturacion"><a href="${misFact}">Facturaci&oacute;n</a></li><c:url value="/ProveedorCatalogo" var="logOu">
 		 				<c:param name="salir" value="salir"/>
 					</c:url>
-					<li class="logout"><a href="${logOut}">Salir</a></li>	
+					<li class="logout"><a href="${logOu}">Salir</a></li>	
 				</ul>
 			</div>
 		
@@ -137,7 +160,7 @@
 					<div class="col-md-12">
 						<div class="section-title categoria">
 							<c:set var="categoriaProducto" scope="session" value="${categoriaProd}"></c:set>
-							<h2>Mis Productos > <c:out value="${categoriaProd}"></c:out></h2>
+							<h2>Mis Productos > <c:out value="${categoriaProducto}"></c:out></h2>
 							<form name="categoriaform">
 							<c:url value="/ProveedorCatalogo" var="misProductosTod">
 				 				<c:param name="evento" value="todos"/>
@@ -188,13 +211,13 @@ return false;">
 							<div class="member-item">
 								<div class="member-thumb">
 									<c:url value="/ProveedorCatalogo" var="elegirProducto">
-						 				<c:param name="idProducto" value="${producto.idp}"/>
+						 				<c:param name="idProducto" value="${producto.id}"/>
 									</c:url>
 									<a href="${elegirProducto}"><img src="${producto.urlImagen}" alt="${producto.nombre}"></a>
 								</div>
 								<div class="member-content">
 									<h4><c:out value="${producto.nombre}"></c:out></h4>
-									<p><c:out value="${producto.pre_act}"></c:out> &euro;</p>
+									<p><c:out value="${producto.precio}"></c:out> &euro;</p>
 								</div>
 							</div>
 						</div>
@@ -206,8 +229,7 @@ return false;">
 
 
 
-		</div> <!-- /#main-content -->
-
+	
 		
 		<div class="site-footer">
 			<div class="first-footer">

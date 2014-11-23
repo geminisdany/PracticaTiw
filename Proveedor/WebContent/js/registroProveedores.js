@@ -5,22 +5,24 @@ function pwdIguales(){ //Antes de validar el resto del formulario, es indispensa
 		return validarF();
 	} else {
 		alert("Las contraseñas no son iguales. Por favor, introduzca la misma contraseña en ambos campos.");
+		return false;
 	}
 }
 
 function validarF(){
 	var contador = 0;
+	var resultado = "";
 	//Valido el campo nombre de usuario
 	var nombreUsuario = document.getElementById("nombre").value;
 	var nom = nombreUsuario.toString();
 	if (nom == null || nom == "") {
-		alert("El campo Nombre de usuario debe rellenarse");
+		resultado = resultado.concat("El campo Nombre de usuario debe rellenarse" + '\n');
 		document.getElementById("nombre").style.borderColor="red";
 		document.getElementById("nombre").style.borderStyle="dotted";
-	} else if (nom.match(/[^a-zñáéíóúüçÁÉÍÓÚÇÜ]/gi)){
+	} else if (nom.match(/[^\s\da-zA-ZñáéíóúüçÁÉÍÓÚÇÜÑ&-]/gi)){
 		document.getElementById("nombre").style.borderColor="red";
 		document.getElementById("nombre").style.borderStyle="dotted";
-		alert("El nombre del usuario no puede contener números ni estar en blanco");
+		resultado = resultado.concat("El nombre del usuario no puede contener símbolos ni estar en blanco" + '\n');
 	} else {
 		document.getElementById("nombre").style.borderColor="blue";
 		document.getElementById("nombre").style.borderStyle="dotted";
@@ -32,11 +34,11 @@ function validarF(){
 	var cifProveedor = document.getElementById("cif").value;
 	var cif = cifProveedor.toString();
 	if (cif == null || cif == "") {
-		alert("El campo 'Cif del proveedor' debe rellenarse");
+		resultado = resultado.concat("El campo 'Cif del proveedor' debe rellenarse" + '\n');
 		document.getElementById("cif").style.borderColor="red";
 		document.getElementById("cif").style.borderStyle="dotted";
-	} else if (cif.match(/[^a-zñÑáéíóúüçÁÉÍÓÚÇÜA-Z\d-]/gi)){
-		alert("El CIF del proveedor no puede contener símbolos, excepto el guión, ni estar en blanco");
+	} else if (cif.match(/[^a-zñÑA-Z\d-]/gi)){
+		resultado = resultado.concat("El CIF del proveedor no puede contener símbolos, excepto el guión, ni estar en blanco" + '\n');
 		document.getElementById("cif").style.borderColor="red";
 		document.getElementById("cif").style.borderStyle="dotted";		
 	} else {
@@ -49,10 +51,10 @@ function validarF(){
 	//Valido el campo email del usuario
 	var emailUsuario = document.getElementById("email").value;
 	var mail = emailUsuario.toString();
-	if (mail.match(/[^\w.@-ñÑáéíóúüçÁÉÍÓÚÇÜ]/g)|| mail == null || mail == ""){
+	if (mail.match(/[^\w\d.@-_ñÑ&#/]/g)|| mail == null || mail == ""){
 		document.getElementById("email").style.borderColor="orange";
 		document.getElementById("email").style.borderStyle="dotted";
-		alert("El campo 'Email del proveedor' no puede permanecer vacío, y puede estar formado tanto por letras como por números");
+		resultado = resultado.concat("El campo 'Email del proveedor' no puede permanecer vacío, y puede estar formado tanto por letras como por números" + '\n');
 	} else {
 		document.getElementById("email").style.borderColor="blue";
 		document.getElementById("email").style.borderStyle="dotted";
@@ -64,13 +66,13 @@ function validarF(){
 	var telfUsuario = document.getElementById("tlf").value;
 	var telf = telfUsuario.toString();
 	if (telf == null || telf == "") {
-		alert("El campo 'Telefono de proveedor' debe rellenarse");
+		resultado = resultado.concat("El campo 'Telefono de proveedor' debe rellenarse" + '\n');
 		document.getElementById("tlf").style.borderColor="red";
 		document.getElementById("tlf").style.borderStyle="dotted";
 	} else if (telf.match(/[\D]/gi)){
 		document.getElementById("tlf").style.borderColor="red";
 		document.getElementById("tlf").style.borderStyle="dotted";
-		alert("El campo 'Telefono del proveedor' no puede contener letras ni estar en blanco");
+		resultado = resultado.concat("El campo 'Telefono del proveedor' no puede contener letras ni estar en blanco" + '\n');
 	} else {
 		document.getElementById("tlf").style.borderColor="blue";
 		document.getElementById("tlf").style.borderStyle="dotted";
@@ -80,10 +82,10 @@ function validarF(){
 	//Valido el campo 'contrasena'
 	var pwdUsuario = document.getElementById("contras").value;
 	var pwd = pwdUsuario.toString();
-	if (pwd.match(/[^\w-.@$%&#€¡!¿?ñÑáéíóúüçÁÉÍÓÚÇÜ]/g)|| pwd == null || pwd == ""){
+	if (pwd.match(/[^\w\d-.@$%&#€/¡!¿?ñÑáéíóúüçÁÉÍÓÚÇÜ]/g)|| pwd == null || pwd == ""){
 		document.getElementById("contras").style.borderColor="red";
 		document.getElementById("contras").style.borderStyle="dotted";
-		alert("El campo Contraseña del proveedor no puede permanecer vacío, y puede estar formado tanto por letras como por números");
+		resultado = resultado.concat("El campo Contraseña del proveedor no puede permanecer vacío, y puede estar formado tanto por letras como por números" + '\n');
 	} else {
 		document.getElementById("contras").style.borderColor="blue";
 		document.getElementById("contras").style.borderStyle="dotted";
@@ -93,10 +95,10 @@ function validarF(){
 	//Valido el campo 'confirmar contrasena'
 	var pwd2Usuario = document.getElementById("pwd2P").value;
 	var pwd2 = pwd2Usuario.toString();
-	if (pwd2.match(/[^\w-.@$%&#€¡!¿?ñÑáéíóúüçÁÉÍÓÚÇÜ]/g)|| pwd == null || pwd == ""){
+	if (pwd2.match(/[^\w\d-.@$%&#€/¡!¿?ñÑáéíóúüçÁÉÍÓÚÇÜ]/g)|| pwd == null || pwd == ""){
 		document.getElementById("pwd2P").style.borderColor="red";
 		document.getElementById("pwd2P").style.borderStyle="dotted";
-		alert("El campo Contraseña del proveedor no puede permanecer vacío, y puede estar formado tanto por letras como por números");
+		resultado = resultado.concat("El campo Contraseña del proveedor no puede permanecer vacío, y puede estar formado tanto por letras como por números" + '\n');
 	} else {
 		document.getElementById("pwd2P").style.borderColor="blue";
 		document.getElementById("pwd2P").style.borderStyle="dotted";
@@ -106,60 +108,97 @@ function validarF(){
 	//Valido el campo 'direccion'
 	var dirUsuario = document.getElementById("direccion").value;
 	var direc = dirUsuario.toString();
-	if (direc.match(/[^\da-zA-Z-ºñÑáéíóúüÁÉÍÓÚÇÜç]/g)|| direc == null || direc == ""){
+	if (direc.match(/[^\s\da-zA-Z-º/ñÑáéíóúüÁÉÍÓÚÇÜç]/g)|| direc == null || direc == ""){
 		document.getElementById("direccion").style.borderColor="red";
 		document.getElementById("direccion").style.borderStyle="dotted";
-		alert("El campo 'Direccion del proveedor' no puede permanecer vacío, y puede estar formado tanto por letras como por números");
+		resultado = resultado.concat("El campo 'Direccion del proveedor' no puede permanecer vacío, y puede estar formado tanto por letras como por números" + '\n');
 	} else {
 		document.getElementById("direccion").style.borderColor="blue";
 		document.getElementById("direccion").style.borderStyle="dotted";
 		contador = contador + 1;
 	}
 	
-	//Valido el campo 'codigo postal'
-	var codpostUsuario = document.getElementById("codpostP").value;
-	var cp = codpostUsuario.toString();
-	if (cp.match(/[\D]/g)|| cp == null || cp == ""){
-		document.getElementById("codpostP").style.borderColor="red";
-		document.getElementById("codpostP").style.borderStyle="dotted";
-		alert("El campo 'Codigo postal' del proveedor no puede permanecer vacío y sólo puede estar formado por números");
+	//Valido el campo 'ciudad'
+	var ciupa = document.getElementById("ciudad").value;
+	var cip = ciupa.toString();
+	if (cip == null || cip == "") {
+		resultado = resultado.concat("El campo 'Localidad' debe rellenarse" + '\n');
+		document.getElementById("ciudad").style.borderColor="red";
+		document.getElementById("ciudad").style.borderStyle="dotted";
+	} else if (cip.match(/[^\sa-zA-Z-ñÑáéíóúüÁÉÍÓÚÇÜç]/gi)){
+		document.getElementById("ciudad").style.borderColor="red";
+		document.getElementById("ciudad").style.borderStyle="dotted";
+		resultado = resultado.concat("El campo 'Localidad' no puede contener números ni símbolos ni estar en blanco" + '\n');
 	} else {
-		document.getElementById("codpostP").style.borderColor="blue";
-		document.getElementById("codpostP").style.borderStyle="dotted";
+		document.getElementById("ciudad").style.borderColor="blue";
+		document.getElementById("ciudad").style.borderStyle="dotted";
 		contador = contador + 1;
 	}
 	
-	//Valido el campo 'ciudad, pais'
-	var ciupa = document.getElementById("ciupP").value;
+	//Valido el campo 'codigo postal'
+	var codpostUsuario = document.getElementById("cp").value;
+	var cp = codpostUsuario.toString();
+	if (cp.match(/[\D]/g)|| cp == null || cp == ""){
+		document.getElementById("cp").style.borderColor="red";
+		document.getElementById("cp").style.borderStyle="dotted";
+		resultado = resultado.concat("El campo 'Codigo postal' del proveedor no puede permanecer vacío y sólo puede estar formado por números" + '\n');
+	} else {
+		document.getElementById("cp").style.borderColor="blue";
+		document.getElementById("cp").style.borderStyle="dotted";
+		contador = contador + 1;
+	}
+	
+	//Valido el campo 'provincia'
+	var ciupa = document.getElementById("provincia").value;
 	var cip = ciupa.toString();
 	if (cip == null || cip == "") {
-		alert("El campo 'Ciudad, País' debe rellenarse");
-		document.getElementById("ciupP").style.borderColor="red";
-		document.getElementById("ciupP").style.borderStyle="dotted";
-	} else if (cip.match(/[^a-záéíóúüçñÑÁÉÍÓÚÇÜ,]/gi)){
-		document.getElementById("ciupP").style.borderColor="red";
-		document.getElementById("ciupP").style.borderStyle="dotted";
-		alert("El campo 'Ciudad, País' no puede contener números ni estar en blanco");
+		resultado = resultado.concat("El campo 'Provincia' debe rellenarse" + '\n');
+		document.getElementById("provincia").style.borderColor="red";
+		document.getElementById("provincia").style.borderStyle="dotted";
+	} else if (cip.match(/[^\sa-zA-Z-ñÑáéíóúüÁÉÍÓÚÇÜç]/gi)){
+		document.getElementById("provincia").style.borderColor="red";
+		document.getElementById("provincia").style.borderStyle="dotted";
+		resultado = resultado.concat("El campo 'Provincia' no puede contener números ni símbolos ni estar en blanco" + '\n');
 	} else {
-		document.getElementById("ciupP").style.borderColor="blue";
-		document.getElementById("ciupP").style.borderStyle="dotted";
+		document.getElementById("provincia").style.borderColor="blue";
+		document.getElementById("provincia").style.borderStyle="dotted";
+		contador = contador + 1;
+	}
+	
+	//Valido el campo 'pais'
+	var ciupa = document.getElementById("pais").value;
+	var cip = ciupa.toString();
+	if (cip == null || cip == "") {
+		resultado = resultado.concat("El campo 'País' debe rellenarse" + '\n');
+		document.getElementById("pais").style.borderColor="red";
+		document.getElementById("pais").style.borderStyle="dotted";
+	} else if (cip.match(/[^\sa-zA-Z-ñÑáéíóúüÁÉÍÓÚÇÜç]/gi)){
+		document.getElementById("pais").style.borderColor="red";
+		document.getElementById("pais").style.borderStyle="dotted";
+		resultado = resultado.concat("El campo 'País' no puede contener números ni símbolos ni estar en blanco" + '\n');
+	} else {
+		document.getElementById("pais").style.borderColor="blue";
+		document.getElementById("pais").style.borderStyle="dotted";
 		contador = contador + 1;
 	}
 	
 	//Valido el campo 'web'
 	var webUsuario = document.getElementById("web").value;
 	var web = webUsuario.toString();
-	if (web.match(/[^\w.:=?&-_áéíóúüçñÑÁÉÍÓÚÇÜ]/g)|| web == null || web == ""){
+	if (web.match(/[^\w\d.:=?&-/_áéíóúüçñÑÁÉÍÓÚÇÜ]/g)|| web == null || web == ""){
 		document.getElementById("web").style.borderColor="red";
 		document.getElementById("web").style.borderStyle="dotted";
-		alert("El campo 'Web' del proveedor no puede permanecer vacío");
+		resultado = resultado.concat("El campo 'Web' del proveedor no puede permanecer vacío" + '\n');
 	} else {
 		document.getElementById("web").style.borderColor="blue";
 		document.getElementById("web").style.borderStyle="dotted";
 		contador = contador + 1;
 	}
 	
-	if(contador == 10){
+	if(contador == 12){
 		alert("Usuario registrado con éxito");
-	} 
+	} else{
+		alert(resultado);
+		return false;
+	}
 }

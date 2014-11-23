@@ -5,6 +5,7 @@ function pwdIguales(){ //Antes de validar el resto del formulario, es indispensa
 		return validarF();
 	} else {
 		alert("Las contraseñas nuevas no son iguales. Por favor, introduzca la misma contraseña en ambos campos.");
+		return false;
 	}
 }
 
